@@ -1,6 +1,6 @@
 <?php 
 
-	define('MAIN_URL', 'localhost/irishjoy/');
+	define('MAIN_URL', 'http://localhost/irishjoy/');
 
 	function show_meta_tags(){
 		?>
@@ -115,7 +115,7 @@
 		$result_posts = mysqli_query($mysqli, $query_select_posts);	
 		$row_post = mysqli_fetch_array($result_posts);
 		
-		$img_path ="http://irishjoy.com/tagged/".$row_post['post_photo_name'];
+		$img_path = MAIN_URL . "tagged/".$row_post['post_photo_name']; 
 		?>
 			<img class="img_view_full" src="<?php echo $img_path; ?>" />
 		<?php
