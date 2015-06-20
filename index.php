@@ -100,13 +100,13 @@
 						<?php
 					}
 				
-					else {
+					else { 
 						echo"<a href=\"http://irishjoy.flivetech.com?jump=2\"> Next Page</a> ";
 					}
 				?>
 				
 				</p>
-		<div id="copyright">
+		<div id="copyright"> 
 			&copy; www.irishjoy.com 2014 &nbsp;&nbsp;&nbsp; 
 			<a target="_blank" href="http://facebook.com/irishjoycom"> www.facebook.com/irishjoycom</a>
 		</div>
