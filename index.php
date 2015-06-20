@@ -15,8 +15,8 @@
 	<body> 	
 		<div id="head">
 			<div style="margin: 0 auto; position: relative; width:40%; padding-top: 30px;">
-				<a href="http://irishjoy.flivetech.com">
-				<img src="http://irishjoy.flivetech.com/images/head_logo.jpg">
+				<a href="<?php echo MAIN_URL; ?>">
+				<img src="<?php echo MAIN_URL; ?>images/head_logo.jpg">
 				</a>
 			</div>	
 		</div>
@@ -105,12 +105,12 @@
 					}
 				?>
 				
-				</p>
+			</p>
 		<div id="copyright"> 
 			&copy; www.irishjoy.com 2014 &nbsp;&nbsp;&nbsp; 
 			<a target="_blank" href="http://facebook.com/irishjoycom"> www.facebook.com/irishjoycom</a>
 		</div>
-		</div>
+	</div>
 
 	<div id="fb-root"></div>
 
