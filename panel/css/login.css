@@ -1,0 +1,90 @@
+body{
+	margin:0;
+	padding:0;
+	background-image:url('http://irishjoy.com/panel/images/login2.jpg');
+	repeat: none;
+}
+
+	
+	div#login_box{
+	width:700px;
+	padding:15px;
+	margin:auto;
+	visible:none;
+}
+	
+	
+div#login{
+	width:700px;
+	padding:15px;
+	margin-top:430px;
+	color:#fff;
+	font:13px Geneva;
+	font-weight:550;
+}
+#login a{
+	color:#B0E2FF;
+	text-decoration:underline;
+	font-weight:500;
+}
+#login a:hover{
+	text-decoration:none;
+	}
+
+div#login label{
+	display:block;
+}
+
+div#login input[type="text"], div#login input[type="password"]{
+	display:inline;
+	margin-bottom:10px;
+	background:none;
+	border:1px solid #fff;
+	padding:5px;
+	width:26%;
+	color:white;
+	font-weight:700;
+	font: Arial, Helvetica, sans-serif;
+	text-align:center;
+	box-shadow: 0px 0px 1px 1px #F8F8FF;
+}
+div#login input:focus 
+{ 
+    outline: none;
+    border: 1px solid #F8F8FF;
+    box-shadow: 0px 0px 8px #F8F8FF;
+    -moz-box-shadow: 0px 0px 8px #F8F8FF;
+    -webkit-box-shadow: 0px 0px 8px #F8F8F;
+
+}
+
+/*  Butoni per login */
+button.login {
+  background: #e9e3e3;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+  box-shadow: inset 0 0 1px 1px #f6f6f6;
+  color: #333;
+  font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
+  padding: 8px 0 9px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  width: 80px;
+  height: 30px;
+}
+
+button.login:hover {
+  background: #d9d9d9;
+  -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
+  box-shadow: inset 0 0 1px 1px #eaeaea;
+  color: #222;
+  cursor: pointer;
+}
+
+button.login:active {
+  background: #d0d0d0;
+  -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
+  box-shadow: inset 0 0 1px 1px #e3e3e3;
+  color: #000;
+}

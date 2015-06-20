@@ -1,0 +1,104 @@
+body{
+	font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  	color: #404040;
+	background-image:url('http://irishjoy.flivetech.com/panel/super/images/bg2.png');
+}
+
+input, button, label 
+{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+	
+div#login_box
+{
+	width:500px;
+	padding:15px;
+	margin:auto;
+}
+	
+div#login{
+	width:500px;
+	padding:15px;
+	margin-top:430px;
+	color:#bbb;
+	font:13px Geneva;
+	font-weight:550;
+	margin-left:0px;
+}
+#login a{
+	color:#B0E2FF;
+	text-decoration:underline;
+	font-weight:500;
+}
+#login a:hover{
+	text-decoration:none;
+	}
+
+div#login label{
+	display:block;
+}
+
+div#login input[type="text"], div#login input[type="password"]
+{
+	  padding: 0 10px;
+	  width: 300px;
+	  height: 40px;
+	  color: #fff;
+	  text-shadow: 1px 1px 1px black;
+	  background: rgba(0, 0, 0, 0.16);
+	  border: 0;
+	  border-radius: 5px;
+	  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+	  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+div#login input:focus 
+{ 
+    color: white;
+  	background: rgba(0, 0, 0, 0.1);
+ 	 outline: 0;
+
+}
+
+/*  Butoni per login */
+button.login {
+  background: #e9e3e3;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+  box-shadow: inset 0 0 1px 1px #f6f6f6;
+  color: #333;
+  font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
+  padding: 8px 0 9px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  width: 80px;
+  height: 30px;
+  margin-left:10px;
+  outline:none;	
+}
+
+button.login:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  cursor: default;
+  border:none;
+  text-shadow:none;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+button.login:active {
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  cursor: default;
+  border:none;
+  text-shadow:none;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  outline:none;
+}

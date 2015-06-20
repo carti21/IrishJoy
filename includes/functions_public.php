@@ -1,0 +1,146 @@
+<?php 
+
+	define('MAIN_URL', 'localhost/irishjoy/');
+
+	function show_meta_tags(){
+		?>
+		<META name="generator" content="irishjoy.com">
+		<meta name="description" content="Photography, Images, Design, Architecture, Interior, Design, Cars, Gallery, Girls, Landscape">
+		<meta name="keywords" content="Photography, Images, Design, Architecture, Interior, Design, Cars, Gallery, Girls, Landscape">
+		<meta name="author" content="irishjoy.com">
+		<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1" >
+		<?php
+	}
+
+	function show_main_menu(){	
+		?>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/menswear"> menswear </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/design"> design </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/architecture"> architecture </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/cars"> cars </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/inspiration"> inspiration </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/girls"> girls </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/landscape"> landscape </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/interiors"> interior design </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/gears"> gears </a></div>
+		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/photography"> photography </a></div>
+		<?php			 
+	}	
+	  
+	/* 
+	RENAME TO SHOW_IMG_RIGHT
+	add comment for the left column 
+	*/
+	function echo_img_left($mysqli,$start_left){
+
+		$query_select_img = "SELECT id, post_photo_name FROM post ORDER BY id DESC LIMIT " .$start_left. " , 7 ";
+		$result_img = mysqli_query($mysqli, $query_select_img);	
+		
+		while($row_img = mysqli_fetch_array($result_img)){
+
+			if($row_img['post_photo_name']!=''){
+				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
+				?>
+				<a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
+					<img class="content_img_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
+				</a>
+				<?php
+			} 
+		}
+	}
+
+	/*RENAME TO SHOW_IMG_RIGHT
+	add comment for the left column 
+	*/
+	function echo_img_right($mysqli,$start_right){
+
+		$query_select_img = "SELECT id, post_photo_name FROM post ORDER BY id DESC LIMIT ". $start_right. " , 7 "; 
+		$result_img = mysqli_query($mysqli, $query_select_img);	
+		
+		while($row_img = mysqli_fetch_array($result_img)){
+
+			if($row_img['post_photo_name']!=''){ 
+				
+				$img_path ="http://irishjoy.com/tagged/".$row_img['post_photo_name'];
+				?>
+				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
+					<img title="Permalink: (irishjoy.com/view-image.php?p_id=<?php echo  $row_img['id']; ?>)" class="content_img_right" src= "<?php echo $img_path; ?>" />
+				</a>
+				<?php	
+			}
+		}
+	}
+
+	function echo_img_left_category($mysqli,$cat,$start_left){
+
+		$query_select_img = "SELECT id, post_photo_name FROM post WHERE post_category= '$cat' ORDER BY id DESC LIMIT " .$start_left. ",7 "; 
+		$result_img = mysqli_query($mysqli, $query_select_img);	
+		 
+		while($row_img = mysqli_fetch_array($result_img))
+		{ 
+			if($row_img['post_photo_name']!='')
+			{
+				$img_path ="http://irishjoy.com/tagged/".$row_img['post_photo_name'];
+				?>
+				<a href="http://irishjoy.com/view-image.php?p_id=<?php echo $row_img['id']; ?>">
+					<img class="content_img_left" src="<?php echo $img_path?>" />
+				</a>
+				<?php
+			} 
+		}
+	}
+
+	//RENAME THIS TO ECHO_IMG_RIGHT_CATEGORY
+	function echo_img_right_category($mysqli,$cat,$start_right){
+
+		$query_select_img = "SELECT id, post_photo_name FROM post WHERE post_category= '$cat' ORDER BY id DESC LIMIT ". $start_right. ",7 "; 
+		$result_img = mysqli_query($mysqli, $query_select_img);	
+		
+		while($row_img = mysqli_fetch_array($result_img)){
+
+			if($row_img['post_photo_name']!=''){
+				
+				$img_path ="http://irishjoy.com/tagged/".$row_img['post_photo_name'];
+				?>
+				<a href="http://irishjoy.com/view-image.php?p_id=<?php echo $row_img['id']; ?>" ><img class="content_img_right" src="<?php echo $img_path; ?>"/></a>
+				<?php
+			} 
+		}	
+	}
+
+	//RENAME THIS TO SHOW_SINGLE_IMAGE
+	function view_image($mysqli,$post_id )
+	{
+		$query_select_posts = "SELECT id, post_photo_name FROM post WHERE id = $post_id"; 
+		$result_posts = mysqli_query($mysqli, $query_select_posts);	
+		$row_post = mysqli_fetch_array($result_posts);
+		
+		$img_path ="http://irishjoy.com/tagged/".$row_post['post_photo_name'];
+		?>
+			<img class="img_view_full" src="<?php echo $img_path; ?>" />
+		<?php
+	}
+
+	function get_numb_views($mysqli,$post_id){
+
+		$query_select_post_views= "SELECT post_views FROM post WHERE id= $post_id" ;
+		$result_fetch = mysqli_query($mysqli,$query_select_post_views);
+		$result_select_postviews = mysqli_fetch_array($result_fetch);
+		
+		return $result_select_postviews['post_views']; 
+	}
+
+	function increment_numb_views($mysqli,$views_icr,$post_id){
+
+		$query_update=("UPDATE post SET post_views=$views_icr WHERE id='$post_id'");
+		$result_update_postcounter = mysqli_query($mysqli,$query_update) ; 
+	}
+
+	function get_cat($mysqli,$post_id) {
+
+		$query_select_post_cat= "SELECT post_category FROM post WHERE id= $post_id" ;
+		$result_fetch = mysqli_query($mysqli,$query_select_post_cat);
+		$result_select_postcat = mysqli_fetch_array($result_fetch);
+		
+		return $result_select_postcat['post_category']; 
+	}

@@ -1,0 +1,286 @@
+body{
+	margin:0;
+	padding:0;
+	background-color:#eee;
+	font:13px "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+div#head{
+	width:100%;
+	height: 165px;
+	background-color:#1A1A1A ;
+	margin-bottom:20px;
+}
+
+div#right_head_bar{
+	width:200px;
+	height: 15px;
+	background-color:#F5FFFA ;
+	padding:4px;
+	margin-right:10px;
+	float:right;
+	
+}
+ 
+
+div#container{
+	width:845px;
+	min-height:1600px;
+	padding:0px;
+	background:none;
+	border:none;
+	border-radius: none;
+	overflow-x: auto;
+	margin: auto;
+	
+} 
+div#content{
+	width:525px;
+	min-height:1600px;
+	padding:0px;
+	background :none;
+	border:none;
+	border-radius: none;
+	float:left;
+	overflow-x: auto;
+	
+} 
+div#sidebar_right{
+	width:300px;
+	min-height:600px;
+	background:none;
+	border:none;
+	float:right;
+
+	
+} 
+div#ad_box{
+	width:300px;
+	height:250px;
+	background-color:#aaaaaa;
+	margin: auto;
+	float:right;
+} 
+div#ad_box:hover
+{
+	background-color:#fff;
+	cursor:pointer;
+}
+div#ad_bottom{
+	width:300px;
+	height:45px;
+	background-color :#cccccc;
+	border:none;
+	border-radius: none;
+	margin: auto;
+	float:right;
+	text-align:center;
+	
+} 
+div#ad_bottom a
+{
+	background:none;
+	text-decoration:none;
+	text-transform:uppercase;
+	border:none;
+	font-size: 11px ;
+	font-family: Helvetica Neue,Arial,sans-serif;
+	font-weight:bold;
+	color: #666666;
+	cursor:pointer;
+}
+
+div#ad_bottom a
+{
+	color:#777777;
+}
+
+div#before_menu{
+	width:300px;
+	height:110px;
+	background-color :#cccccc;
+	border:none;
+	margin-top: 20px;
+	margin-bottom: 1px;
+	float:right;
+
+} 
+
+div#menu_bar{
+	width:300px;
+	min-height:300px;
+	background-color :#cccccc;
+	border:none;
+	border-radius: none;
+	overflow-x: auto;
+	margin-bottom: 20px;
+	float:right;
+} 
+
+div#menu_items
+{
+	width:275px;
+	min-height: 20px;
+	text-align:center;
+	border-top: 1px ;
+	border-bottom: 1px solid #eee;
+	padding:12px;
+	margin-top:3px;
+
+	
+}
+
+div#menu_items a{
+	background-color:#cccccc;
+	text-decoration:none;
+	text-transform:uppercase;
+	border:none;
+	padding:6px;
+	font-size: 11px ;
+	font-family: Helvetica Neue,Arial,sans-serif;
+	font-weight:bold;
+	color: #666666;
+	cursor:pointer;
+	}
+
+div#menu_items a:hover
+{
+	color: #777777;
+}
+
+
+div#footer
+{
+	width:100%;
+	height: 45px;
+	background-color:#1A1A1A ; 
+	text-align:center;
+	color:#fff;
+	text-decoration:none;
+	padding-top:5px;
+	font-weight:bold;
+	
+}
+div#footer a
+{
+
+	background-color:#1A1A1A; 
+	text-align:center;
+	color:#fff;
+	text-decoration:none;
+	padding-top:5px;
+	font-weight:bold;
+}
+div#footer a:hover
+{
+	color:#eee;
+	text-decoration:none;
+	text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+	
+}
+
+div#copyright 
+{
+	height:25px;     
+	padding-top:8px;    
+	background-color:#383838  ; 
+}
+
+div#copyright a,a:hover
+{
+	background-color:#383838  ; 
+}
+
+div#content_img_left
+{
+	width:252px;
+	margin-right:5px;
+	background:none;
+	float:left;
+}
+
+img.content_img_left
+{
+	width:252px;
+	height:auto;
+	margin-bottom:20px;
+	cursor:pointer;
+}
+
+img.content_img_left:hover
+{
+	opacity:0.85;
+}
+
+div#content_img_right
+{
+	width:252px;
+	background:none;
+	float:right;
+	border:none;
+	outline:none;
+}
+
+img.content_img_right
+{
+	width:252px;
+	height:auto;
+	margin-bottom:20px;
+	cursor:pointer;
+	border:none;
+	outline:none;
+}
+
+img.content_img_right:hover
+{
+	opacity:0.85;
+}
+
+img.img_view_full
+{
+	float:left;
+	width:505px;
+	height:auto;
+	margin-bottom: 20px;
+}
+img.img_view_full:hover
+{
+	opacity:0.9;
+	cursor:pointer;
+} 
+
+div#after_full_image{
+	width:505;
+	min-height:50px;
+	background-color :#cccccc;
+	border:none;
+	border-radius: none;
+	overflow-x: auto;
+	margin-bottom: 1px;
+	float:left;
+	overflow:visible;
+} 
+
+
+div#after_full_image a
+{
+	text-decoration:none;
+	text-transform:uppercase;
+	border:none;
+	padding:6px;
+	font-size: 10px ;
+	font-family: Helvetica Neue,Arial,sans-serif;
+	font-weight:bold;
+	color: #666666;
+	cursor:pointer;
+}
+div#after_full_image span
+{
+	text-decoration:none;
+	text-transform:uppercase;
+	border:none;
+	padding:6px;
+	font-size: 10px ;
+	font-family: Helvetica Neue,Arial,sans-serif;
+	color: #666666;
+}
