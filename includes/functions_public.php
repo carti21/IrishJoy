@@ -14,16 +14,16 @@
 
 	function show_main_menu(){	
 		?>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/menswear"> menswear </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/design"> design </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/architecture"> architecture </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/cars"> cars </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/inspiration"> inspiration </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/girls"> girls </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/landscape"> landscape </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/interiors"> interior design </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/gears"> gears </a></div>
-		<div id="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/photography"> photography </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/menswear"> menswear </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/design"> design </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/architecture"> architecture </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/cars"> cars </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/inspiration"> inspiration </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/girls"> girls </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/landscape"> landscape </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/interiors"> interior design </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/gears"> gears </a></div>
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/photography"> photography </a></div>
 		<?php			 
 	}	
 	  
