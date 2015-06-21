@@ -13,15 +13,15 @@
 		<link rel="icon" href="<?php echo MAIN_URL; ?>images/favicon.png" type="image/x-icon"> 
 	</head>
 	<body>
-		<div id="head">
+		<div class="head">
 			<div style="margin: 0 auto; position: relative; width:40%; padding-top: 30px;">
 				<a href="<?php echo MAIN_URL; ?>">
 					<img src="<?php echo MAIN_URL; ?>images/head_logo.jpg">
 				</a>
 			</div>	
 		</div> 	
- 		<div id="container"> 
-			<div id="content">	
+ 		<div class="container"> 
+			<div class="content">	
 	 			<?php 
 		 			$id=$_GET['p_id']; 
 					view_image($mysqli,$id);
@@ -30,29 +30,29 @@
 					
 					increment_numb_views($mysqli,$a,$id) 
 	 			?>						
-				<div id="after_full_image">
+				<div class="after_full_image">
 					<div style="margin-top:18px; margin-left:15px;">
 						<?php echo"<span>TAGS:<a href=\"tagged/"."$cat\">#$cat</a></span>"?>
 					</div>
 				</div>
 			</div>
-			<div id="ad_box">
+			<div class="ad_box">
 				<a href="http://www.flivetech.com/" target="_blank"> 
 					<img style="width:300px; height:auto;" src="images/flivetech.png"  alt="Flivetech.com - Flying Technology" >
 				</a>
 			</div>
-			<div id="ad_bottom">
+			<div class="ad_bottom">
 				<div style="margin-top:15px;"><a href"http://www.flivetech.com/">Our Partners</a></div>
 			</div>
-			<div id="before_menu">
+			<div class="before_menu">
 				<!-- Social Media Buttons goes here -->
 			</div>
-			<div id="menu_bar">
+			<div class="menu_bar">
 				<?php show_main_menu() ?>
 			</div>
 		</div>  
-  		<div id="footer" style="background-color:#383838;"> 
- 			<div id="copyright">
+  		<div class="footer"> 
+ 			<div class="copyright">
  				<a target="_blank" href="http://github.com/ArditMustafaraj/IrishJoy ">github.com/ArditMustafaraj/IrishJoy</a>
  			</div>
  		</div>

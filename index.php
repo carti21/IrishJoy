@@ -12,26 +12,26 @@
 		<link rel="icon" href="<?php echo MAIN_URL; ?>images/favicon.png" type="image/x-icon"> 
 	</head>
 	<body> 	
-		<div id="head">
+		<div class="head">
 			<div style="margin: 0 auto; position: relative; width:40%; padding-top: 30px;">
 				<a href="<?php echo MAIN_URL; ?>">
 				<img src="<?php echo MAIN_URL; ?>images/head_logo.jpg">
 				</a>
 			</div>	
 		</div>
-	 	<div id="container">
-	 		<div id="sidebar_right">
-				<div id="ad_box">
+	 	<div class="container">
+	 		<div class="sidebar_right">
+				<div class="ad_box">
 					<a href="http://www.flivetech.com/" target="_blank"> 
 						<img style="width:250px; padding-left:20px; height:auto;" src="images/flivetech.png"  alt="Flivetech.com - Flying Technology">
 					</a>
 				</div>
-				<div id="ad_bottom">
+				<div class="ad_bottom">
 					<div style="margin-top:15px;">
 						<a href"http://www.flivetech.com/">Our Partners</a>
 					</div>
 				</div>
-				<div id="before_menu">
+				<div class="before_menu">
 					<div style="margin-left:40px; margin-top: 10px; overflow-x: hidden;">
 						<div class="fb-like-box" data-href="http://www.facebook.com/irishjoycom" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true">
 						</div>
@@ -39,12 +39,12 @@
 						</div>
 					</div> 
 				</div>
-				<div id="menu_bar">
+				<div class="menu_bar">
 					<?php show_main_menu(); ?> 
 				</div>
 			</div>	 		
-	 		<div id="content">
-				<div id="content_img_left">
+	 		<div class="content">
+				<div class="content_img_left">
 		 			<?php 
 
 		 				if(isset($_GET['jump'])){
@@ -58,7 +58,7 @@
 		 			
 		 			?> 
 	 			</div> 
-	 			<div id="content_img_right"> 
+	 			<div class="content_img_right"> 
 		 			<?php 
 
 		 				$start_right=(($page+1)*7); 
@@ -68,7 +68,7 @@
 	 			</div>
 	 		</div>			
 	 	</div>
-		<div id="footer"> 
+		<div class="footer"> 
 			<p>
 				<?php 
 					if(isset($_GET['jump']))
@@ -105,14 +105,11 @@
 				?>
 				
 			</p>
-		<div id="copyright"> 
-			&copy; www.irishjoy.com 2014 &nbsp;&nbsp;&nbsp; 
-			<a target="_blank" href="http://facebook.com/irishjoycom"> www.facebook.com/irishjoycom</a>
-		</div>
+			<div class="copyright"> 
+				&copy; www.irishjoy.com 2014 &nbsp;&nbsp;&nbsp; 
+				<a target="_blank" href="http://facebook.com/irishjoycom"> www.facebook.com/irishjoycom</a>
+			</div>
 	</div>
-
-	<div id="fb-root"></div>
-
 	</body>  
 </html>
 
