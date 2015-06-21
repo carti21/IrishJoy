@@ -1,16 +1,14 @@
 <?php 
 	include 'includes/functions_public.php';
-	include 'includes/db_connect.php';
 
 	$id  = $_GET['p_id']; 
-	$cat = get_cat($mysqli,$id);
-	$cat = strtolower($cat);
+	$cat = strtolower(get_cat($mysqli,$id));
 ?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>IrishJoy.com - <?php echo"#";echo"$cat"?> - Inspiration Is Everywhere</title>  
-		<?php /*show_meta_tags();*/ ?>
+		<?php show_meta_tags(); ?>
 		<link rel="stylesheet" type="text/css" href="css/css_public.css" />
 		<link rel="icon" href="<?php echo MAIN_URL; ?>images/favicon.png" type="image/x-icon"> 
 	</head>
@@ -54,7 +52,9 @@
 			</div>
 		</div>  
   		<div id="footer" style="background-color:#383838;"> 
- 			<div id="copyright">&copy; www.irishjoy.com 2014 &nbsp;&nbsp;&nbsp; <a target="_blank" href="<?php echo MAIN_URL; ?>"> www.facebook.com/irishjoycom</a></div>
+ 			<div id="copyright">
+ 				<a target="_blank" href="http://github.com/ArditMustafaraj/IrishJoy ">github.com/ArditMustafaraj/IrishJoy</a>
+ 			</div>
  		</div>
 	</body>
 </html>
