@@ -122,7 +122,7 @@
 			};
 			
 			this.defaults = {
-				size: 20,
+				size: 30,
 				offset: 0,
 				page: 0,
 				totalRows: 0,

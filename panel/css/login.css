@@ -1,26 +1,34 @@
 body{
-	margin:0;
-	padding:0;
-	background-image:url('http://irishjoy.com/panel/images/login2.jpg');
-	repeat: none;
+	font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  	color: #404040;
+	background-image:url('http://irishjoy.flivetech.com/panel/super/images/bg2.png');
 }
 
-	
-	div#login_box{
-	width:700px;
-	padding:15px;
-	margin:auto;
-	visible:none;
+input, button, label 
+{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 	
+div#login_box
+{
+	width:500px;
+	padding:15px;
+	margin:auto;
+}
 	
 div#login{
-	width:700px;
+	width:500px;
 	padding:15px;
 	margin-top:430px;
-	color:#fff;
+	color:#bbb;
 	font:13px Geneva;
 	font-weight:550;
+	margin-left:0px;
 }
 #login a{
 	color:#B0E2FF;
@@ -35,26 +43,24 @@ div#login label{
 	display:block;
 }
 
-div#login input[type="text"], div#login input[type="password"]{
-	display:inline;
-	margin-bottom:10px;
-	background:none;
-	border:1px solid #fff;
-	padding:5px;
-	width:26%;
-	color:white;
-	font-weight:700;
-	font: Arial, Helvetica, sans-serif;
-	text-align:center;
-	box-shadow: 0px 0px 1px 1px #F8F8FF;
+div#login input[type="text"], div#login input[type="password"]
+{
+	  padding: 0 10px;
+	  width: 300px;
+	  height: 40px;
+	  color: #fff;
+	  text-shadow: 1px 1px 1px black;
+	  background: rgba(0, 0, 0, 0.16);
+	  border: 0;
+	  border-radius: 5px;
+	  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+	  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
 }
 div#login input:focus 
 { 
-    outline: none;
-    border: 1px solid #F8F8FF;
-    box-shadow: 0px 0px 8px #F8F8FF;
-    -moz-box-shadow: 0px 0px 8px #F8F8FF;
-    -webkit-box-shadow: 0px 0px 8px #F8F8F;
+    color: white;
+  	background: rgba(0, 0, 0, 0.1);
+ 	 outline: 0;
 
 }
 
@@ -72,19 +78,27 @@ button.login {
   text-shadow: 0 1px 0 #fff;
   width: 80px;
   height: 30px;
+  margin-left:10px;
+  outline:none;	
 }
 
 button.login:hover {
-  background: #d9d9d9;
-  -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
-  box-shadow: inset 0 0 1px 1px #eaeaea;
-  color: #222;
-  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  cursor: default;
+  border:none;
+  text-shadow:none;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
 }
 
 button.login:active {
-  background: #d0d0d0;
-  -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
-  box-shadow: inset 0 0 1px 1px #e3e3e3;
-  color: #000;
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  cursor: default;
+  border:none;
+  text-shadow:none;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  outline:none;
 }

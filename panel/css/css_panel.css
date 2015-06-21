@@ -1,19 +1,32 @@
 body{
-	margin:0;
-	padding:0;
+	padding:0px;
+	margin:0px;
 	background-color:#eee;
 	font-size:13px;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
+/*new*/
+.text-center{
+	text-align:center;
+}
+
+
+
+
 div#head{
 	width:100%;
 	height: 60px;
-	background-color:#336699 ;
+	background-color:#336699;
 	margin-bottom:20px;
 	
 }
 
+div#head a:hover
+{
+	color:#ffeeee;
+
+}
 div#right_head_bar
 {
 	width:200px;
@@ -27,7 +40,7 @@ div#right_head_bar
 
 button.custom_menu
 {
-  background: white;
+  background: #fff;
   border:1px black;
   border-radius: 3px;
   color: #333;
@@ -50,7 +63,6 @@ button.custom_menu:hover
    box-shadow: 0px 0px 8px #F8F8FF;
    -moz-box-shadow: 0px 0px 8px #F8F8FF;
    -webkit-box-shadow: 0px 0px 8px #F8F8FF;
-   outline: none;
 }
 
 button.custom_menu:focus 
@@ -62,6 +74,7 @@ button.custom_menu:focus
     -webkit-box-shadow: 0px 0px 8px #F8F8FF;
     outline: none;
 } 
+
 
 div#custom_menu1, #custom_menu2 ,#custom_menu3
 {
@@ -90,13 +103,13 @@ div#custom_menu1:hover,
 
 
 div#container{
-	margin: auto;
+	margin-left:auto;
+	margin-right:auto;
 	width:845px;
 	min-height:500px;
 	padding:0px;
 	background:none;
 	border:none;
-	border-radius: none;
 	overflow-x: auto;
 	
 	
@@ -107,7 +120,6 @@ div#content{
 	padding:0px;
 	background:none;
 	border:none;
-	border-radius: none;
 	float:left;
 	overflow-x: auto;
 	
@@ -186,9 +198,10 @@ div#quick_tasks:hover
 
 div#quick_tasks_items
 {
-	margin-top:10px;
+		margin-top:10px;
 }
-div#sidebar_right{
+div#sidebar_right
+{
 	width:300px;
 	min-height:600px;
 	background:none;
@@ -269,7 +282,6 @@ div#menu_items a:hover
 {
 	color: #777777;
 }
-
 
 div#before_menu{
 	width:300px;
@@ -386,6 +398,7 @@ button.content
   text-shadow: 0 1px 0 #fff;
   width: auto;
   height: 30px;
+  
 }
 
 button.content:hover 
@@ -403,6 +416,12 @@ button.content:active
   -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
   box-shadow: inset 0 0 1px 1px #e3e3e3;
   color: #000;	
+  outline:none
+}
+
+button.content:focus
+{
+	outline:none
 }
 /* Mbaron css e butonit*/ 
 
@@ -415,7 +434,7 @@ button.content:active
 	margin-left:0px;
 	margin-right:0px;
 	margin-bottom:5px;
-	width: 525px;
+	width: 525px; 
 	text-align: left;
 	border-collapse: collapse;
 	
@@ -426,7 +445,7 @@ button.content:active
 	padding: 8px;
 	font-weight: normal;
 	font-size: 13px;
-	color: #fff;
+	color: white;
 	background: #336699;
 }
 #table_style td
@@ -442,7 +461,7 @@ button.content:active
 }
 #table_style tbody tr:hover td
 {
-	background: #E0E0E0;
+	background: #FFDEAD;     
 }
 
 #table_style td a:link
@@ -483,3 +502,69 @@ img.p_db_img_view:hover
 	border:1px solid gray;
 	border-radius:6px;
 }
+img.img_view_full
+{
+	float:left;
+	width:505px;
+	height:auto;
+	margin-bottom:20px;
+}
+img.img_view_full:hover
+{
+	opacity:0.9;
+}
+
+
+/*posts database*/
+.text-center{
+	text-align:center;
+}
+
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 10pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #336699;
+	border: 1px solid #2B2827 ;
+	font-size: 8pt;
+	padding: 4px;
+	color:#FDFDFD;
+}
+table.tablesorter thead tr .header {
+	background-image: url('http://irishjoy.flivetech.com/panel/super/images/bg.png');
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 5px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url('http://irishjoy.flvetech.com/panel/super/images/asc.gif');
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url('http://irishjoy.flvetech.com/panel/super/images/desc.gif');
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-color: #F7F7F7;
+	color:#2B2B2C;
+	border: 1px solid #939296 ;
+}
+
+table.tablesorter tbody tr:hover td
+{
+	background: #F0FFFF;
+}
+
+

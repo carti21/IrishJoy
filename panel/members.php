@@ -9,16 +9,34 @@ if(login_check($mysqli) == true) {
    // Add your protected page content here!
  
 } else {
-   header('Location: ./login.php');
+   header('Location: ./');
 }
 
  ?>
+
+
+<?php 
+		if($_GET['del']==1)
+		{
+			if($_GET['id']>0)
+			{
+				delete_member($mysqli,$_GET['id']);
+				header("Location: members.php"); 
+			}
+		}
+?>
+<?php 
+		 if($_GET['edit']==1)
+		 {
+		 	header("Location: members-edit.php?id=".$_GET['id']);
+		}  
+?>
 
 <html>
 	<head>
 		<title>Members</title>
 		<link rel="stylesheet" type="text/css" href="css/css_panel.css" />
-		<link rel="icon" href="http://irishjoy.com/panel/images/favicon.png" type="image/x-icon"> 
+		<link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon"> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>
 		$("#custom_menu_button").ready(function(){
@@ -40,6 +58,7 @@ if(login_check($mysqli) == true) {
 
  			<div id="container">
 		 		<div id="content">
+		 			<div> <?php show_member_menu(); ?> </div>
 					
 					
 							 
@@ -57,7 +76,7 @@ if(login_check($mysqli) == true) {
 				</div>
  
  		</div>
-
+ 
 
 </body>
 </html>

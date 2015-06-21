@@ -1,6 +1,6 @@
 <?php 
 
 
-header('Location:http://irishjoy.com');
+header('Location:http://irishjoy.flivetech.com');
 
 ?>

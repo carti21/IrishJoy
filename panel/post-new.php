@@ -10,7 +10,7 @@
 
     }
     else {
-        header('Location: ./login.php');
+        header('Location: ./');
     }
 
 ?>
@@ -18,9 +18,9 @@
 
 <html>
 <head>
-    <title>Add a new post:</title>
+    <title>Add a new post</title>
     <link rel="stylesheet" type="text/css" href="css/css_panel.css"/>
-    <link rel="icon" href="http://irishjoy.com/panel/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
     </script>
     <script>
@@ -45,17 +45,16 @@
 
 <div id="container">
     <div id="content">
-        <p><b>Add a new post:</br></b></p>
+        <p><b>Add a new post now:</br></b></p>
 
 
         <form method="post" action="" enctype="multipart/form-data">
-
-            <label>Title:</label>
+            <label>Image Description:</label>
             <input type="text" name="post_title" style="width:90%"/>
 
             </br></br>    </br></br>
 
-            <label>Select the category of the photo:</label>
+            <label>Image Category:</label>
             <select name="category">
                 <option selected="true" style="display:none;">Select Category</option>
                 <?php
@@ -65,13 +64,12 @@
                         echo "<option value=\"".$row_cat[ 'category_name' ]."\">"
                             .$row_cat[ 'category_name' ]."</option>";
                     }
-
                 ?>
             </select>
 
             </br></br></br>
 
-            <label>Select the image that you want to upload:</label>
+            <label>Please selec the image from your computer</label>
             <input type="file" name="skedar" size="40">
 
             </br></br>

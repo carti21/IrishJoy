@@ -8,7 +8,7 @@ if(login_check($mysqli) == true) {
    // Add your protected page content here!
  
 } else {
-   header('Location: ./login.php');
+   header('Location: ./');
 }
 
  ?>
@@ -17,7 +17,7 @@ if(login_check($mysqli) == true) {
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Administration Panel</title>
-<link rel="icon" href="http://irishjoy.com/panel/images/favicon.png" type="image/x-icon"> 
+<link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon"> 
 	<link rel="stylesheet" type="text/css" href="css/css_panel.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>
@@ -34,30 +34,12 @@ if(login_check($mysqli) == true) {
 	</script>
 
 
-
 </head>
 
 
 
 <body>
-<div id="head">	 
-	
-	<div style="color:#FDFDFD; float:left; margin-left: 50px; margin-top: 15px; text-shadow: 0px 0px 6px rgba(255,255,255,0.7); cursor:default;"> 
-	<?php 
-	echo"Welcome to the Administration Panel, ";
-	$member=show_member_whois($mysqli);
-	echo"<b>$member</b>";
-	?>
-	
-	</div> 
-	<div>
-	<?php 
-	
-	
-	head_custom_menu(); 
-	?>	
-	</div>
-	</div>
+<div id="head">	 <?php head_custom_menu(); ?>	</div>
 		
 
 
@@ -70,7 +52,7 @@ if(login_check($mysqli) == true) {
 					
 					<div id="menu_bar">
 						<?php show_panel() ?>
-						<?php show_statistics($mysqli); ?>
+					
 
 					</div>
 				
@@ -84,20 +66,28 @@ if(login_check($mysqli) == true) {
 		 		<div id="quick_tasks"><div id="quick_tasks_items">+ Add Post</div></div></a>
 		 		<a href="members-new.php" >
                 <div id="quick_tasks"><div id="quick_tasks_items">+ Add member</div></div></a>
+                <a href="members-login-traces.php" >
+		 		<div id="quick_tasks"><div id="quick_tasks_items">View Login Traces</div></div></a>
 		 		</div>
 		 		<div id="tasks"  style="float:right">
 		 		<a href="posts-database.php" >
 		 		<div id="quick_tasks"><div id="quick_tasks_items">View all posts</div></div></a>
 		 		<a href="contact.php" >
 		 		<div id="quick_tasks"><div id="quick_tasks_items">Contact to Administrators</div></div></a>
+                <a href="members-login-attempts.php" >
+		 		<div id="quick_tasks"><div id="quick_tasks_items">Error Login Attempts</div></div></a>
 		 		</div>
+                                 <?php show_statistics($mysqli); ?>
+		 		
 
 		 		</div>
 		 		
 				
  
  		</div>
-
-
+ 		
+ 
+ 		
 </body>
+
 </html>
