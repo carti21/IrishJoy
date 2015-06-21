@@ -1,6 +1,5 @@
 <?php 
 	include 'includes/functions_public.php';
-	include 'includes/db_connect.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -55,7 +54,7 @@
 		 				}
 
 		 				$start_left="$page"*7; 
-						echo_img_left($mysqli,$start_left);
+						show_left_col_images($mysqli,$start_left);
 		 			
 		 			?> 
 	 			</div> 
@@ -63,7 +62,7 @@
 		 			<?php 
 
 		 				$start_right=(($page+1)*7); 
-						echo_img_right($mysqli,$start_right);
+						show_right_col_images($mysqli,$start_right);
 		 			
 		 			?>
 	 			</div>

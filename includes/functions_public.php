@@ -1,6 +1,6 @@
 <?php 
 
-	define('MAIN_URL', 'http://localhost/irishjoy/');
+	include 'includes/config.php';
 
 	function show_meta_tags(){
 		?>
@@ -27,11 +27,7 @@
 		<?php			 
 	}	
 	  
-	/* 
-	RENAME TO SHOW_IMG_RIGHT
-	add comment for the left column 
-	*/
-	function echo_img_left($mysqli,$start_left){
+	function show_left_col_images($mysqli,$start_left){
 
 		$query_select_img = "SELECT id, post_photo_name FROM post ORDER BY id DESC LIMIT " .$start_left. " , 7 ";
 		$result_img = mysqli_query($mysqli, $query_select_img);	
@@ -49,10 +45,8 @@
 		}
 	}
 
-	/*RENAME TO SHOW_IMG_RIGHT
-	add comment for the left column 
-	*/
-	function echo_img_right($mysqli,$start_right){
+	
+	function show_right_col_images($mysqli,$start_right){
 
 		$query_select_img = "SELECT id, post_photo_name FROM post ORDER BY id DESC LIMIT ". $start_right. " , 7 "; 
 		$result_img = mysqli_query($mysqli, $query_select_img);	
@@ -61,10 +55,10 @@
 
 			if($row_img['post_photo_name']!=''){ 
 				
-				$img_path ="http://irishjoy.com/tagged/".$row_img['post_photo_name'];
+				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
 				?>
 				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
-					<img title="Permalink: (irishjoy.com/view-image.php?p_id=<?php echo  $row_img['id']; ?>)" class="content_img_right" src= "<?php echo $img_path; ?>" />
+					<img src= "<?php echo $img_path; ?>" title="Permalink: (irishjoy.com/view-image.php?p_id=<?php echo  $row_img['id']; ?>)" class="content_img_right" >
 				</a>
 				<?php	
 			}
@@ -90,7 +84,6 @@
 		}
 	}
 
-	//RENAME THIS TO ECHO_IMG_RIGHT_CATEGORY
 	function echo_img_right_category($mysqli,$cat,$start_right){
 
 		$query_select_img = "SELECT id, post_photo_name FROM post WHERE post_category= '$cat' ORDER BY id DESC LIMIT ". $start_right. ",7 "; 
