@@ -1,10 +1,9 @@
 <?php 
 
-	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
-	// to be checked the irishjoy. find out how can remove
-	include "$root/irishjoy/panel/includes/functions.php";
+	$root = realpath(__DIR__ . '/..');
+	include "$root/panel/includes/functions.php";
 
-		// Include database connection and functions here.
+
 	sec_session_start();
 	if(login_check($mysqli) == true) {
 	 
@@ -13,9 +12,4 @@
 	} else {
 	   header('Location:'. MAIN_URL .'panel/login.php');
 	}
-
-
- 
-
-
 
