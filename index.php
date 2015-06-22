@@ -22,22 +22,17 @@
 	 	<div class="container">
 	 		<div class="sidebar_right">
 				<div class="ad_box">
-					<a href="#" target="_blank"> 
-						<img src="images/ads.png"  alt="Flivetech.com - Flying Technology">
+					<a href="#"> 
+						<img src="images/ads.png">
 					</a>
 				</div>
 				<div class="ad_bottom">
 					<div style="margin-top:15px;">
-						<a href"http://www.flivetech.com/">Our Partners</a>
+						<a href"http://www.intolaravel.com/">Our Partners</a>
 					</div>
 				</div>
 				<div class="before_menu">
-					<div style="margin-left:40px; margin-top: 10px; overflow-x: hidden;">
-						<div class="fb-like-box" data-href="http://www.facebook.com/irishjoycom" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true">
-						</div>
-						<div style="margin-left:7px;" class="fb-follow" data-href="http://www.facebook.com/irishjoycom" data-colorscheme="light" data-layout="button_count" data-show-faces="true">
-						</div>
-					</div> 
+					<!-- Social Media Buttons goes here -->
 				</div>
 				<div class="menu_bar">
 					<?php show_main_menu(); ?> 
