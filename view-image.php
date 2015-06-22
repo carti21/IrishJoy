@@ -37,8 +37,8 @@
 				</div>
 			</div>
 			<div class="ad_box">
-				<a href="http://www.flivetech.com/" target="_blank"> 
-					<img style="width:300px; height:auto;" src="images/flivetech.png"  alt="Flivetech.com - Flying Technology" >
+				<a href="#"> 
+					<img src="images/ads.png">
 				</a>
 			</div>
 			<div class="ad_bottom">
