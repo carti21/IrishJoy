@@ -22,8 +22,8 @@
 	 	<div class="container">
 	 		<div class="sidebar_right">
 				<div class="ad_box">
-					<a href="http://www.flivetech.com/" target="_blank"> 
-						<img style="width:250px; padding-left:20px; height:auto;" src="images/flivetech.png"  alt="Flivetech.com - Flying Technology">
+					<a href="#" target="_blank"> 
+						<img src="images/ads.png"  alt="Flivetech.com - Flying Technology">
 					</a>
 				</div>
 				<div class="ad_bottom">
