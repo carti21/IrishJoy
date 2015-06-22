@@ -1,5 +1,5 @@
 <?php 
-	include 'includes/functions_public.php';
+	include 'includes/functions-public.php';
 
 	$id  = $_GET['p_id']; 
 	$cat = strtolower(get_cat($mysqli,$id));
