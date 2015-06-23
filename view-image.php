@@ -9,7 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>IrishJoy.com - <?php echo"#";echo"$cat"?> - Inspiration Is Everywhere</title>  
 		<?php show_meta_tags(); ?>
-		<link rel="stylesheet" type="text/css" href="css/css_public.css" />
+		<link rel="stylesheet" type="text/css" href="css/public-style.css" />
 		<link rel="icon" href="<?php echo MAIN_URL; ?>images/favicon.png" type="image/x-icon"> 
 	</head>
 	<body>
