@@ -1,6 +1,6 @@
 <?php 
 
-	include 'includes/config.php';
+	require_once('config.php');
 
 	function show_meta_tags(){
 		?>
@@ -65,7 +65,7 @@
 		}
 	}
 
-	function echo_img_left_category($mysqli,$cat,$start_left){
+	function show_left_col_images_category($mysqli,$cat,$start_left){
 
 		$query_select_img = "SELECT id, post_photo_name FROM post WHERE post_category= '$cat' ORDER BY id DESC LIMIT " .$start_left. ",7 "; 
 		$result_img = mysqli_query($mysqli, $query_select_img);	
@@ -74,9 +74,9 @@
 		{ 
 			if($row_img['post_photo_name']!='')
 			{
-				$img_path ="http://irishjoy.com/tagged/".$row_img['post_photo_name'];
+				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
 				?>
-				<a href="http://irishjoy.com/view-image.php?p_id=<?php echo $row_img['id']; ?>">
+				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
 					<img class="content_img_left" src="<?php echo $img_path?>" />
 				</a>
 				<?php
@@ -84,21 +84,23 @@
 		}
 	}
 
-	function echo_img_right_category($mysqli,$cat,$start_right){
+	function show_right_col_images_category($mysqli,$cat,$start_right){
 
 		$query_select_img = "SELECT id, post_photo_name FROM post WHERE post_category= '$cat' ORDER BY id DESC LIMIT ". $start_right. ",7 "; 
 		$result_img = mysqli_query($mysqli, $query_select_img);	
 		
-		while($row_img = mysqli_fetch_array($result_img)){
-
-			if($row_img['post_photo_name']!=''){
-				
-				$img_path ="http://irishjoy.com/tagged/".$row_img['post_photo_name'];
+		while($row_img = mysqli_fetch_array($result_img))
+		{ 
+			if($row_img['post_photo_name']!='')
+			{
+				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
 				?>
-				<a href="http://irishjoy.com/view-image.php?p_id=<?php echo $row_img['id']; ?>" ><img class="content_img_right" src="<?php echo $img_path; ?>"/></a>
+				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
+					<img class="content_img_left" src="<?php echo $img_path?>" />
+				</a>
 				<?php
 			} 
-		}	
+		}
 	}
 
 	//RENAME THIS TO SHOW_SINGLE_IMAGE
