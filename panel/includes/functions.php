@@ -1,9 +1,12 @@
 <?php
+    require_once('config.php');
 
-    define('MAIN_URL', '/irishjoy/');
+    define('MAIN_URL', 'http://localhost/irishjoy/');
+    define('PANEL_URL', 'localhost/irishjoy/panel/');
     define('GOOGLE_ANALYTICS_URL', '/irishjoy/');
-    define('PHPMYADMIN_URL', '/irishjoy/');
+    define('PHPMYADMIN_URL', 'localhost/phpmyadmin/');
     define('EMAIL_URL', '/irishjoy/');
+    define('SERVER_URL', '/var/www/html/irishjoy/tagged/');
 
     function sec_session_start() {
         $session_name = 'sec_session_id'; // Set a custom session name
@@ -106,7 +109,7 @@
     }
 
     function login_check($mysqli) {
-
+    if(isset($_SESSION[ 'user_id' ])){
         $id_user     = $_SESSION[ 'user_id' ];
         $check_query = "SELECT id, level FROM members WHERE id='$id_user' LIMIT 1";
         $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
@@ -154,6 +157,7 @@
             }
         }
     }
+}
 
     function delete_category($mysqli, $id) {
         $query_del = "DELETE FROM category WHERE id=$id";
@@ -242,11 +246,11 @@
 
     function show_panel() {
         ?>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/super/panel.php"> Panel </a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/super/categories.php"> Categories </a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/super/posts-database.php" target="_blank"> Post Database </a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/super/panel.php">Test gallery</a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/super/search.php">Search</a> </div>
+        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php"> Panel </a> </div>
+        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/categories.php"> Categories </a> </div>
+        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/posts-database.php" target="_blank"> Post Database </a> </div>
+        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Test gallery</a> </div>
+        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/search.php">Search</a> </div>
         <div id="menu_items"> <a href="<?php echo GOOGLE_ANALYTICS_URL; ?>" target="_blank" > Google Analytics </a> </div>
         <div id="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
         <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Switch to Level 2</a> </div>
@@ -254,7 +258,7 @@
 
         </br>
 
-        <div id="menu_items"><a  href="http://irishjoy.flivetech.com" target="_blank"> Website - Public </a> </div>
+        <div id="menu_items"><a  href="<?php echo MAIN_URL; ?>" target="_blank"> Website - Public </a> </div>
         <?php
     }
 
@@ -497,7 +501,7 @@
             // emrit i shtohet nje nr random qe mos ngaterrohet
             $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
 
-            if (move_uploaded_file($tmp, '/home/wwwflive/public_html/irishjoy/tagged/'.$img_new_name)) {
+            if (move_uploaded_file($tmp, SERVER_URL.$img_new_name)) {
                 echo '<p>The image was updated successfully</p>';
 
                 return $img_new_name;
