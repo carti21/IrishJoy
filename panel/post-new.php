@@ -17,7 +17,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="sq">
     <head>
         <title>Add a new post</title>
-        <link rel="stylesheet" type="text/css" href="http://<?php echo PANEL_URL; ?>css/css_panel.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo PANEL_URL; ?>css/css_panel.css"/>
         <link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
         </script>

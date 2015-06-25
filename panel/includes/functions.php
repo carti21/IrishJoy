@@ -1,12 +1,6 @@
 <?php
-    require_once('config.php');
-
-    define('MAIN_URL', 'http://localhost/irishjoy/');
-    define('PANEL_URL', 'localhost/irishjoy/panel/');
-    define('GOOGLE_ANALYTICS_URL', '/irishjoy/');
-    define('PHPMYADMIN_URL', 'localhost/phpmyadmin/');
-    define('EMAIL_URL', '/irishjoy/');
-    define('SERVER_URL', '/var/www/html/irishjoy/tagged/');
+    $root = realpath(__DIR__ . '/../..');
+    include "$root/config.php";
 
     function sec_session_start() {
         $session_name = 'sec_session_id'; // Set a custom session name
@@ -501,7 +495,7 @@
             // emrit i shtohet nje nr random qe mos ngaterrohet
             $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
 
-            if (move_uploaded_file($tmp, SERVER_URL.$img_new_name)) {
+            if (move_uploaded_file($tmp, SERVER_URL.'tagged/'.$img_new_name)) {
                 echo '<p>The image was updated successfully</p>';
 
                 return $img_new_name;
