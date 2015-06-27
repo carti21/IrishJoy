@@ -568,3 +568,15 @@ table.tablesorter tbody tr:hover td
 }
 
 
+.view-image{
+	float:left; 
+	width:505px;
+	color:green;
+	font-weight:bold;
+	background-color:#fff;
+	margin-top:50px; 
+	border-radius:3px;
+	border:1px solid #79AD61;
+	padding:9px;
+}
+											

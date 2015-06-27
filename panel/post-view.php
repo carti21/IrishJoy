@@ -1,8 +1,7 @@
 <?php
-    include 'includes/db_connect.php';
+
     include 'includes/functions.php';
-    error_reporting(0);
-    // Include database connection and functions here.
+
     sec_session_start();
     if (login_check($mysqli) == true) {
 
@@ -14,24 +13,25 @@
     }
 ?>
 <?php
+    if(isset($_GET['del'])){
+        if ($_GET[ 'del' ] == 1) {
+            if ($_GET[ 'p_id' ] > 0) {
+                $post_id = $_GET[ 'p_id' ];
 
-    if ($_GET[ 'del' ] == 1) {
-        if ($_GET[ 'p_id' ] > 0) {
-            $post_id = $_GET[ 'p_id' ];
+                $post_category = get_post_category($mysqli, $post_id);
+                $post_counter  = getNumOfPostsCategory($mysqli, $post_category);
+                $post_counter--;
 
-            $post_category = get_post_category($mysqli, $post_id);
-            $post_counter  = getNumOfPostsCategory($mysqli, $post_category);
-            $post_counter--;
-
-            $post_author    = get_post_author($mysqli, $post_id);
-            $post_mem_count = getNumOfPosts($mysqli, $post_author);
-            $post_mem_count--;
+                $post_author    = get_post_author($mysqli, $post_id);
+                $post_mem_count = getNumOfPosts($mysqli, $post_author);
+                $post_mem_count--;
 
 
-            delete_post($mysqli, $post_id, $post_category, $post_counter, $post_author, $post_mem_count);
+                delete_post($mysqli, $post_id, $post_category, $post_counter, $post_author, $post_mem_count);
 
-            header('Location: ./posts-database.php');
+                header('Location: ./posts-database.php');
 
+            }
         }
     }
 ?>
@@ -62,17 +62,20 @@
         <div id="container">
             <div id="content">
                 <?php
-                    $id = $_GET[ 'p_id' ];
+                    if(isset( $_GET['p_id'])){
+                        $id = $_GET[ 'p_id' ];
+                    }
+
                     view_post_menu($mysqli, $id);
                     view_post($mysqli, $id);
 
-                    if ($_GET[ 'edit' ] == 'success') {
-                        echo '<div style="float:left; width:505px; color:green; font-weight:bold;
-                                        background-color:#fff;
-                                        margin-top:50px; border-radius:3px; border:1px solid #79AD61; padding:9px;">';
-                        echo "&#10004; The post was successfully edited";
-                        echo "</div>";
-                    }
+                    if(isset( $_GET['edit'])){
+                        if ($_GET[ 'edit' ] == 'success') {
+                            echo '<div class="view-image">';
+                            echo "&#10004; The post was successfully edited";
+                            echo "</div>";
+                        }
+                    }    
                 ?>
             </div>
             <div id="sidebar_right">

@@ -2,21 +2,21 @@
 
 	include 'includes/functions.php';
 	// Include database connection and functions here.
-sec_session_start();
-if(login_check($mysqli) == true) {
- 
-   // Add your protected page content here!
- 
-} else {
-   header('Location: ./');
-}
+	sec_session_start();
+	if(login_check($mysqli) == true) {
+	 
+	   // Add your protected page content here!
+	 
+	} else {
+	   header('Location: ./');
+	}
 
  ?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Administration Panel</title>
-		<link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon"> 
+		<link rel="icon" href="<?php echo MAIN_URL ?>panel/images/favicon.png" type="image/x-icon"> 
 		<link rel="stylesheet" type="text/css" href="css/css_panel.css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script>
