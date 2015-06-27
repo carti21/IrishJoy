@@ -1,5 +1,5 @@
 <?php 
-	include 'includes/db_connect.php';
+
 	include 'includes/functions.php';
 
 	sec_session_start();

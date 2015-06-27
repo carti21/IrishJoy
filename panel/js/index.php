@@ -1,6 +1,3 @@
 <?php 
-
-
-header('Location:http://irishjoy.com');
-
-?>
+ 
+	/*Prevent File Listing*/

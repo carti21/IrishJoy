@@ -4,10 +4,10 @@
 
 	function show_meta_tags(){
 		?>
-		<META name="generator" content="irishjoy.com">
+		<META name="generator" content="<?php echo MAIN_URL; ?>">
 		<meta name="description" content="Photography, Images, Design, Architecture, Interior, Design, Cars, Gallery, Girls, Landscape">
 		<meta name="keywords" content="Photography, Images, Design, Architecture, Interior, Design, Cars, Gallery, Girls, Landscape">
-		<meta name="author" content="irishjoy.com">
+		<meta name="author" content="<?php echo MAIN_URL; ?>">
 		<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1" >
 		<?php
 	}

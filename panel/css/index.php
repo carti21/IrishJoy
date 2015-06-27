@@ -1,5 +1,3 @@
 <?php 
-
-	header('Location:http://irishjoy.flivetech.com');
-
-?>
+ 
+	/*Prevent File Listing*/

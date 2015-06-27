@@ -1,4 +1,5 @@
 <?php
+
     $root = realpath(__DIR__ . '/../..');
     include "$root/config.php";
 
@@ -6,7 +7,7 @@
         $session_name = 'sec_session_id'; // Set a custom session name
         $secure       = false; // Set to true if using https.
         $httponly     = true; // This stops javascript being able to access the session id.
-        $lifecookie   = 60*10; // Sa do zgjase cookie
+        $lifecookie   = 60*10; // lifetime of the cookie
 
         ini_set('session.use_only_cookies', 1); // Forces sessions to only use cookies. 
         $cookieParams = session_get_cookie_params(); // Gets current cookies params.
@@ -15,7 +16,6 @@
         session_start(); // Start the php session
         session_regenerate_id(); // regenerated the session, delete the old one.  
     }
-
 
     function checkbrute($user_id, $mysqli) {
         // Get timestamp of current time
@@ -37,7 +37,6 @@
             }
         }
     }
-
 
     function login($email, $password, $user_ip, $mysqli) {
 
@@ -66,7 +65,6 @@
                     else {
                         if ($db_password == $password) { // Check if the password in the database matches the password the user submitted.
                             // Password is correct!
-
 
                             $user_browser = $_SERVER[ 'HTTP_USER_AGENT' ]; // Get the user-agent string of the user.
 
@@ -103,10 +101,11 @@
     }
 
     function login_check($mysqli) {
-    if(isset($_SESSION[ 'user_id' ])){
-        $id_user     = $_SESSION[ 'user_id' ];
-        $check_query = "SELECT id, level FROM members WHERE id='$id_user' LIMIT 1";
-        $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
+
+        if(isset($_SESSION[ 'user_id' ])){
+            $id_user     = $_SESSION[ 'user_id' ];
+            $check_query = "SELECT id, level FROM members WHERE id='$id_user' LIMIT 1";
+            $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
 
         if ($adm[ 'level' ] == 1) {
             // Check if all session variables are set
@@ -154,6 +153,7 @@
 }
 
     function delete_category($mysqli, $id) {
+
         $query_del = "DELETE FROM category WHERE id=$id";
         $result_del = mysqli_query($mysqli, $query_del)
         or
@@ -161,6 +161,7 @@
     }
 
     function edit_category($mysqli, $category_name, $id) {
+
         if ($category_name != '') {
             $query_update = " UPDATE  category  SET category_name='$category_name' WHERE id=$id ";
             $result_del = mysqli_query($mysqli, $query_update)
@@ -170,7 +171,7 @@
     }
 
     function new_category($mysqli, $cat_name) {
-        //Nese nuk ka input tek emri i kategorise se re, nuk shtohet
+
         if ($cat_name != '') {
             $query_insert   = "INSERT INTO category (category_name) VALUES ('$cat_name')";
             $result_add_new = mysqli_query($mysqli, $query_insert);
