@@ -1,7 +1,7 @@
 <?php 
 
 	include 'includes/functions.php';
-	// Include database connection and functions here.
+
 	sec_session_start();
 	if(login_check($mysqli) == true) {
 	 
@@ -33,37 +33,46 @@
 		</script>
 	</head>
 	<body>
-		<div id="head">	 
+		<div class="head">	 
 			<?php head_custom_menu(); ?>	
 		</div>
- 		<div id="container">
- 			<div id="sidebar_right">
-				<div id="menu_bar">
+ 		<div class="container">
+ 			<div class="sidebar_right">
+				<div class="menu_bar">
 					<?php show_panel() ?>
 				</div>
 			</div>
-		 	<div id="content">
+		 	<div class="content">
 		 		<div>
 		 			<b>Quick Tasks</b>
 		 		</div></br>
-		 		<div id="tasks" style="float:left"> 
+		 		<div class="tasks"> 
 	                <a href="post-new.php" >
-			 			<div id="quick_tasks"><div id="quick_tasks_items">+ Add Post</div></div>
+			 			<div class="quick_tasks"><div class="quick_tasks_items">+ Add Post</div></div>
 			 		</a>
 			 		<a href="members-new.php" >
-	               		<div id="quick_tasks"><div id="quick_tasks_items">+ Add member</div></div>
+	               		<div class="quick_tasks"><div class="quick_tasks_items">+ Add member</div></div>
 	                </a>
 	                <a href="members-login-traces.php" >
-			 			<div id="quick_tasks"><div id="quick_tasks_items">View Login Traces</div></div>
+			 			<div class="quick_tasks"><div class="quick_tasks_items">View Login Traces</div></div>
 			 		</a>
 		 		</div>
-		 		<div id="tasks"  style="float:right">
+		 		<div class="tasks">
 			 		<a href="posts-database.php" >
-			 		<div id="quick_tasks"><div id="quick_tasks_items">View all posts</div></div></a>
+				 		<div class="quick_tasks">
+				 			<div class="quick_tasks_items">View all posts</div>
+				 		</div>
+			 		</a>
 			 		<a href="contact.php" >
-			 		<div id="quick_tasks"><div id="quick_tasks_items">Contact to Administrators</div></div></a>
-	                <a href="members-login-attempts.php" >
-			 		<div id="quick_tasks"><div id="quick_tasks_items">Error Login Attempts</div></div></a>
+			 			<div class="quick_tasks">
+			 				<div class="quick_tasks_items">Contact to Administrators</div>
+			 			</div>
+			 		</a>
+	                <a href="members-login-attempts.php">
+			 			<div class="quick_tasks">
+			 				<div class="quick_tasks_items">Error Login Attempts</div>
+			 			</div>
+			 		</a>
 		 		</div>
 
                 <?php show_statistics($mysqli); ?>

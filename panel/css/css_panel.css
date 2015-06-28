@@ -14,7 +14,7 @@ body{
 
 
 
-div#head{
+.head{
 	width:100%;
 	height: 60px;
 	background-color:#336699;
@@ -22,12 +22,12 @@ div#head{
 	
 }
 
-div#head a:hover
+.head a:hover
 {
 	color:#ffeeee;
 
 }
-div#right_head_bar
+.right_head_bar
 {
 	width:200px;
 	height: 15px;
@@ -76,7 +76,7 @@ button.custom_menu:focus
 } 
 
 
-div#custom_menu1, #custom_menu2 ,#custom_menu3
+.custom_menu1, #custom_menu2 ,#custom_menu3
 {
 	padding-top:5px;
 	font-weight:500;
@@ -91,7 +91,7 @@ div#custom_menu1, #custom_menu2 ,#custom_menu3
 	
 }
 
-div#custom_menu1:hover,
+.custom_menu1:hover,
 #custom_menu2:hover,
 #custom_menu3:hover
 {
@@ -102,7 +102,7 @@ div#custom_menu1:hover,
 }
 
 
-div#container{
+.container{
 	margin-left:auto;
 	margin-right:auto;
 	width:845px;
@@ -114,7 +114,7 @@ div#container{
 	
 	
 } 
-div#content{
+.content{
 	width:525px;
 	min-height:600px;
 	padding:0px;
@@ -124,7 +124,7 @@ div#content{
 	overflow-x: auto;
 	
 } 
-div#content input[type="text"], div#content input[type="password"]
+.content input[type="text"], .content input[type="password"]
 {
 	display:inline;
 	background:#ffffff;
@@ -139,7 +139,7 @@ div#content input[type="text"], div#content input[type="password"]
 	box-shadow: 0px 0px 1px 1px #F8F8FF;
 	float:right;
 }
-div#content input:focus 
+.content input:focus 
 { 
     outline: none;
     border: 1px solid #7bc1f7;
@@ -149,7 +149,7 @@ div#content input:focus
 
 }
 
-div#content label
+.content label
 {
 	color:#336699;
 	font-weight:550;
@@ -161,14 +161,18 @@ div#content label
 	vertical-align:text-bottom;
 }
 
-div#content input 
+.content input 
 {
 	margin-right:5px;
 	vertical-align:text-top;
 	
 }
 
-div#tasks a
+.tasks{
+	float:right
+}
+
+.tasks a
 {
 	color:black;
 	text-decoration:none;
@@ -176,7 +180,7 @@ div#tasks a
 	font-weight:bold;
 }
 
-div#quick_tasks
+.quick_tasks
 {
 	margin-right:5px;
 	width:245px;
@@ -188,7 +192,7 @@ div#quick_tasks
 	text-decoration:none;
 }
 
-div#quick_tasks:hover
+.quick_tasks:hover
 {
 	background-color:#ffcc99;
 	color:#333333;
@@ -196,11 +200,11 @@ div#quick_tasks:hover
 	font-weight:bold;
 }
 
-div#quick_tasks_items
+.quick_tasks_items
 {
 		margin-top:10px;
 }
-div#sidebar_right
+.sidebar_right
 {
 	width:300px;
 	min-height:600px;
@@ -209,7 +213,7 @@ div#sidebar_right
 	border-radius: none;
 	float:right;
 } 
-div#ad_box{
+.ad_box{
 	width:300px;
 	height:250px;
 	background:none;
@@ -220,7 +224,7 @@ div#ad_box{
 	float:right;
 	
 } 
-div#ad_bottom{
+.ad_bottom{
 	width:300px;
 	height:45px;
 	background-color :#cccccc;
@@ -231,7 +235,7 @@ div#ad_bottom{
 	
 } 
 
-div#menu_bar{
+.menu_bar{
 	width:300px;
 	min-height:300px;
 	background-color :#cccccc;
@@ -243,7 +247,7 @@ div#menu_bar{
 	
 } 
 
-div#menu_items
+.menu_items
 {
 	width:275px;
 	min-height: 20px;
@@ -254,7 +258,7 @@ div#menu_items
 	margin-top:3px;
 
 }
-div#menu_items :hover
+.menu_items :hover
 {
 	border-radius:0px 0px 0px 0px;
 	border-top: 1px solid #888888;
@@ -263,7 +267,7 @@ div#menu_items :hover
 	
 }
 
-div#menu_items a
+.menu_items a
 {
 	text-decoration:none;
 	text-transform:uppercase;
@@ -278,12 +282,13 @@ div#menu_items a
 	cursor:pointer;
 	}
 
-div#menu_items a:hover
+
+.menu_items a:hover
 {
 	color: #777777;
 }
 
-div#before_menu{
+.before_menu{
 	width:300px;
 	height:100px;
 	background-color :#cccccc;
@@ -296,7 +301,7 @@ div#before_menu{
 	
 } 
 
-div#member_menu
+.member_menu
 {
 	width:511px;
 	height:20px;
@@ -307,7 +312,7 @@ div#member_menu
 	margin-bottom:20px;
 	
 } 
-div#member_menu a
+.member_menu a
 {
 	padding-top:10px;
 	padding-left:12px;
@@ -317,11 +322,11 @@ div#member_menu a
 	text-decoration:none;
 	
 }
-div#member_menu a:hover
+.member_menu a:hover
 {
 	color:#68838B;
 }
-div#members_new
+.members_new
 {
 	width:300px;
 	min-height:500px;
@@ -333,7 +338,7 @@ div#members_new
 	overflow-x: auto;
 } 
 
-div#members_new input[type="text"], div#content input[type="password"]
+.members_new input[type="text"], .content input[type="password"]
 {
 	display:inline;
 	background:#ffffff;
@@ -352,7 +357,7 @@ div#members_new input[type="text"], div#content input[type="password"]
 	margin-right:3px;
 }
 
-div#members_new input:focus 
+.members_new input:focus 
 { 
     outline: none;
     border: 1px solid #7bc1f7;
@@ -361,7 +366,7 @@ div#members_new input:focus
     -webkit-box-shadow: 0px 0px 8px #7bc1f7;
 
 }
-div#members_new label
+.members_new label
 { 
     color:#336699;
 	font-weight:550;
@@ -372,7 +377,7 @@ div#members_new label
 
 
 
-div#footer{
+.footer{
 	width:100%;
 	height: 35px;
 	background-color:#336699 ;

@@ -241,19 +241,19 @@
 
     function show_panel() {
         ?>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php"> Panel </a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/categories.php"> Categories </a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/posts-database.php" target="_blank"> Post Database </a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Test gallery</a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/search.php">Search</a> </div>
-        <div id="menu_items"> <a href="<?php echo GOOGLE_ANALYTICS_URL; ?>" target="_blank" > Google Analytics </a> </div>
-        <div id="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
-        <div id="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Switch to Level 2</a> </div>
-        <div id="menu_items"> <a href="<?php echo EMAIL_URL; ?>" target="_blank">Check Mail</a> </div>
+        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php"> Panel </a> </div>
+        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/categories.php"> Categories </a> </div>
+        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/posts-database.php" target="_blank"> Post Database </a> </div>
+        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Test gallery</a> </div>
+        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/search.php">Search</a> </div>
+        <div class="menu_items"> <a href="<?php echo GOOGLE_ANALYTICS_URL; ?>" target="_blank" > Google Analytics </a> </div>
+        <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
+        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Switch to Level 2</a> </div>
+        <div class="menu_items"> <a href="<?php echo EMAIL_URL; ?>" target="_blank">Check Mail</a> </div>
 
         </br>
 
-        <div id="menu_items"><a  href="<?php echo MAIN_URL; ?>" target="_blank"> Website - Public </a> </div>
+        <div class="menu_items"><a  href="<?php echo MAIN_URL; ?>" target="_blank"> Website - Public </a> </div>
         <?php
     }
 
