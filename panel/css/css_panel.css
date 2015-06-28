@@ -11,35 +11,27 @@ body{
 	text-align:center;
 }
 
-
-
-
 .head{
 	width:100%;
 	height: 60px;
 	background-color:#336699;
 	margin-bottom:20px;
-	
 }
 
-.head a:hover
-{
+.head a:hover{
 	color:#ffeeee;
-
 }
-.right_head_bar
-{
+
+.right_head_bar{
 	width:200px;
 	height: 15px;
 	background:none ;
 	padding:0px;
 	margin-right:10px;
 	float:right;
-	
 }
 
-button.custom_menu
-{
+button.custom_menu{
   background: #fff;
   border:1px black;
   border-radius: 3px;
@@ -56,8 +48,7 @@ button.custom_menu
   margin-top:13px;
 }
 
-button.custom_menu:hover
-{
+button.custom_menu:hover{
    background-color:#F8F8F8;
    border: 1px solid #F8F8FF;
    box-shadow: 0px 0px 8px #F8F8FF;
@@ -65,8 +56,7 @@ button.custom_menu:hover
    -webkit-box-shadow: 0px 0px 8px #F8F8FF;
 }
 
-button.custom_menu:focus 
-{
+button.custom_menu:focus {
 	background-color:#F8F8F8;
     border: 1px solid #F8F8FF;
     box-shadow: 0px 0px 8px #F8F8FF;
@@ -75,9 +65,7 @@ button.custom_menu:focus
     outline: none;
 } 
 
-
-.custom_menu1, .custom_menu2 ,.custom_menu3
-{
+.custom_menu1, .custom_menu2 ,.custom_menu3{
 	padding-top:5px;
 	font-weight:500;
 	width:100px;
@@ -86,15 +74,10 @@ button.custom_menu:focus
 	color:#333;
 	text-align:left;
 	text-decoration:none;
-	padding-left:10px;
-
-	
+	padding-left:10px;	
 }
 
-.custom_menu1:hover,
-.custom_menu2:hover,
-.custom_menu3:hover
-{
+.custom_menu1:hover,.custom_menu2:hover,.custom_menu3:hover{
 	background-color:#808080;
 	color:#fff;
 	text-decoration:none;
@@ -111,9 +94,8 @@ button.custom_menu:focus
 	background:none;
 	border:none;
 	overflow-x: auto;
-	
-	
 } 
+
 .content{
 	width:525px;
 	min-height:600px;
@@ -122,10 +104,9 @@ button.custom_menu:focus
 	border:none;
 	float:left;
 	overflow-x: auto;
-	
 } 
-.content input[type="text"], .content input[type="password"]
-{
+
+.content input[type="text"], .content input[type="password"]{
 	display:inline;
 	background:#ffffff;
 	border: 1px solid #c4c4c4;
@@ -139,6 +120,7 @@ button.custom_menu:focus
 	box-shadow: 0px 0px 1px 1px #F8F8FF;
 	float:right;
 }
+
 .content input:focus 
 { 
     outline: none;
@@ -146,11 +128,9 @@ button.custom_menu:focus
     box-shadow: 0px 0px 8px #7bc1f7;
     -moz-box-shadow: 0px 0px 8px #7bc1f7;
     -webkit-box-shadow: 0px 0px 8px #7bc1f7;
-
 }
 
-.content label
-{
+.content label{
 	color:#336699;
 	font-weight:550;
 	font-family: Arial, Helvetica, sans-serif;
@@ -161,27 +141,23 @@ button.custom_menu:focus
 	vertical-align:text-bottom;
 }
 
-.content input 
-{
+.content input {
 	margin-right:5px;
 	vertical-align:text-top;
-	
 }
 
 .tasks{
 	float:right
 }
 
-.tasks a
-{
+.tasks a{
 	color:black;
 	text-decoration:none;
 	cursor:pointer;
 	font-weight:bold;
 }
 
-.quick_tasks
-{
+.quick_tasks{
 	margin-right:5px;
 	width:245px;
 	height:40px;
@@ -192,20 +168,18 @@ button.custom_menu:focus
 	text-decoration:none;
 }
 
-.quick_tasks:hover
-{
+.quick_tasks:hover{
 	background-color:#ffcc99;
 	color:#333333;
 	cursor:pointer;
 	font-weight:bold;
 }
 
-.quick_tasks_items
-{
+.quick_tasks_items{
 		margin-top:10px;
 }
-.sidebar_right
-{
+
+.sidebar_right{
 	width:300px;
 	min-height:600px;
 	background:none;
@@ -213,6 +187,7 @@ button.custom_menu:focus
 	border-radius: none;
 	float:right;
 } 
+
 .ad_box{
 	width:300px;
 	height:250px;
@@ -221,9 +196,9 @@ button.custom_menu:focus
 	border-radius: none;
 	overflow-x: auto;
 	margin: auto;
-	float:right;
-	
+	float:right;	
 } 
+
 .ad_bottom{
 	width:300px;
 	height:45px;
@@ -231,8 +206,7 @@ button.custom_menu:focus
 	border:none;
 	border-radius: none;
 	margin: auto;
-	float:right;
-	
+	float:right;	
 } 
 
 .menu_bar{
@@ -243,12 +217,10 @@ button.custom_menu:focus
 	border-radius: none;
 	overflow-x: auto;
 	margin-bottom: 20px;
-	float:right;
-	
+	float:right;	
 } 
 
-.menu_items
-{
+.menu_items{
 	width:275px;
 	min-height: 20px;
 	text-align:center;
@@ -256,19 +228,16 @@ button.custom_menu:focus
 	border-bottom: 1px solid #eee;
 	padding:12px;
 	margin-top:3px;
-
 }
-.menu_items :hover
-{
+
+.menu_items :hover{
 	border-radius:0px 0px 0px 0px;
 	border-top: 1px solid #888888;
 	border-bottom: 1px solid #888888;
-	cursor:default;
-	
+	cursor:default;	
 }
 
-.menu_items a
-{
+.menu_items a{
 	text-decoration:none;
 	text-transform:uppercase;
 	border:none;
@@ -280,11 +249,9 @@ button.custom_menu:focus
 	font-weight:bold;
 	color: #666666;
 	cursor:pointer;
-	}
+}
 
-
-.menu_items a:hover
-{
+.menu_items a:hover{
 	color: #777777;
 }
 
@@ -297,12 +264,10 @@ button.custom_menu:focus
 	overflow-x: auto;
 	margin-top: 20px;
 	margin-bottom: 1px;
-	float:right;
-	
+	float:right;	
 } 
 
-.member_menu
-{
+.member_menu{
 	width:511px;
 	height:20px;
 	padding:7px;
@@ -310,24 +275,22 @@ button.custom_menu:focus
 	background-color:#cccccc;
 	border:none;
 	margin-bottom:20px;
-	
 } 
-.member_menu a
-{
+
+.member_menu a{
 	padding-top:10px;
 	padding-left:12px;
 	color:#336699;
 	font-size:13px;
 	font-weight:bold;
 	text-decoration:none;
-	
 }
-.member_menu a:hover
-{
+
+.member_menu a:hover{
 	color:#68838B;
 }
-.members_new
-{
+
+.members_new{
 	width:300px;
 	min-height:500px;
 	padding:0px;
@@ -338,8 +301,7 @@ button.custom_menu:focus
 	overflow-x: auto;
 } 
 
-.members_new input[type="text"], .content input[type="password"]
-{
+.members_new input[type="text"], .content input[type="password"]{
 	display:inline;
 	background:#ffffff;
 	border: 1px solid #c4c4c4;
@@ -357,8 +319,7 @@ button.custom_menu:focus
 	margin-right:3px;
 }
 
-.members_new input:focus 
-{ 
+.members_new input:focus { 
     outline: none;
     border: 1px solid #7bc1f7;
     box-shadow: 0px 0px 8px #7bc1f7;
@@ -366,16 +327,14 @@ button.custom_menu:focus
     -webkit-box-shadow: 0px 0px 8px #7bc1f7;
 
 }
-.members_new label
-{ 
+
+.members_new label{ 
     color:#336699;
 	font-weight:550;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:14px;
 	text-align:left;
 }
-
-
 
 .footer{
 	width:100%;
@@ -385,9 +344,9 @@ button.custom_menu:focus
 	text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
 	padding-top:12px;
 }
+
 /*  Butoni per contentin ne pergjithesi (butoni gri) */
-button.content 
-{
+button.content {
   background: #e9e3e3;
   border: 1px solid #bbb;
   border-radius: 3px;
@@ -403,11 +362,9 @@ button.content
   text-shadow: 0 1px 0 #fff;
   width: auto;
   height: 30px;
-  
 }
 
-button.content:hover 
-{
+button.content:hover {
   background: #d9d9d9;
   -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
   box-shadow: inset 0 0 1px 1px #eaeaea;
@@ -415,8 +372,7 @@ button.content:hover
   cursor: pointer;
 }
 
-button.content:active 
-{
+button.content:active {
   background: #d0d0d0;
   -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
   box-shadow: inset 0 0 1px 1px #e3e3e3;
@@ -424,15 +380,13 @@ button.content:active
   outline:none
 }
 
-button.content:focus
-{
+button.content:focus{
 	outline:none
 }
 /* Mbaron css e butonit*/ 
 
 /* Css e tabeles se contentit (jo e posteve)*/ 
-#table_style
-{
+#table_style{
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12.5px;
 	margin-top:0px;
@@ -441,20 +395,18 @@ button.content:focus
 	margin-bottom:5px;
 	width: 525px; 
 	text-align: left;
-	border-collapse: collapse;
-	
+	border-collapse: collapse;	
 }
 
-#table_style th
-{
+#table_style th{
 	padding: 8px;
 	font-weight: normal;
 	font-size: 13px;
 	color: white;
 	background: #336699;
 }
-#table_style td
-{
+
+#table_style td{
 	padding: 8px;
 	background: #fff;
 	border-top: 1px solid #E0E0E0;
@@ -464,61 +416,54 @@ button.content:focus
 	font-size:13px;
 	cursor: default;
 }
-#table_style tbody tr:hover td
-{
+
+#table_style tbody tr:hover td{
 	background: #FFDEAD;     
 }
 
-#table_style td a:link
-{
+#table_style td a:link{
 	text-decoration:none;
 }
 
 #table_style a:active,a:hover {
-	
 	color: #bd5a35;
-	text-decoration:none;
-	
+	text-decoration:none;	
 }
+
 /* Mbaron css e stilit te tabelave te contentit (jo per postet)*/
 
 /* Stili i post view*/
-img.post_view_img 
-{
+img.post_view_img {
 	float:right;
 	width:200px;
 	height:auto;
 }
 
-img.post_view_img:hover
-{
+img.post_view_img:hover{
 	opacity:0.9;
 }
 
-img.p_db_img_view
-{
+img.p_db_img_view{
 	width:10px; 
 	height:auto;
 }
 
-img.p_db_img_view:hover
-{
+img.p_db_img_view:hover{
 	background-color:gray;
 	border:1px solid gray;
 	border-radius:6px;
 }
-img.img_view_full
-{
+
+img.img_view_full{
 	float:left;
 	width:505px;
 	height:auto;
 	margin-bottom:20px;
 }
-img.img_view_full:hover
-{
+
+img.img_view_full:hover{
 	opacity:0.9;
 }
-
 
 /*posts database*/
 .text-center{
@@ -533,6 +478,7 @@ table.tablesorter {
 	width: 100%;
 	text-align: left;
 }
+
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 	background-color: #336699;
 	border: 1px solid #2B2827 ;
@@ -540,38 +486,42 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 	padding: 4px;
 	color:#FDFDFD;
 }
+
 table.tablesorter thead tr .header {
 	background-image: url('http://irishjoy.flivetech.com/panel/super/images/bg.png');
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
 }
+
 table.tablesorter tbody td {
 	color: #3D3D3D;
 	padding: 5px;
 	background-color: #FFF;
 	vertical-align: top;
 }
+
 table.tablesorter tbody tr.odd td {
 	background-color:#F0F0F6;
 }
+
 table.tablesorter thead tr .headerSortUp {
 	background-image: url('http://irishjoy.flvetech.com/panel/super/images/asc.gif');
 }
+
 table.tablesorter thead tr .headerSortDown {
 	background-image: url('http://irishjoy.flvetech.com/panel/super/images/desc.gif');
 }
+
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 	background-color: #F7F7F7;
 	color:#2B2B2C;
 	border: 1px solid #939296 ;
 }
 
-table.tablesorter tbody tr:hover td
-{
+table.tablesorter tbody tr:hover td{
 	background: #F0FFFF;
 }
-
 
 .view-image{
 	float:left; 
@@ -584,4 +534,29 @@ table.tablesorter tbody tr:hover td
 	border:1px solid #79AD61;
 	padding:9px;
 }
-											
+
+.label-post{
+	color: #336699;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	text-align: left;
+	display: inline;
+	padding-top: 5px;
+	vertical-align: text-bottom;
+}	
+
+.form-control{
+	margin-bottom: 30px;
+}	
+
+.pull-right{
+	float:right;
+}		
+
+.pull-left{
+	float:left;
+}								
+
+.visibility{
+	width: 80px; text-align: center; background: none; float:right;
+}

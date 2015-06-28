@@ -3,6 +3,14 @@
     $root = realpath(__DIR__ . '/../..');
     include "$root/config.php";
 
+    function header_requires(){
+    	?>
+    	<link rel="stylesheet" type="text/css" href="<?php echo PANEL_URL; ?>css/css_panel.css"/>
+        <link rel="icon" href="<?php echo PANEL_URL; ?>images/favicon.png" type="image/x-icon">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <?php
+    }
+
     function sec_session_start() {
         $session_name = 'sec_session_id'; // Set a custom session name
         $secure       = false; // Set to true if using https.
@@ -248,7 +256,6 @@
         <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/search.php">Search</a> </div>
         <div class="menu_items"> <a href="<?php echo GOOGLE_ANALYTICS_URL; ?>" target="_blank" > Google Analytics </a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
-        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Switch to Level 2</a> </div>
         <div class="menu_items"> <a href="<?php echo EMAIL_URL; ?>" target="_blank">Check Mail</a> </div>
 
         </br>
@@ -259,10 +266,9 @@
 
     function head_custom_menu() {
         ?>
-
         <div style="float:right; margin-right: 30px;">
             <button id="custom_menu_button" style="width:80px;" class="custom_menu" >
-            <img style="margin-right:3px" src="images/gear.png" border=0 width="15px" height="15px"> Panel 
+            	<img style="margin-right:3px" src="images/gear.png" border=0 width="15px" height="15px"> Panel 
             </button>
 
             <a href="<?php echo PANEL_URL ?>members.php" style="text-decoration:none;">
@@ -271,18 +277,11 @@
                 </div>
             </a>
 
-            <a href="http://irishjoy.flivetech.com/panel/super/advertises.php" style="text-decoration:none;">
-                <div id="custom_menu2" > 
-                    <img style="margin-right:3px" src="images/advertise.png" border=0 width="15px" height="15px"> Advertises 
-                </div>
-            </a>
-
-            <a href="http://irishjoy.flivetech.com/panel/super/logout.php" style="text-decoration:none;"> 
+            <a href="<?php echo PANEL_URL ?>logout.php" style="text-decoration:none;"> 
                 <div id="custom_menu3" style="border-radius:0px 0px 3px 3px;">
                     <img style="margin-right:3px" src="images/logout.png" border=0 width="15px" height="15px"> Logout
                 </div>
             </a>
-
         </div>
      <?php
     }

@@ -14,11 +14,8 @@
  ?>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Administration Panel</title>
-		<link rel="icon" href="<?php echo MAIN_URL ?>panel/images/favicon.png" type="image/x-icon"> 
-		<link rel="stylesheet" type="text/css" href="css/css_panel.css" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<?php header_requires(); ?>
 		<script>
 			$("#custom_menu_button").ready(function(){
 			  $("#custom_menu1").hide();

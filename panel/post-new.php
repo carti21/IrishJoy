@@ -4,8 +4,6 @@
     sec_session_start();
     if (login_check($mysqli) == true) {
 
-        // Add your protected page content here!
-
     }
     else {
         header('Location: ./');
@@ -17,10 +15,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="sq">
     <head>
         <title>Add a new post</title>
-        <link rel="stylesheet" type="text/css" href="<?php echo PANEL_URL; ?>css/css_panel.css"/>
-        <link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-        </script>
+        <?php header_requires(); ?>
         <script>
             $(document).ready(function () {
                 $("#visible").click(function () {
@@ -36,51 +31,51 @@
         </script>
     </head>
     <body>
-        <div id="head">
-            <div id="right_head_bar"></div>
+        <div class="head">
+            <div class="right_head_bar"></div>
         </div>
-        <div id="container">
-            <div id="content">
-                <p><b>Add a new post now:</br></b></p>
-                <form method="post" action="" enctype="multipart/form-data">
-                    <label>Image Description:</label>
-                    <input type="text" name="post_title" style="width:90%"/>
-                    </br></br>    </br></br>
-                    <label>Image Category:</label>
-                    <select name="category">
-                        <option selected="true" style="display:none;">Select Category</option>
-                        <?php
-                            $query_select_categ = "SELECT id, category_name FROM category";
-                            $result_categ = mysqli_query($mysqli, $query_select_categ);
-                            while ($row_cat = mysqli_fetch_array($result_categ)) {
-                                echo "<option value=\"".$row_cat[ 'category_name' ]."\">"
-                                    .$row_cat[ 'category_name' ]."</option>";
-                            }
-                        ?>
-                    </select>
-                    </br></br></br>
-
-                    <label>Please selec the image from your computer</label>
-                    <input type="file" name="skedar" size="40">
-
-                    </br></br>
-                    Make the post:
-                    <h id="visible" style="color:green; cursor: pointer ;">Visible(1)</h>
-                    &nbsp;&nbsp;&nbsp;
-                    <h id="notvisible" style="color:red; cursor: pointer ;">Not Visible(0)</h>
-                    <input type="text" name="visible" id="visibility" value="1"
-                           style="width: 80px; text-align: center; background: none; float:right;"/>
-                    </br> </br></br>
-                    <hr>
-                    </br>
-                    <div style="float:right;">
-                        <button class="content" type="submit">Publish</button>
+        <div class="container">
+            <div class="content">
+                <h2>Add a new post:</h2>
+                <form method="post" action="" enctype="multipart/form-data">        
+                    <div class="form-control">
+                        <label class="label-post">Image Description or tags:</label>
+                        <input type="text" name="post_title">
                     </div>
-
-                    <div style="float:left;">
-                        <a href="posts.php" onclick="return confirm('Are you sure you want to cancel?')">Cancel</a>
+                    <div class="form-control">
+                        <label class="label-post">Image Category:</label>
+                        <select name="category">
+                            <option selected="true" style="display:none;">Select Category</option>
+                            <?php
+                                $query_select_categ = "SELECT id, category_name FROM category";
+                                $result_categ = mysqli_query($mysqli, $query_select_categ);
+                                while ($row_cat = mysqli_fetch_array($result_categ)) {
+                                    echo "<option value=\"".$row_cat[ 'category_name' ]."\">"
+                                        .$row_cat[ 'category_name' ]."</option>";
+                                }
+                            ?>
+                        </select>
                     </div>
-                    </br> </br>
+                    <div class="form-control">
+                        <label>Choose the image from your computer</label>
+                        <input type="file" name="skedar" size="40">
+                    </div>
+                    <div class="form-control">
+                        Make the post:
+                        <h id="visible" style="color:green; cursor: pointer ;">Visible(1)</h>
+                        &nbsp;&nbsp;&nbsp;
+                        <h id="notvisible" style="color:red; cursor: pointer ;">Not Visible(0)</h>
+                        <input type="text" name="visible" class="visibility" value="1">
+                    </div>
+                        <hr>
+                    <div class="form-control">
+                        <div class="pull-right">
+                            <button id="content" type="submit">Publish</button>
+                        </div>
+                        <div class="pull-left">
+                            <a href="posts.php" onclick="return confirm('Are you sure you want to cancel?')">Cancel</a>
+                        </div>
+                    </div>
                 </form>
                 <?php
                     if (isset($_POST[ 'post_title' ])) {
@@ -110,8 +105,8 @@
                     }
                 ?>
             </div>
-            <div id="sidebar_right">
-                <div id="menu_bar">
+            <div class="sidebar_right">
+                <div class="menu_bar">
                     <?php show_panel() ?>
                 </div>
             </div>
