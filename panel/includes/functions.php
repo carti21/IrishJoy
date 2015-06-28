@@ -258,29 +258,33 @@
     }
 
     function head_custom_menu() {
-        echo "<div style=\"float:right; margin-right: 30px;\">";
+        ?>
 
-        echo "<button id=\"custom_menu_button\"syle=\"width:80px;\" class=\"custom_menu\" >";
-        echo "<img style=\"margin-right:3px\" src=\"images/gear.png\" border=0 width=\"15px\" height=\"15px\">";
-        echo "Panel </img></button>";
+        <div style="float:right; margin-right: 30px;">
+            <button id="custom_menu_button" style="width:80px;" class="custom_menu" >
+            <img style="margin-right:3px" src="images/gear.png" border=0 width="15px" height="15px"> Panel 
+            </button>
 
-        echo "<a href=\"http://irishjoy.flivetech.com/panel/super/members.php\" style=\"text-decoration:none;\">";
-        echo "<div id=\"custom_menu1\" style=\"border-radius:3px 3px 0px 0px;\"> ";
-        echo "<img style=\"margin-right:3px;\"
-					      src=\"images/members_custom.png\" border=0 width=\"15px\" height=\"15px\">Members </div>";
-        echo "</a>";
+            <a href="<?php echo PANEL_URL ?>members.php" style="text-decoration:none;">
+                <div id="custom_menu1" style="border-radius:3px 3px 0px 0px;"> 
+                    <img style="margin-right:3px;" src="images/members_custom.png" border=0 width="15px" height="15px">Members 
+                </div>
+            </a>
 
-        echo "<a href=\"http://irishjoy.flivetech.com/panel/super/advertises.php\" style=\"text-decoration:none;\">";
-        echo "<div id=\"custom_menu2\" > ";
-        echo "<img style=\"margin-right:3px\"
-				          src=\"images/advertise.png\" border=0 width=\"15px\" height=\"15px\"> Advertises </img></div></a>";
+            <a href="http://irishjoy.flivetech.com/panel/super/advertises.php" style="text-decoration:none;">
+                <div id="custom_menu2" > 
+                    <img style="margin-right:3px" src="images/advertise.png" border=0 width="15px" height="15px"> Advertises 
+                </div>
+            </a>
 
-        echo "<a href=\"http://irishjoy.flivetech.com/panel/super/logout.php\" style=\"text-decoration:none;\"> ";
-        echo "<div id=\"custom_menu3\" style=\"border-radius:0px 0px 3px 3px;\">";
-        echo "<img style=\"margin-right:3px\"
-						  src=\"images/logout.png\" border=0 width=\"15px\" height=\"15px\"> Logout </img></div></a>";
+            <a href="http://irishjoy.flivetech.com/panel/super/logout.php" style="text-decoration:none;"> 
+                <div id="custom_menu3" style="border-radius:0px 0px 3px 3px;">
+                    <img style="margin-right:3px" src="images/logout.png" border=0 width="15px" height="15px"> Logout
+                </div>
+            </a>
 
-        echo "</div>";
+        </div>
+     <?php
     }
 
     function show_login_attempts($mysqli) {
