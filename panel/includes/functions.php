@@ -5,6 +5,7 @@
 
     function header_requires(){
     	?>
+    	<meta charset="UTF-8">
     	<link rel="stylesheet" type="text/css" href="<?php echo PANEL_URL; ?>css/css_panel.css"/>
         <link rel="icon" href="<?php echo PANEL_URL; ?>images/favicon.png" type="image/x-icon">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
