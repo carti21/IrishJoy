@@ -560,3 +560,12 @@ table.tablesorter tbody tr:hover td{
 .visibility{
 	width: 80px; text-align: center; background: none; float:right;
 }
+
+.post-details{
+	color:#336699;
+	font-weight:bold;
+}
+
+.items{
+	margin-bottom: 20px;
+}

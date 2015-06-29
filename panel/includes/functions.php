@@ -579,32 +579,34 @@
         $query_posts   = "SELECT id, post_status, post_date, post_views FROM post WHERE id = $id";
         $result_posts  = mysqli_query($mysqli, $query_posts);
         $row_post_menu = mysqli_fetch_array($result_posts);
-
-        echo "<div id=\"member_menu\"  >";
-        echo "<a  title=\"Edit this post\"
-					  href=\"post-edit.php?p_id=$id\">Edit</a>";
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;&#124;";
-        echo "<a onclick=\"return confirm('Press OK to delete this post. ')\"
-					href=\"?p_id=$id&del=1\"
-			        title=\"Delete this post\">Delete</a>";
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;&#124;";
-        echo "<a  title=\"Add a new post\" href=\"post-new.php\">New Post</a>";
-        echo "<span title=\"".(date("l, d F, H:i", strtotime($row_post_menu[ 'post_date' ])))." \"
-			style=\"margin-left:50px; color:#336699; cursor:default;\">"
-            .(date("d.m.Y - H:i", strtotime($row_post_menu[ 'post_date' ])));
-        " ";
-        echo "</span>";
+        ?>
+        <div id="member_menu"  >
+        <a  title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
+            |
+        <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=$id&del=1" title="Delete this post">Delete</a>
+            |
+        <a  title="Add a new post" href="post-new.php">New Post</a>
+        
+        <span title="<?php echo (date("l, d F, H:i", strtotime($row_post_menu[ 'post_date' ]))); ?>" style="margin-left:50px; color:#336699; cursor:default;">
+            <?php echo (date("d.m.Y - H:i", strtotime($row_post_menu[ 'post_date' ]))); ?>
+        </span>
+        <?php 
         if ($row_post_menu[ 'post_status' ] == '1') {
-            echo "<span style=\"float:right; margin-right:10px; cursor:default; color:#008000; font-weight:bold;\">";
-            echo "Published";
-            echo "</span>";
+            ?>
+            <span style="float:right; margin-right:10px; cursor:default; color:#008000; font-weight:bold;">
+            Published
+            </span>
+            <?php 
         }
         else {
-            echo "<span style=\"float:right; margin-right:10px; color:#AF0000; font-weight:bold;\">";
-            echo "Not Published";
-            echo "</p>";
-        }
-        echo "</div>";
+            ?>
+            <span style="float:right; margin-right:10px; color:#AF0000; font-weight:bold;">
+            Not Published
+            </p>
+            <?php 
+        } ?>
+        </div>
+        <?php 
     }
 
 
@@ -613,38 +615,32 @@
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
-        if ($row_post[ 'post_title' ] == '') {
+        if ( !empty($row_post[ 'post_title' ]) ) {
             ?>
-            <div style=\"color:red; font-weight:bold;\">
-                This post may not exist!
-            </div>
-            <?php
-        }
-        else {
-            ?>
-            <div style="width:300px; float:left;" >
-                <span class="post-details">
-                Title: </span><?php echo $row_post[ 'post_title' ]; ?>
-                </br>
-                </br>
-                <span class="post-details">
-                Img Name: </span><?php echo $row_post[ 'post_photo_name' ]; ?>
-                </br>
-                </br>
-                <span class="post-details">
-                Category: </span><?php echo  $row_post[ 'post_category' ]; ?>
-                </br>
-                </br>
-                <span class="post-details">
-                Author: </span><?php echo $row_post[ 'post_author' ]; ?>
-                </br>
-                </br>
+            <div class="pull-left">
+                <div class="items">
+                    <span class="post-details">
+                    Title: </span><?php echo $row_post[ 'post_title' ]; ?>
+                </div>
+                <div class="items">
+                    <span class="post-details">
+                    Img Name: </span><?php echo $row_post[ 'post_photo_name' ]; ?>
+                </div>
+                <div class="items">
+                    <span class="post-details">
+                    Category: </span><?php echo  $row_post[ 'post_category' ]; ?>
+                </div>
+                <div class="items">
+                    <span class="post-details">
+                    Author: </span><?php echo $row_post[ 'post_author' ]; ?>
+                </div>
+                <div class="items">
                 <span class="post-details">
                 Views: </span><b><?php echo $row_post[ 'post_views' ]; ?> 
-                </br></br></br>
-                </br>
-                <a href="posts-database.php" style="text-decoration:none; color:#336699">
-                <img style="width:15px; margin-bottom:-3px; height:auto;"src="images/left_arrow.png">Go to database.
+                </div>
+                
+                <a href="posts-database.php" class="post-details ">
+                    <img style="width:15px; margin-bottom:-3px; height:auto;"src="images/left_arrow.png">Go to database
                 </a>
                 <?php
                 $img_path = MAIN_URL."tagged/".$row_post[ 'post_photo_name' ];
@@ -659,11 +655,17 @@
             else {
                 ?>
                </div>
-               <a href="view-image.php?p_id=".$row_post[ 'id' ]."" ><img class="post_view_img" title="View full image" src="<?php echo $img_path; ?>" /></a>
+               <a href="view-image.php?p_id=<?php echo $row_post[ 'id' ]; ?>" ><img class="post_view_img" title="View full image" src="<?php echo $img_path; ?>" /></a>
                <?php
             }
         }
-
+        else {
+            ?>
+            <div>
+                This post may not exist!
+            </div>
+            <?php
+        }
     }
 
     function view_image_menu($mysqli, $post_id) {

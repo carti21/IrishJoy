@@ -44,22 +44,10 @@
     <link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/css_panel.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>
-        $("#custom_menu_button").ready(function () {
-            $(".custom_menu1").hide();
-            $(".custom_menu2").hide();
-            $(".custom_menu3").hide();
-            $(".custom_menu_button").click(function () {
-                $(".custom_menu1").fadeToggle(400);
-                $(".custom_menu2").fadeToggle(600);
-                $(".custom_menu3").fadeToggle(800);
-            });
-        });
-    </script>
 </head>
     <body>
         <div class="head">     
-            <?php head_custom_menu(); ?>
+            <?php /*head_custom_menu();*/ ?>
         </div>
         <div class="container">
             <div class="content">
