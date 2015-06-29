@@ -29,19 +29,18 @@
     function checkbrute($user_id, $mysqli) {
         // Get timestamp of current time
         $now = time();
-        // All login attempts are counted from the past 2 hours.
         $valid_attempts = $now-(2*60*60);
 
         if ($stmt = $mysqli->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > '$valid_attempts'")) {
             $stmt->bind_param('i', $user_id);
-            // Execute the prepared query.
             $stmt->execute();
             $stmt->store_result();
-            // If there has been more than 5 failed logins
             if ($stmt->num_rows > 5) {
+                //means that it has previous error login attempts in the past X minutes
                 return true;
             }
             else {
+                //clear to go
                 return false;
             }
         }
@@ -49,52 +48,42 @@
 
     function login($email, $password, $user_ip, $mysqli) {
 
-        $check_query = "SELECT email, level FROM members WHERE email='$email' LIMIT 1";
-        $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
+        // Using prepared Statements means that SQL injection is not possible.
+        if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM members WHERE email = ? LIMIT 1")) {
+            $stmt->bind_param('s', $email); // Bind "$email" to parameter.
+            $stmt->execute(); // Execute the prepared query.
+            $stmt->store_result();
+            $stmt->bind_result($user_id, $username, $db_password, $salt); // get variables from result.
+            $stmt->fetch();
+            $password = hash('sha512', $password.$salt); // hash the password with the unique salt.
 
-        if ($adm[ 'level' ] == 1) {
-            // Using prepared Statements means that SQL injection is not possible.
-            if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM members WHERE email = ? LIMIT 1")) {
-                $stmt->bind_param('s', $email); // Bind "$email" to parameter.
-                $stmt->execute(); // Execute the prepared query.
-                $stmt->store_result();
-                $stmt->bind_result($user_id, $username, $db_password, $salt); // get variables from result.
-                $stmt->fetch();
-                $password = hash('sha512', $password.$salt); // hash the password with the unique salt.
+            if ($stmt->num_rows == 1) { // If the user exists
+                // We check if the account is locked from too many login attempts
+                if (checkbrute($user_id, $mysqli) == true) {
+                    // the account was suspended due to many login attempts
+                    return false;
+                }
+                else {
+                if ($db_password == $password) { // Check if the password in the database matches the password the user submitted.
+                    // Password is correct!
+                    $user_browser = $_SERVER[ 'HTTP_USER_AGENT' ]; // Get the user-agent string of the user.
+                    $user_id                    = preg_replace("/[^0-9]+/", "", $user_id); // XSS protection as we might print this value
+                    $_SESSION[ 'user_id' ]      = $user_id;
+                    $username                   = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // XSS protection as we might print this value
+                    $_SESSION[ 'username' ]     = $username;
+                    $_SESSION[ 'login_string' ] = hash('sha512', $password.$user_browser);
 
-                if ($stmt->num_rows == 1) { // If the user exists
-                    // We check if the account is locked from too many login attempts
-                    if (checkbrute($user_id, $mysqli) == true) {
-                        // puno me kte. shif kushtet e loginit
-                        echo "Account susspended";
+                    // Login successful.
+                    return true;
+                }
+                    else {
+                        // Password is not correct
+                        // We record this attempt in the database
+                        $now = time();
+                        $mysqli->query("INSERT INTO login_attempts (user_id, time , ip) VALUES ('$user_id', '$now','$user_ip')");
 
-                        // Send an email to user saying their account is locked
                         return false;
                     }
-                    else {
-                        if ($db_password == $password) { // Check if the password in the database matches the password the user submitted.
-                            // Password is correct!
-
-                            $user_browser = $_SERVER[ 'HTTP_USER_AGENT' ]; // Get the user-agent string of the user.
-
-                            $user_id                    = preg_replace("/[^0-9]+/", "", $user_id); // XSS protection as we might print this value
-                            $_SESSION[ 'user_id' ]      = $user_id;
-                            $username                   = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // XSS protection as we might print this value
-                            $_SESSION[ 'username' ]     = $username;
-                            $_SESSION[ 'login_string' ] = hash('sha512', $password.$user_browser);
-
-
-                            // Login successful.
-                            return true;
-                        }
-                        else {
-                            // Password is not correct
-                            // We record this attempt in the database
-                            $now = time();
-                            $mysqli->query("INSERT INTO login_attempts (user_id, time , ip) VALUES ('$user_id', '$now','$user_ip')");
-
-                            return false;
-                        }
                     }
                 }
                 else {
@@ -103,33 +92,28 @@
                 }
             }
         }
-    }
+    
 
     function show_member_whois($mysqli) {
         return $_SESSION[ 'username' ];
     }
 
-    function login_check($mysqli) {
-
+  function login_check($mysqli) {
         if(isset($_SESSION[ 'user_id' ])){
             $id_user     = $_SESSION[ 'user_id' ];
             $check_query = "SELECT id, level FROM members WHERE id='$id_user' LIMIT 1";
             $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
 
-        if ($adm[ 'level' ] == 1) {
             // Check if all session variables are set
             if (isset($_SESSION[ 'user_id' ], $_SESSION[ 'username' ], $_SESSION[ 'login_string' ])) {
                 $user_id      = $_SESSION[ 'user_id' ];
                 $login_string = $_SESSION[ 'login_string' ];
                 $username     = $_SESSION[ 'username' ];
-
                 $user_browser = $_SERVER[ 'HTTP_USER_AGENT' ]; // Get the user-agent string of the user.
-
                 if ($stmt = $mysqli->prepare("SELECT password FROM members WHERE id = ? LIMIT 1")) {
                     $stmt->bind_param('i', $user_id); // Bind "$user_id" to parameter.
                     $stmt->execute(); // Execute the prepared query.
                     $stmt->store_result();
-
                     if ($stmt->num_rows == 1) { // If the user exists
                         $stmt->bind_result($password); // get variables from result.
                         $stmt->fetch();
@@ -157,9 +141,8 @@
                 // Not logged in
                 return false;
             }
-        }
+        }   
     }
-}
 
     function delete_category($mysqli, $id) {
 
@@ -501,6 +484,7 @@
             $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
 
             if (move_uploaded_file($tmp, SERVER_URL.'tagged/'.$img_new_name)) {
+                chmod(SERVER_URL.'tagged/'.$img_new_name, 0666);
                 echo '<p>The image was updated successfully</p>';
 
                 return $img_new_name;
@@ -580,32 +564,14 @@
     }
 
     function new_post($mysqli, $member, $title, $category, $visibility, $img_new_name, $post_number, $category_numb) {
-        //Nese nuk ka input tek titulli dhe kategoria, nuk shtohet
+
         if (($title != '') && ($category != '')) {
             $query_insert_post = "INSERT INTO post (post_author, post_title, post_status, post_category, post_photo_name)
 								       VALUES ('$member', '$title' , '$visibility', '$category', '$img_new_name')
 								 ";
             $result_add_post   = mysqli_query($mysqli, $query_insert_post);
 
-            $query_update              = ("UPDATE members
-								SET post_counter='$post_number'
-								WHERE username='$member'");
-            $result_update_postcounter = mysqli_query($mysqli, $query_update);
-
-            $query_update              = ("UPDATE category
-								SET post_number='$category_numb'
-								WHERE category_name='$category'");
-            $result_update_postcounter = mysqli_query($mysqli, $query_update);
-
             echo '<p>New post has been added. </p>';
-
-            /*		duhet pare se shton 2 rekorde njekohsisht, exekutohet 2 here $result_add_new
-                     if (!mysqli_query($mysqli,$query_insert))
-                    {
-                          die('Problem: ' . mysqli_error($mysqli));
-                    } */
-            // echo "A new category was added.";    !!! Duhet njoftuar me window jquery
-            // header("Location: post-new.php");
         }
     }
 

@@ -2,32 +2,15 @@
     require_once('includes/functions.php');
 
     sec_session_start();
-    if (login_check($mysqli) == true) {
-
-    }
-    else {
+    if (login_check($mysqli) == false) {
         header('Location: ./');
     }
-
 ?>
 
 <html>
     <head>
         <title>Add a new post</title>
         <?php header_requires(); ?>
-        <script>
-            $(document).ready(function () {
-                $("#visible").click(function () {
-                    $("#visibility").val("1");
-                });
-            });
-            $(document).ready(function () {
-                $("#notvisible").click(function () {
-                    $("#visibility").val("0");
-
-                });
-            });
-        </script>
     </head>
     <body>
         <div class="head">
@@ -59,22 +42,12 @@
                         <label>Choose the image from your computer</label>
                         <input type="file" name="skedar" size="40">
                     </div>
-                    <div class="form-control">
-                        Make the post:
-                        <h id="visible" style="color:green; cursor: pointer ;">Visible(1)</h>
-                        &nbsp;&nbsp;&nbsp;
-                        <h id="notvisible" style="color:red; cursor: pointer ;">Not Visible(0)</h>
-                        <input type="text" name="visible" class="visibility" value="1">
-                    </div>
                         <hr>
                     <div class="form-control">
-                        <div class="pull-right">
-                            <button id="content" type="submit">Publish</button>
-                        </div>
-                        <div class="pull-left">
-                            <a href="posts.php" onclick="return confirm('Are you sure you want to cancel?')">Cancel</a>
-                        </div>
+                        <input type="radio" name="post_status" value="1" checked>Public<br>
+                        <input type="radio" name="sex" value="0">Not Public
                     </div>
+                    <input type="submit" value="Publish">
                 </form>
                 <?php
                     if (isset($_POST[ 'post_title' ])) {
