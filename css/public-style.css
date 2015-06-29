@@ -286,3 +286,8 @@ img.img_view_full:hover
 	font-family: Helvetica Neue,Arial,sans-serif;
 	color: #666666;
 }
+
+.post-details{
+	color:#336699;
+	font-weight:bold;
+}

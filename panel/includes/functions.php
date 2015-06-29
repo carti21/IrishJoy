@@ -609,51 +609,58 @@
 
 
     function view_post($mysqli, $post_id) {
-        $query_select_posts = "SELECT id, post_author, post_title, post_category, post_views,
-								   post_photo_name FROM post WHERE id = $post_id";
+        $query_select_posts = "SELECT id, post_author, post_title, post_category, post_views, post_photo_name FROM post WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
         if ($row_post[ 'post_title' ] == '') {
-            echo "<div style=\"color:red; font-weight:bold;\">";
-            echo "This post may not exist!";
-            echo "</div>";
+            ?>
+            <div style=\"color:red; font-weight:bold;\">
+                This post may not exist!
+            </div>
+            <?php
         }
         else {
-            echo "<div style=\"width:300px; float:left;\"  >";
-            echo "<span style=\"color:#336699; font-weight:bold;\">
-			 Title: "."</span>".$row_post[ 'post_title' ]." ";
-            echo "</br>";
-            echo "</br>";
-            echo "<span style=\"color:#336699; font-weight:bold;\">
-			 Img Name: "."</span>".$row_post[ 'post_photo_name' ]." ";
-            echo "</br>";
-            echo "</br>";
-            echo "<span style=\"color:#336699; font-weight:bold;\">
-			 Category: "."</span>".$row_post[ 'post_category' ]." ";
-            echo "</br>";
-            echo "</br>";
-            echo "<span style=\"color:#336699; font-weight:bold;\">
-			 Author: "."</span>".$row_post[ 'post_author' ]." ";
-            echo "</br>";
-            echo "</br>";
-            echo "<span style=\"color:#336699; font-weight:bold;\">
-			 Views: "."</span>"."<b>".$row_post[ 'post_views' ]."</b>"." ";
-            echo "</br></br></br>";
-            echo "</br>";
-            echo "<a href=\"posts-database.php\" style=\"text-decoration:none; color:#336699\">
-			 <img style=\"width:15px; margin-bottom:-3px; height:auto;\"src=\"images/left_arrow.png\">Go to database.</img></a>";
-            $img_path = "http://irishjoy.flivetech.com/tagged/".$row_post[ 'post_photo_name' ];
-            if ($row_post[ 'post_photo_name' ] == '') {
-                echo "</div>";
-                echo "<p style=\"width:200px; float:right; color:red; font-weight:bold;\">";
-                echo "This image cannot be found!";
-                echo "</p>";
+            ?>
+            <div style="width:300px; float:left;" >
+                <span class="post-details">
+                Title: </span><?php echo $row_post[ 'post_title' ]; ?>
+                </br>
+                </br>
+                <span class="post-details">
+                Img Name: </span><?php echo $row_post[ 'post_photo_name' ]; ?>
+                </br>
+                </br>
+                <span class="post-details">
+                Category: </span><?php echo  $row_post[ 'post_category' ]; ?>
+                </br>
+                </br>
+                <span class="post-details">
+                Author: </span><?php echo $row_post[ 'post_author' ]; ?>
+                </br>
+                </br>
+                <span class="post-details">
+                Views: </span><b><?php echo $row_post[ 'post_views' ]; ?> 
+                </br></br></br>
+                </br>
+                <a href="posts-database.php" style="text-decoration:none; color:#336699">
+                <img style="width:15px; margin-bottom:-3px; height:auto;"src="images/left_arrow.png">Go to database.
+                </a>
+                <?php
+                $img_path = MAIN_URL."tagged/".$row_post[ 'post_photo_name' ];
+                if ($row_post[ 'post_photo_name' ] == '') {
+                    ?>
+            </div>
+               <p style="width:200px; float:right; color:red; font-weight:bold;">
+               This image cannot be found!
+               </p>
+               <?php
             }
             else {
-                echo "</div>";
-                echo "<a href=\"view-image.php?p_id=".$row_post[ 'id' ]."\" ><img class=\"post_view_img\" title=\"View full image\" src= \"$img_path\" /></a>";
-
+                ?>
+               </div>
+               <a href="view-image.php?p_id=".$row_post[ 'id' ]."" ><img class="post_view_img" title="View full image" src="<?php echo $img_path; ?>" /></a>
+               <?php
             }
         }
 
