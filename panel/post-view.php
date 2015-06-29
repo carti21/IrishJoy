@@ -3,14 +3,10 @@
     include 'includes/functions.php';
 
     sec_session_start();
-    if (login_check($mysqli) == true) {
-
-        // Add your protected page content here!
-
+    if (login_check($mysqli) == false) {
+         header('Location: ' . MAIN_URL);
     }
-    else {
-        header('Location: ./');
-    }
+
 ?>
 <?php
     if(isset($_GET['del'])){
@@ -36,18 +32,12 @@
     }
 ?>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Img - <?php $id = $_GET[ 'p_id' ];
-            $title = get_post_title($mysqli, $id);
-            echo "$title"; ?></title>
-    <link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="css/css_panel.css"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-</head>
+    <head>
+    <title>Img - <?php $id = $_GET[ 'p_id' ]; echo get_post_title($mysqli, $id); ?></title>
+    <?php header_requires(); ?>
+    </head>
     <body>
         <div class="head">     
-            <?php /*head_custom_menu();*/ ?>
         </div>
         <div class="container">
             <div class="content">
