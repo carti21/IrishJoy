@@ -561,8 +561,7 @@
 
         if (($title != '') && ($category != '')) {
             $query_insert_post = "INSERT INTO posts (post_author, post_title, post_status, category_id, post_photo_name)
-								       VALUES ('$member', '$title' , '$visibility', '$category', '$img_new_name')
-								 ";
+								       VALUES ('$member', '$title' , '$visibility', '$category', '$img_new_name')";
             $result_add_post   = mysqli_query($mysqli, $query_insert_post);
 
             echo '<p>New post has been added. </p>';
@@ -602,7 +601,6 @@
         </div>
         <?php 
     }
-
 
     function view_post($mysqli, $post_id) {
         $query_select_posts = "SELECT id, post_author, post_title, post_category, post_views, post_photo_name FROM post WHERE id = $post_id";
@@ -666,18 +664,17 @@
         $query_select_posts = "SELECT id, post_title FROM post WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
-
-        echo "<div id=\"member_menu\" style=\"width:491px;\" >";
-        echo "<span style=\"color:#336699; padding-left:10px\">".$row_post[ 'post_title' ]." </span>";
-        echo "<a href=\"post-view.php?p_id=".$post_id."\">";
-        echo "<span style=\"float:right; margin-right:10px; color:#336699; font-weight:bold;\">";
-        echo "Back";
-        echo "</span>";
-        echo "<img style=\"float:right; width:15px; margin-top:2px; margin-right:5px; height:auto;\"src=\"images/left_arrow.png\">";
-        echo "</a>";
-
-
-        echo "</div>";
+        ?>
+        <div id="member_menu" style="width:491px;" >
+	        <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'post_title' ]; ?></span>
+	        <a href="post-view.php?p_id=<?php echo $post_id; ?>">
+		        <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">
+		        	Back
+		        </span>
+		        <img style="float:right; width:15px; margin-top:2px; margin-right:5px; height:auto;" src="images/left_arrow.png">
+	        </a>
+        </div>
+        <?php
     }
 
     function view_image($mysqli, $post_id) {
@@ -691,7 +688,7 @@
     }
 
     function show_posts_database($mysqli) {
-        $query_select_posts = "SELECT id, post_author, post_date, post_title, post_status, post_category, post_views, post_photo_name FROM post ORDER BY id DESC";
+        $query_select_posts = "SELECT id, post_author, post_date, post_title, post_status, category_id, post_photo_name FROM posts ORDER BY id DESC";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
     ?>
 
