@@ -101,7 +101,7 @@
   function login_check($mysqli) {
         if(isset($_SESSION[ 'user_id' ])){
             $id_user     = $_SESSION[ 'user_id' ];
-            $check_query = "SELECT id, level FROM members WHERE id='$id_user' LIMIT 1";
+            $check_query = "SELECT id FROM members WHERE id='$id_user' LIMIT 1";
             $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
 
             // Check if all session variables are set
@@ -179,37 +179,35 @@
     }
 
     function show_categories($mysqli) {
-        $query = "SELECT id, category_name, post_number FROM category ORDER BY id ";
+        $query = "SELECT id, category_name FROM category ORDER BY id ";
         $result = mysqli_query($mysqli, $query) or die(mysqli_error());
+        ?>
+		<table id="table_style" > 
+			<thead> 
+				<tr> 
+					<th scope="col"><b> Category </b></th> 
+					<th scope="col" align="center"><b>Posts </b></th> 
+					<th scope="col" align="right"><b> Edit </b></th> 
+					<th scope="col" align="center"><b> Delete </b></th> 
+				</tr>
+			</thead>
+			<tbody>
+		        <?php 
+		        while ($row = mysqli_fetch_array($result)) {
+		        	?>
+		            <tr>
+			            <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php $row[ 'id' ]; ?>"><?php echo $row[ 'category_name' ]; ?></td>
+			            <td align="center" ><?php echo "-" ?></td>
 
-        echo " <table id=\"table_style\" > ";
-        echo " <thead> ";
-        echo " <tr> ";
-        echo " <th scope=\"col\"><b> Category </b></th> ";
-        echo " <th scope=\"col\" align=\"center\"><b>Posts </b></th> ";
-        echo " <th scope=\"col\" align=\"right\"><b> Edit </b></th> ";
-        echo " <th scope=\"col\" align=\"center\"><b> Delete </b></th> ";
-
-        echo "</th>";
-        echo "</tr>";
-        echo "<tbody>";
-
-        while ($row = mysqli_fetch_array($result)) {
-            echo "<tr>";
-            echo "<td title=".$row[ 'category_name' ]."&#39;s&nbsp;ID&nbsp;&nbsp;".$row[ 'id' ].">".$row[ 'category_name' ]."</td>";
-            echo "<td align=\"center\" title="."Number&nbsp;of&nbsp;posts&nbsp;in&nbsp;"
-                .$row[ 'category_name' ].">"
-                .$row[ 'post_number' ]."</td>";
-
-            echo "<td align=\"right\" title="."Edit&nbsp;".$row[ 'category_name' ].">
-						        <a href=\"categories.php?id=".$row[ 'id' ]."&edit=1\">Edit</a></td>";
-            echo "<td align=\"center\" title="."Delete&nbsp;".$row[ 'category_name' ].">
-						        <a onclick=\"return confirm('Press OK to delete the Category. ')\"
-						  	     href=\"categories.php?id=".$row[ 'id' ]."&del=1\">Delete</a></td>";
-            echo "</tr>";
-        }
-        echo "</tbody>";
-        echo "</table>";
+			            <td align="right"><a href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&edit=1">Edit</a></td>
+			            <td align="center"><a onclick="return confirm('Press OK to delete the Category. ')" href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&del=1">Delete</a></td>
+		            </tr>
+		     	<?php   
+		     	} 
+		     	?>
+        	</tbody>
+        </table>
+        <?php
     }
 
     function show_category_menu() {
