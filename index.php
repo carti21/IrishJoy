@@ -55,7 +55,6 @@
 	 			</div> 
 	 			<div class="content_img_right"> 
 		 			<?php 
-
 		 				$start_right=(($page+1)*7); 
 						show_right_col_images($mysqli,$start_right);
 		 			
