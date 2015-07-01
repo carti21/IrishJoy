@@ -94,8 +94,8 @@
         }
     
 
-    function show_member_whois($mysqli) {
-        return $_SESSION[ 'username' ];
+    function show_member_whois() {
+        return $_SESSION[ 'user_id' ];
     }
 
   function login_check($mysqli) {
@@ -557,10 +557,10 @@
         }
     }
 
-    function new_post($mysqli, $member, $title, $category, $visibility, $img_new_name, $post_number, $category_numb) {
+    function new_post($mysqli, $member, $title, $category, $visibility, $img_new_name) {
 
         if (($title != '') && ($category != '')) {
-            $query_insert_post = "INSERT INTO post (post_author, post_title, post_status, post_category, post_photo_name)
+            $query_insert_post = "INSERT INTO posts (post_author, post_title, post_status, category_id, post_photo_name)
 								       VALUES ('$member', '$title' , '$visibility', '$category', '$img_new_name')
 								 ";
             $result_add_post   = mysqli_query($mysqli, $query_insert_post);

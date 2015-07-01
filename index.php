@@ -45,7 +45,7 @@
 		 				if(isset($_GET['jump'])){
 		 					$page = $_GET['jump'];
 		 				} else {
-		 					$page = 1;
+		 					$page = 0;
 		 				}
 
 		 				$start_left="$page"*7; 
