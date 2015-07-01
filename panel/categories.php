@@ -9,7 +9,7 @@
 
 <html>
     <head>
-        <title>Add a new post</title>
+        <title>Categories</title>
         <?php header_requires(); ?>
     </head>
     <body>

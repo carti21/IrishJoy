@@ -32,7 +32,7 @@
                                 $query_select_categ = "SELECT id, category_name FROM category";
                                 $result_categ = mysqli_query($mysqli, $query_select_categ);
                                 while ($row_cat = mysqli_fetch_array($result_categ)) {
-                                    echo "<option value=\"".$row_cat[ 'category_name' ]."\">"
+                                    echo "<option value=\"".$row_cat[ 'id' ]."\">"
                                         .$row_cat[ 'category_name' ]."</option>";
                                 }
                             ?>

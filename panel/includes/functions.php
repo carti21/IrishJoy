@@ -431,46 +431,42 @@
 
 
     function show_statistics($mysqli) {
-        $query_categories  = "SELECT category_name FROM category";
+        $query_categories  = "SELECT category_name FROM categories";
         $categories_result = mysqli_query($mysqli, $query_categories);
         $category_amount   = mysqli_num_rows($categories_result);
 
 
-        $query_posts  = "SELECT id FROM post";
+        $query_posts  = "SELECT id FROM posts";
         $posts_result = mysqli_query($mysqli, $query_posts);
         $post_amount  = mysqli_num_rows($posts_result);
 
         $query_members  = "SELECT id FROM members";
         $members_result = mysqli_query($mysqli, $query_members);
         $members_amount = mysqli_num_rows($members_result);
-
-        echo " <table id=\"table_style\"> ";
-        echo " <thead> ";
-        echo " <tr> ";
-        echo " <th scope=\"col\"><b> Items </b></td>";
-        echo " <th scope=\"col\"><b> Amount </b></td>";
-        echo " </tr> ";
-        echo " </thead> ";
-
-        echo "<tbody>";
-        echo " <tr> ";
-        echo " <td><b> Posts </b></td> ";
-        echo " <td> $post_amount </td> ";
-        echo " </tr> ";
-
-        echo " <tr> ";
-        echo " <td><b> Categories </b></td> ";
-        echo " <td> $category_amount </td> ";
-        echo " </tr> ";
-
-        echo " <tr> ";
-        echo " <td><b> Members </b></td> ";
-        echo " <td> $members_amount </td> ";
-        echo " </tr> ";
-
-        echo "</tbody>";
-        echo "</table>";
-
+        ?>
+        <table id="table_style"> 
+	        <thead> 
+		        <tr> 
+			        <th scope=\"col\"><b> Items </b></td>
+			        <th scope=\"col\"><b> Amount </b></td>
+		        </tr> 
+	        </thead> 
+	        <tbody>
+	        <tr> 
+		        <td><b> Posts </b></td> 
+		        <td><?php echo $post_amount;?></td> 
+	        </tr> 
+	        <tr> 
+		        <td><b> Categories </b></td> 
+		        <td><?php echo $category_amount;?></td> 
+	        </tr> 
+	        <tr> 
+		        <td><b> Members </b></td> 
+		        <td><?php echo  $members_amount; ?></td> 
+	        </tr> 
+	        </tbody>
+        </table>
+        <?php
     }
 
     function upload_image($img_name, $img_size, $tmp) {
