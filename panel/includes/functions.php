@@ -4,15 +4,15 @@
     include "$root/config.php";
 
     function header_requires(){
-    	?>
-    	<meta charset="UTF-8">
-    	<link rel="stylesheet" type="text/css" href="<?php echo PANEL_URL; ?>css/css_panel.css"/>
+        ?>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="<?php echo PANEL_URL; ?>css/css_panel.css"/>
         <link rel="icon" href="<?php echo PANEL_URL; ?>images/favicon.png" type="image/x-icon">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <?php
     }
 
-    function sec_session_start() {
+    function sec_session_start(){
         $session_name = 'sec_session_id'; // Set a custom session name
         $secure       = false; // Set to true if using https.
         $httponly     = true; // This stops javascript being able to access the session id.
@@ -94,7 +94,7 @@
         }
     
 
-    function show_member_whois() {
+    function show_member_whois(){
         return $_SESSION[ 'user_id' ];
     }
 
@@ -168,7 +168,7 @@
             $query_insert   = "INSERT INTO category (category_name) VALUES ('$cat_name')";
             $result_add_new = mysqli_query($mysqli, $query_insert);
 
-            /*		duhet pare se shton 2 rekorde njekohsisht, exekutohet 2 here $result_add_new
+            /*      duhet pare se shton 2 rekorde njekohsisht, exekutohet 2 here $result_add_new
                      if (!mysqli_query($mysqli,$query_insert))
                     {
                           die('Problem: ' . mysqli_error($mysqli));
@@ -182,42 +182,42 @@
         $query = "SELECT id, category_name FROM category ORDER BY id ";
         $result = mysqli_query($mysqli, $query) or die(mysqli_error());
         ?>
-		<table id="table_style" > 
-			<thead> 
-				<tr> 
-					<th scope="col"><b> Category </b></th> 
-					<th scope="col" align="center"><b>Posts </b></th> 
-					<th scope="col" align="right"><b> Edit </b></th> 
-					<th scope="col" align="center"><b> Delete </b></th> 
-				</tr>
-			</thead>
-			<tbody>
-		        <?php 
-		        while ($row = mysqli_fetch_array($result)) {
-		        	?>
-		            <tr>
-			            <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php $row[ 'id' ]; ?>"><?php echo $row[ 'category_name' ]; ?></td>
-			            <td align="center" ><?php echo "-" ?></td>
+        <table id="table_style" > 
+            <thead> 
+                <tr> 
+                    <th scope="col"><b> Category </b></th> 
+                    <th scope="col" align="center"><b>Posts </b></th> 
+                    <th scope="col" align="right"><b> Edit </b></th> 
+                    <th scope="col" align="center"><b> Delete </b></th> 
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <tr>
+                        <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php $row[ 'id' ]; ?>"><?php echo $row[ 'category_name' ]; ?></td>
+                        <td align="center" ><?php echo "-" ?></td>
 
-			            <td align="right"><a href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&edit=1">Edit</a></td>
-			            <td align="center"><a onclick="return confirm('Press OK to delete the Category. ')" href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&del=1">Delete</a></td>
-		            </tr>
-		     	<?php   
-		     	} 
-		     	?>
-        	</tbody>
+                        <td align="right"><a href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&edit=1">Edit</a></td>
+                        <td align="center"><a onclick="return confirm('Press OK to delete the Category. ')" href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&del=1">Delete</a></td>
+                    </tr>
+                <?php   
+                } 
+                ?>
+            </tbody>
         </table>
         <?php
     }
 
-    function show_category_menu() {
-        echo "<div id=\"member_menu\"  >";
-        echo "<a  title=\"See the list of all categories\" href=\"http://irishjoy.flivetech.com/panel/super/categories.php\"> Categories </a>";
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;&#124;";
-        echo "<a href=\"http://irishjoy.flivetech.com/panel/super/categories-new.php\"
-			        title=\"Add a new category\">Add a category </a>";
-
-        echo "</div>";
+    function show_category_menu(){
+        ?>
+        <div id="member_menu">
+            <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php"> Categories </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&#124;
+            <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
+        </div>
+        <?php
     }
 
 
@@ -229,7 +229,7 @@
         return $result_select_postcounter[ 'post_number' ];
     }
 
-    function show_panel() {
+    function show_panel(){
         ?>
         <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php"> Panel </a> </div>
         <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/categories.php"> Categories </a> </div>
@@ -246,11 +246,11 @@
         <?php
     }
 
-    function head_custom_menu() {
+    function head_custom_menu(){
         ?>
         <div style="float:right; margin-right: 30px;">
             <button id="custom_menu_button" style="width:80px;" class="custom_menu" >
-            	<img style="margin-right:3px" src="images/gear.png" border=0 width="15px" height="15px"> Panel 
+                <img style="margin-right:3px" src="images/gear.png" border=0 width="15px" height="15px"> Panel 
             </button>
 
             <a href="<?php echo PANEL_URL ?>members.php" style="text-decoration:none;">
@@ -270,61 +270,61 @@
 
     function show_login_attempts($mysqli) {
 
-        $query_select_mem = "SELECT user_id, act_time,ip FROM login_attempts ORDER BY act_time DESC ";
-        $result_mem       = mysqli_query($mysqli, $query_select_mem);
-
-        echo " <table id=\"table_style\"> ";
-        echo " <thead> ";
-        echo " <tr> ";
-        echo " <th scope=\"col\" align=\"center\"><b> Member ID </b></th> ";
-        echo " <th scope=\"col\" align=\"center\"><b>Time</b></th> ";
-        echo " <th scope=\"col\" align=\"center\"><b>IP</b></th> ";
-
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        while ($data = mysqli_fetch_array($result_mem)) {
-            echo "<tr>";
-            echo "<td align=\"center\" >".$data[ 'user_id' ]." </td>";
-            echo "<td align=\"center\" title=\"".(date("l, d F  H:i", strtotime($data[ 'act_time' ])))." \">"
-                .(date("d.m.Y - H:i", strtotime($data[ 'act_time' ])));
-            " </td>";
-            echo "<td align=\"center\" >".$data[ 'ip' ]." </td>";
-            echo "</tr>";
-        }
-        echo "</tbody>";
-        echo "</table>";
-
+    $query_select_mem = "SELECT user_id, act_time,ip FROM login_attempts ORDER BY act_time DESC ";
+    $result_mem       = mysqli_query($mysqli, $query_select_mem);
+    ?>
+    <table id="table_style"> 
+        <thead> 
+            <tr> 
+                <th scope="col" align="center"><b> Member ID </b></th> 
+                <th scope="col" align="center"><b>Time</b></th> 
+                <th scope="col" align="center"><b>IP</b></th> 
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            while ($data = mysqli_fetch_array($result_mem)) {
+                ?>
+                <tr>
+                    <td align="center" ><?php echo $data[ 'user_id' ]; ?></td>
+                    <td align="center" title="<?php echo(date("l, d F  H:i", strtotime($data[ 'act_time' ])))?>"></td>
+                    <td align="center" ><?php echo $data[ 'ip' ]; ?></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+    <?php
     }
 
     function show_member_login_traces($mysqli) {
         $query_select_trace = "SELECT id, member_email, time, ip FROM login_filter ORDER BY id DESC";
         $result_trace_login = mysqli_query($mysqli, $query_select_trace);
+        ?>
 
-
-        echo "<table cellspacing=\"1\" class=\"tablesorter\" style=\"cursor: default;\">";
-        echo "<thead> ";
-        echo "<tr> ";
-        echo "<th>&nbsp;U / Email</th> ";
-        echo "<th style=\"text-align:center; \">Time</th>";
-        echo "<th style=\"text-align:center; \">IP</th> ";
-        echo "</tr> ";
-        echo "</thead> ";
-        echo "<tbody> ";
-
-        while ($data = mysqli_fetch_array($result_trace_login)) {
-            echo "<tr>";
-            echo "<td>"."&nbsp;".substr($data[ 'member_email' ], 0, 30)." </td>";
-            echo "<td title=\"".(date("l, d F  H:i", strtotime($data[ 'time' ])))." \"
-						style=\"text-align:center; \">".(date("d.m.Y - H:i", strtotime($data[ 'time' ])));
-            " </td>";
-            echo "<td style=\"text-align:center; \">".$data[ 'ip' ]." </td>";
-            echo "</tr>";
-        }
-        echo "</tbody> ";
-        echo "</table> ";
-
+        <table cellspacing="1" class="tablesorter" style="cursor: default;"
+            <thead>
+                <tr>
+                    <th>&nbsp;U / Email</th>
+                    <th style="text-align:center; ">Time</th
+                    <th style="text-align:center; ">IP</th>
+                </tr>
+            </thead>
+        <tbody>
+        <?php
+            while ($data = mysqli_fetch_array($result_trace_login)) {
+                ?>
+                <tr>
+                    <td><?php echo"&nbsp;".substr($data[ 'member_email' ], 0, 30) ?> </td>
+                    <td title="<?php echo date("l, d F  H:i", strtotime($data[ 'time' ])); ?>" style="text-align:center; "><?php echo date("d.m.Y - H:i", strtotime($data[ 'time' ])); ?></td
+                    <td style="text-align:center; "><?php echo $data[ 'ip' ]; ?></td>
+                </tr>
+                <?php
+            } ?>
+        </tbody>
+        </table>
+        <?php
     }
 
     function add_member($mysqli, $username, $password, $email) {
@@ -349,30 +349,28 @@
         die('Problem: '.mysqli_error($mysqli));
     }
 
-    function show_member_menu() {
-        echo "<div id=\"member_menu\"  >";
-        echo "<a  title=\"See all members list\" href=\"http://irishjoy.flivetech.com/panel/super/members.php\"> Members </a>";
-        echo "&nbsp;&nbsp;&#124;";
-        echo "<a href=\"http://irishjoy.flivetech.com/panel/super/members-login-attempts.php\"
-			        title=\"See all error logins from members\">Members Login Attempts </a>";
-        echo "&nbsp;&nbsp;&#124;";
-        echo "<a  href=\"http://irishjoy.flivetech.com/panel/super/members-new.php\"
-					 title=\"Add a new member\">Add a member </a>";
-        echo "&nbsp;&nbsp;&#124;";
-        echo "<a  href=\"http://irishjoy.flivetech.com/panel/super/members-login-traces.php\"
-					 title=\"Show Login Traces\">Login Traces</a>";
-        echo "</div>";
+    function show_member_menu(){
+        ?>
+        <div id="member_menu">
+            <a  title="See all members list" href="http://irishjoy.flivetech.com/panel/super/members.php">Members</a>
+            &nbsp;&nbsp;&#124;
+            <a href="<?php echo PANEL_URL; ?>members-login-attempts.php" title="See all error logins from members">Members Login Attempts</a>
+            &nbsp;&nbsp;&#124;
+            <a href="<?php echo PANEL_URL; ?>members-new.php" title="Add a new member">Add a member</a>
+            &nbsp;&nbsp;&#124;
+            <a href="<?php echo PANEL_URL; ?>members-login-traces.php" title="Show Login Traces">Login Traces</a>
+        </div>
+        <?php
     }
 
-    function view_member_menu() {
-        echo "<div id=\"member_menu\"  >";
-        echo "<a  title=\"See the list of all categories\" href=\"http://irishjoy.flivetech.com/panel/super/categories.php\">
-			Edit Profile </a>";
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;&#124;";
-        echo "<a href=\"http://irishjoy.flivetech.com/panel/super/categories-new.php\"
-			        title=\"Add a new category\">Add a category </a>";
-
-        echo "</div>";
+    function view_member_menu(){
+        ?>
+        <div id="member_menu">
+            <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php">Edit Profile </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&#124;
+            <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
+        </div>
+        <?php
     }
 
     function view_member($mysqli, $member_id) {
@@ -385,48 +383,47 @@
         echo "</br>";
         echo "Email: ".$row_member[ 'email' ]." ";
         echo "</br>";
-
-
     }
 
     function show_members($mysqli) {
-        /*
-        Bejme nje query per te zgjedhur te gjithe menaxheret qe jane thjeshte admin dhe
-        jo super admin.
-        */
+
         $query_select = ("SELECT post_counter FROM members");
         $result_fetch = mysqli_query($mysqli, $query_select);
 
         $query_select_mem = "SELECT id, username, email FROM members ORDER BY id";
         $result_mem       = mysqli_query($mysqli, $query_select_mem);
 
-        echo " <table id=\"table_style\"> ";
-        echo " <thead> ";
-        echo " <tr> ";
-        echo " <th scope=\"col\"><b> Username </b></th> ";
-        echo " <th scope=\"col\"><b> Email </b></th> ";
-        echo " <th scope=\"col\" align=\"right\"><b>Posts</b></th> ";
-        echo " <th scope=\"col\" align=\"center\"><b> View </b></th> ";
-
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        while ($data = mysqli_fetch_array($result_mem)) {
-            $post_nr = mysqli_fetch_array($result_fetch);
-            echo "<tr>";
-            echo "<td title="."Member&nbsp;ID:&nbsp;".$data[ 'id' ].">".$data[ 'username' ]." </td>";
-            echo "<td>".$data[ 'email' ]." </td>";
-            echo "<td align=\"right\">".$post_nr[ 'post_counter' ]."  </td>";
-            echo "<td align=\"center\" title="."View&nbsp;".$data[ 'username' ]."&#39;s&nbsp;profile".">
-					  <a href=\"member-view.php?m_id=".$data[ 'id' ]."\">
-					  <img src=\"images/member.png\" border=0 width=\"15\" height=\"15\"></a></td>";
-
-
-            echo "</tr>";
-        }
-        echo "</tbody>";
-        echo "</table>";
+        ?>
+        <table id="table_style"> 
+            <thead> 
+            <tr> 
+                <th scope="col"><b> Username </b></th> 
+                <th scope="col"><b> Email </b></th> 
+                <th scope="col" align="right"><b>Posts</b></th> 
+                <th scope="col" align="center"><b> View </b></th> 
+            </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($data = mysqli_fetch_array($result_mem)) {
+                $post_nr = mysqli_fetch_array($result_fetch); ?>
+                
+                <tr>
+                    <td title="."Member&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
+                    <td><?php echo $data[ 'email' ]; ?></td>
+                    <td align="right"><?php echo $post_nr[ 'post_counter' ]; ?></td>
+                    <td align="center">
+                        <a href="member-view.php?m_id="<?php echo $data[ 'id' ]; ?> >
+                            <img src="images/member.png" border=0 width="15" height="15">
+                        </a>
+                    </td>
+                </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+        <?php
     }
 
 
@@ -445,26 +442,26 @@
         $members_amount = mysqli_num_rows($members_result);
         ?>
         <table id="table_style"> 
-	        <thead> 
-		        <tr> 
-			        <th scope=\"col\"><b> Items </b></td>
-			        <th scope=\"col\"><b> Amount </b></td>
-		        </tr> 
-	        </thead> 
-	        <tbody>
-	        <tr> 
-		        <td><b> Posts </b></td> 
-		        <td><?php echo $post_amount;?></td> 
-	        </tr> 
-	        <tr> 
-		        <td><b> Categories </b></td> 
-		        <td><?php echo $category_amount;?></td> 
-	        </tr> 
-	        <tr> 
-		        <td><b> Members </b></td> 
-		        <td><?php echo  $members_amount; ?></td> 
-	        </tr> 
-	        </tbody>
+            <thead> 
+                <tr> 
+                    <th scope=\"col\"><b> Items </b></td>
+                    <th scope=\"col\"><b> Amount </b></td>
+                </tr> 
+            </thead> 
+            <tbody>
+            <tr> 
+                <td><b> Posts </b></td> 
+                <td><?php echo $post_amount;?></td> 
+            </tr> 
+            <tr> 
+                <td><b> Categories </b></td> 
+                <td><?php echo $category_amount;?></td> 
+            </tr> 
+            <tr> 
+                <td><b> Members </b></td> 
+                <td><?php echo  $members_amount; ?></td> 
+            </tr> 
+            </tbody>
         </table>
         <?php
     }
@@ -536,13 +533,13 @@
         $result_del = mysqli_query($mysqli, $query_del);
 
         $query_update              = ("UPDATE category
-							SET post_number='$category_post_numb'
-							WHERE category_name='$category'");
+                            SET post_number='$category_post_numb'
+                            WHERE category_name='$category'");
         $result_update_postcounter = mysqli_query($mysqli, $query_update);
 
         $query_update              = ("UPDATE members
-							SET post_counter='$mem_post_counter'
-							WHERE username='$author'");
+                            SET post_counter='$mem_post_counter'
+                            WHERE username='$author'");
         $result_update_postcounter = mysqli_query($mysqli, $query_update);
 
     }
@@ -561,7 +558,7 @@
 
         if (($title != '') && ($category != '')) {
             $query_insert_post = "INSERT INTO posts (post_author, post_title, post_status, category_id, post_photo_name)
-								       VALUES ('$member', '$title' , '$visibility', '$category', '$img_new_name')";
+                                       VALUES ('$member', '$title' , '$visibility', '$category', '$img_new_name')";
             $result_add_post   = mysqli_query($mysqli, $query_insert_post);
 
             echo '<p>New post has been added. </p>';
@@ -574,11 +571,11 @@
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
         <div id="member_menu"  >
-        <a  title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
+        <a title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
             |
         <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=$id&del=1" title="Delete this post">Delete</a>
             |
-        <a  title="Add a new post" href="post-new.php">New Post</a>
+        <a title="Add a new post" href="post-new.php">New Post</a>
         
         <span title="<?php echo (date("l, d F, H:i", strtotime($row_post_menu[ 'post_date' ]))); ?>" style="margin-left:50px; color:#336699; cursor:default;">
             <?php echo (date("d.m.Y - H:i", strtotime($row_post_menu[ 'post_date' ]))); ?>
@@ -666,13 +663,13 @@
         $row_post           = mysqli_fetch_array($result_posts);
         ?>
         <div id="member_menu" style="width:491px;" >
-	        <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'post_title' ]; ?></span>
-	        <a href="post-view.php?p_id=<?php echo $post_id; ?>">
-		        <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">
-		        	Back
-		        </span>
-		        <img style="float:right; width:15px; margin-top:2px; margin-right:5px; height:auto;" src="images/left_arrow.png">
-	        </a>
+            <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'post_title' ]; ?></span>
+            <a href="post-view.php?p_id=<?php echo $post_id; ?>">
+                <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">
+                    Back
+                </span>
+                <img style="float:right; width:15px; margin-top:2px; margin-right:5px; height:auto;" src="images/left_arrow.png">
+            </a>
         </div>
         <?php
     }
@@ -726,7 +723,7 @@
     }
 
 
-    function getRealIpAddr() {
+    function getRealIpAddr(){
         if (!empty($_SERVER[ 'HTTP_CLIENT_IP' ])) //check ip from share internet
         {
             $ip = $_SERVER[ 'HTTP_CLIENT_IP' ];

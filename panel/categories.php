@@ -3,7 +3,7 @@
 
     sec_session_start();
     if (login_check($mysqli) == false) {
-         header('Location: ' . MAIN_URL);
+         header( 'Location: ' . MAIN_URL );
     }
 ?>
 
