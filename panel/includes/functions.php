@@ -179,7 +179,8 @@
     }
 
     function show_categories($mysqli) {
-        $query = "SELECT id, category_name FROM category ORDER BY id ";
+        $query = "SELECT DISTINCT categories.id, categories.category_name, posts.post_views FROM categories 
+                    JOIN posts ON posts.category_id = categories.id ORDER BY categories.id ";
         $result = mysqli_query($mysqli, $query) or die(mysqli_error());
         ?>
         <table id="table_style" > 
@@ -197,9 +198,9 @@
                     ?>
                     <tr>
                         <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php $row[ 'id' ]; ?>"><?php echo $row[ 'category_name' ]; ?></td>
-                        <td align="center" ><?php echo "-" ?></td>
+                        <td align="center" ><?php echo $row['post_views'] ?></td>
 
-                        <td align="right"><a href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&edit=1">Edit</a></td>
+                        <td align="right"><a href="categories.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
                         <td align="center"><a onclick="return confirm('Press OK to delete the Category. ')" href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&del=1">Delete</a></td>
                     </tr>
                 <?php   
