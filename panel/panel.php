@@ -1,17 +1,12 @@
-<?php 
+<?php
+    require_once('includes/functions.php');
 
-	include 'includes/functions.php';
+    sec_session_start();
+    if (login_check($mysqli) == false) {
+         header('Location: ' . MAIN_URL);
+    }
+?>
 
-	sec_session_start();
-	if(login_check($mysqli) == true) {
-	 
-	   // Add your protected page content here!
-	 
-	} else {
-	   header('Location: ./');
-	}
-
- ?>
 <html>
 	<head>
 		<title>Administration Panel</title>

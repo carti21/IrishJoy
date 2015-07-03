@@ -2,7 +2,7 @@
 	include 'includes/functions.php';
 	
 	sec_session_start();
-	if(login_check($mysqli) == false){
+	if(login_check($mysqli) == true){
 	   header('Location: ./login.php');
 	} 
 ?>

@@ -1,21 +1,14 @@
-<?php 
+<?php
+    require_once('includes/functions.php');
 
-	include 'includes/functions.php';
-
-	sec_session_start();
-	if(login_check($mysqli) == true) {
-	 
-	   // Add your protected page content here!
-	 
-	} else {
-	   header('Location: ./login.php');
-	}
-
- ?>
+    sec_session_start();
+    if (login_check($mysqli) == false) {
+         header('Location: ' . MAIN_URL);
+    }
+?>
 
 <html>
 	<head>
-		<meta charset="utf-8" />
 		<title>Database</title>
 		<link rel="icon" href="<?= MAIN_URL ?>panel/super/images/database.png" type="image/x-icon"> 
 		<link rel="stylesheet" href="css/post_database_table.css" type="text/css" media="print, projection, screen" />
