@@ -352,7 +352,7 @@
     function show_member_menu(){
         ?>
         <div id="member_menu">
-            <a  title="See all members list" href="http://irishjoy.flivetech.com/panel/super/members.php">Members</a>
+            <a  title="See all members list" href="<?php echo PANEL_URL; ?>members.php">Members</a>
             &nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>members-login-attempts.php" title="See all error logins from members">Members Login Attempts</a>
             &nbsp;&nbsp;&#124;
@@ -529,7 +529,7 @@
         {
             $query_update_post  = "UPDATE post SET post_title='$title', post_category='$category' WHERE id=$post_id";
             $result_update_post = mysqli_query($mysqli, $query_update_post);
-            header("Location: http://irishjoy.flivetech.com/panel/super/post-view.php?p_id=".$post_id."&edit=success");
+            header("Location: " . PANEL_URL ."post-view.php?p_id=".$post_id."&edit=success");
         }
     }
 
