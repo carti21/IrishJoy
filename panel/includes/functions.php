@@ -165,21 +165,18 @@
     function new_category($mysqli, $cat_name) {
 
         if ($cat_name != '') {
-            $query_insert   = "INSERT INTO category (category_name) VALUES ('$cat_name')";
-            $result_add_new = mysqli_query($mysqli, $query_insert);
+            $query_insert   = "INSERT INTO categories (category_name) VALUES ('$cat_name')";
 
-            /*      duhet pare se shton 2 rekorde njekohsisht, exekutohet 2 here $result_add_new
-                     if (!mysqli_query($mysqli,$query_insert))
-                    {
-                          die('Problem: ' . mysqli_error($mysqli));
-                    } */
-            // echo "A new category was added.";    !!! Duhet njoftuar me window jquery
+            if (!mysqli_query($mysqli,$query_insert)){
+                  die('Problem: ' . mysqli_error($mysqli));
+            } 
+  
             header("Location: categories.php");
         }
     }
 
     function show_categories($mysqli) {
-        $query = "SELECT DISTINCT categories.id, categories.category_name, posts.post_views FROM categories 
+        $query = "SELECT categories.id, categories.category_name, posts.post_views FROM categories 
                     JOIN posts ON posts.category_id = categories.id ORDER BY categories.id ";
         $result = mysqli_query($mysqli, $query) or die(mysqli_error());
         ?>
