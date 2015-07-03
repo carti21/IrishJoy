@@ -1,14 +1,12 @@
 <?php 
-
 	include 'includes/functions.php';
 	
 	sec_session_start();
-	if(login_check($mysqli) == true)
-	 {
-	   // Add your protected page content here!
+	if(login_check($mysqli) == false){
 	   header('Location: ./login.php');
-	 } 
+	} 
 ?>
+
 <html>
 	<head>
 		<title>Login Page</title>
@@ -28,7 +26,7 @@
 		?>
 		<div id="login_box">
 			<div id="login">
-				<form action="process_login.php" method="post" name="login_form">
+				<form action="process-login.php" method="post" name="login_form">
 					Email: <input type="text" name="email" style="margin-left:27px;"/></br> </br> 
 					Password: <input type="password" name="p" id="password" />
 					<button class="login" value="Login"  onclick="formhash(this.form, this.form.password);">Login</button>

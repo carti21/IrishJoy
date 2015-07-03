@@ -1,24 +1,16 @@
-<?php 
-include 'includes/db_connect.php';
-include 'includes/functions.php';
-error_reporting(0); // jane gabime qe duhen pare ne fund !!! 
-	// Include database connection and functions here.
-sec_session_start();
-if(login_check($mysqli) == true) {
- 
-   // Add your protected page content here!
- 
-} else {
-   header('Location: ./');
-}
+<?php
+    require_once('includes/functions.php');
 
- ?>
+    sec_session_start();
+    if (login_check($mysqli) == false) {
+         header('Location: ' . MAIN_URL);
+    }
+?>
 
 <html>
 	<head>
 		<title>Add new member</title>
-		<link rel="stylesheet" type="text/css" href="css/css_panel.css" />
-		<link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon"> 
+		<?php header_requires(); ?>
 				<script type="text/javascript" src="includes/sha512.js"></script>
 				<script type="text/javascript" src="includes/forms.js"></script>
 				

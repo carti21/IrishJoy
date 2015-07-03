@@ -1,43 +1,30 @@
-<?php 
-include 'includes/db_connect.php';
-include 'includes/functions.php';
-error_reporting(0); // jane gabime qe duhen pare ne fund !!! 
-	// Include database connection and functions here.
-sec_session_start();
-if(login_check($mysqli) == true) {
- 
-   // Add your protected page content here!
- 
-} else {
-   header('Location: ./');
-}
+<?php
+    require_once('includes/functions.php');
 
- ?>
+    sec_session_start();
+    if (login_check($mysqli) == false) {
+         header('Location: ' . MAIN_URL);
+    }
 
-
-<?php 
-		if($_GET['del']==1)
+	if($_GET['del']==1)
+	{
+		if($_GET['id']>0)
 		{
-			if($_GET['id']>0)
-			{
-				delete_member($mysqli,$_GET['id']);
-				header("Location: members.php"); 
-			}
+			delete_member($mysqli,$_GET['id']);
+			header("Location: members.php"); 
 		}
-?>
-<?php 
-		 if($_GET['edit']==1)
-		 {
-		 	header("Location: members-edit.php?id=".$_GET['id']);
-		}  
+	}
+ 
+	if($_GET['edit']==1)
+	{
+		header("Location: members-edit.php?id=".$_GET['id']);
+	}  
 ?>
 
 <html>
 	<head>
 		<title>Members</title>
-		<link rel="stylesheet" type="text/css" href="css/css_panel.css" />
-		<link rel="icon" href="http://irishjoy.flivetech.com/panel/super/images/favicon.png" type="image/x-icon"> 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<?php header_requires(); ?>
 	<script>
 		$("#custom_menu_button").ready(function(){
 		  $("#custom_menu1").hide();
