@@ -1,6 +1,7 @@
 <?php 
 
 	define('MAIN_URL', 'http://localhost/irishjoy/');
+	define('UPLOADS_URL', MAIN_URL.'/uploads/');
 
     define('PANEL_URL', 'http://localhost/irishjoy/panel/');
     define('GOOGLE_ANALYTICS_URL', '/irishjoy/');

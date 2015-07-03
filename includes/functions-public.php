@@ -34,7 +34,7 @@
 		
 		while($row_img = mysqli_fetch_array($result_img)){
 			if($row_img['post_photo_name']!=''){
-				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
+				$img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
 				?>
 				<a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
 					<img class="content_img_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
@@ -54,7 +54,7 @@
 
 			if($row_img['post_photo_name']!=''){ 
 				
-				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
+				$img_path = UPLOADS_URL .$row_img['post_photo_name'];
 				?>
 				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
 					<img src= "<?php echo $img_path; ?>" title="Permalink: (irishjoy.com/view-image.php?p_id=<?php echo  $row_img['id']; ?>)" class="content_img_right" >
@@ -73,7 +73,7 @@
 		{ 
 			if($row_img['post_photo_name']!='')
 			{
-				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
+				$img_path = UPLOADS_URL .$row_img['post_photo_name'];
 				?>
 				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
 					<img class="content_img_left" src="<?php echo $img_path?>" />
@@ -102,14 +102,13 @@
 		}
 	}
 
-	//RENAME THIS TO SHOW_SINGLE_IMAGE
-	function view_image($mysqli,$post_id )
+	function show_single_image($mysqli,$post_id )
 	{
-		$query_select_posts = "SELECT id, post_photo_name FROM post WHERE id = $post_id"; 
+		$query_select_posts = "SELECT id, post_photo_name FROM posts WHERE id = $post_id"; 
 		$result_posts = mysqli_query($mysqli, $query_select_posts);	
 		$row_post = mysqli_fetch_array($result_posts);
 		
-		$img_path = MAIN_URL . "tagged/".$row_post['post_photo_name']; 
+		$img_path = UPLOADS_URL . $row_post['post_photo_name']; 
 		?>
 			<img class="img_view_full" src="<?php echo $img_path; ?>" />
 		<?php
@@ -117,7 +116,7 @@
 
 	function get_numb_views($mysqli,$post_id){
 
-		$query_select_post_views= "SELECT post_views FROM post WHERE id= $post_id" ;
+		$query_select_post_views= "SELECT post_views FROM posts WHERE id= $post_id" ;
 		$result_fetch = mysqli_query($mysqli,$query_select_post_views);
 		$result_select_postviews = mysqli_fetch_array($result_fetch);
 		
@@ -126,15 +125,15 @@
 
 	function increment_numb_views($mysqli,$views_icr,$post_id){
 
-		$query_update=("UPDATE post SET post_views=$views_icr WHERE id='$post_id'");
+		$query_update=("UPDATE posts SET post_views=$views_icr WHERE id='$post_id'");
 		$result_update_postcounter = mysqli_query($mysqli,$query_update) ; 
 	}
 
 	function get_cat($mysqli,$post_id) {
 
-		$query_select_post_cat= "SELECT post_category FROM post WHERE id= $post_id" ;
+		$query_select_post_cat= "SELECT category_id FROM posts WHERE id= $post_id" ;
 		$result_fetch = mysqli_query($mysqli,$query_select_post_cat);
 		$result_select_postcat = mysqli_fetch_array($result_fetch);
 		
-		return $result_select_postcat['post_category']; 
+		return $result_select_postcat['category_id']; 
 	}

@@ -466,27 +466,6 @@
         <?php
     }
 
-    function upload_image($img_name, $img_size, $tmp) {
-        // duhet futur kushti qe shef a esht apo jo img nisur nga prapashtesa
-
-        if ($img_size < 1024*1024*2) // size < 2MB
-        {
-            // emrit i shtohet nje nr random qe mos ngaterrohet
-            $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
-
-            if (move_uploaded_file($tmp, SERVER_URL.'tagged/'.$img_new_name)) {
-                chmod(SERVER_URL.'tagged/'.$img_new_name, 0666);
-                echo '<p>The image was updated successfully</p>';
-
-                return $img_new_name;
-            }
-            else {
-                echo '<p>There was a problem during upload. Please try again.</p>';
-
-            }
-        }
-    }
-
     function getNumOfPosts($mysqli, $member) {
         $query_select              = "SELECT post_counter FROM members WHERE username='$member'";
         $result_fetch              = mysqli_query($mysqli, $query_select);
@@ -565,8 +544,29 @@
         }
     }
 
+    function upload_image($img_name, $img_size, $tmp) {
+        // duhet futur kushti qe shef a esht apo jo img nisur nga prapashtesa
+
+        if ($img_size < 1024*1024*2) // size < 2MB
+        {
+            // emrit i shtohet nje nr random qe mos ngaterrohet
+            $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
+
+            if (move_uploaded_file($tmp, SERVER_URL.'uploads/'.$img_new_name)) {
+                chmod(SERVER_URL.'uploads/'.$img_new_name, 0666);
+                echo '<p>The image was updated successfully</p>';
+
+                return $img_new_name;
+            }
+            else {
+                echo '<p>There was a problem during upload. Please try again.</p>';
+
+            }
+        }
+    }
+
     function view_post_menu($mysqli, $id) {
-        $query_posts   = "SELECT id, post_status, post_date, post_views FROM post WHERE id = $id";
+        $query_posts   = "SELECT id, post_status, post_date, post_views FROM posts WHERE id = $id";
         $result_posts  = mysqli_query($mysqli, $query_posts);
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
@@ -600,7 +600,8 @@
     }
 
     function view_post($mysqli, $post_id) {
-        $query_select_posts = "SELECT id, post_author, post_title, post_category, post_views, post_photo_name FROM post WHERE id = $post_id";
+        $query_select_posts = "SELECT posts.id, posts.post_author, posts.post_title, posts.category_id, posts.post_views, posts.post_photo_name, categories.category_name FROM posts 
+                               JOIN categories ON categories.id = posts.category_id WHERE  posts.id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
@@ -617,7 +618,7 @@
                 </div>
                 <div class="items">
                     <span class="post-details">
-                    Category: </span><?php echo  $row_post[ 'post_category' ]; ?>
+                    Category: </span><?php echo  $row_post[ 'category_name' ]; ?>
                 </div>
                 <div class="items">
                     <span class="post-details">
@@ -632,7 +633,7 @@
                     <img style="width:15px; margin-bottom:-3px; height:auto;"src="images/left_arrow.png">Go to database
                 </a>
                 <?php
-                $img_path = MAIN_URL."tagged/".$row_post[ 'post_photo_name' ];
+                $img_path = UPLOADS_URL . $row_post[ 'post_photo_name' ];
                 if ($row_post[ 'post_photo_name' ] == '') {
                     ?>
             </div>
@@ -679,13 +680,14 @@
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
-        $img_path = "http://irishjoy.flivetech.com/tagged/".$row_post[ 'post_photo_name' ];
+        $img_path = UPLOADS_URL . $row_post[ 'post_photo_name' ];
         //echo "<img class=\"img_view_full\" src= \"$img_path\" />";
         echo "<a href=\"post-view.php?p_id=".$row_post[ 'id' ]."\" ><img class=\"img_view_full\" title=\"Back to detailed view\" src= \"$img_path\" /></a>";
     }
 
     function show_posts_database($mysqli) {
-        $query_select_posts = "SELECT id, post_author, post_date, post_title, post_status, category_id, post_photo_name FROM posts ORDER BY id DESC";
+        $query_select_posts = "SELECT posts.id, posts.post_author, posts.post_date, posts.post_title, posts.post_status, posts.category_id, posts.post_photo_name, posts.post_views, categories.category_name FROM posts 
+                               JOIN categories ON categories.id = posts.category_id ORDER BY id DESC";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
     ?>
 
@@ -710,7 +712,7 @@
                 <td style="cursor: default;" title="<?= $data[ 'post_title' ]; ?>"> <?= substr($data[ 'post_title' ], 0, 40); ?> </td>
                 <td title="<?= (date("l, d F  H:i", strtotime($data[ 'post_date' ]))) ?>" style="text-align:center; cursor: default;"> <?= (date("d.m.Y - H:i", strtotime($data[ 'post_date' ]))) ?> </td>
                 <td> <?= $data['post_author']; ?> </td>
-                <td> <?= $data['post_category']; ?> </td>
+                <td> <?= $data['category_name']; ?> </td>
                 <td class="text-center" style="cursor: default;"> <?= $data['post_status'] ?> </td>
                 <td style="cursor: default;" title="<?= $data[ 'post_photo_name'] ?>"> <?= substr($data[ 'post_photo_name' ], 0, 15) ?> </td>
                 <td style="text-align:right;" ><?= $data[ 'post_views' ]; ?> </td>

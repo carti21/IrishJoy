@@ -24,7 +24,7 @@
 			<div class="content">	
 	 			<?php 
 		 			$id=$_GET['p_id']; 
-					view_image($mysqli,$id);
+					show_single_image($mysqli,$id);
 					$a=get_numb_views($mysqli,$id);
 					$a++;
 					
