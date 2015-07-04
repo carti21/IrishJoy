@@ -35,37 +35,8 @@
 				</div>
 			</div>
 		 	<div class="content">
-		 		<div>
-		 			<b>Quick Tasks</b>
-		 		</div></br>
-		 		<div class="tasks"> 
-	                <a href="post-new.php" >
-			 			<div class="quick_tasks"><div class="quick_tasks_items">+ Add Post</div></div>
-			 		</a>
-			 		<a href="members-new.php" >
-	               		<div class="quick_tasks"><div class="quick_tasks_items">+ Add member</div></div>
-	                </a>
-	                <a href="members-login-traces.php" >
-			 			<div class="quick_tasks"><div class="quick_tasks_items">View Login Traces</div></div>
-			 		</a>
-		 		</div>
-		 		<div class="tasks">
-			 		<a href="posts-database.php" >
-				 		<div class="quick_tasks">
-				 			<div class="quick_tasks_items">View all posts</div>
-				 		</div>
-			 		</a>
-			 		<a href="contact.php" >
-			 			<div class="quick_tasks">
-			 				<div class="quick_tasks_items">Contact to Administrators</div>
-			 			</div>
-			 		</a>
-	                <a href="members-login-attempts.php">
-			 			<div class="quick_tasks">
-			 				<div class="quick_tasks_items">Error Login Attempts</div>
-			 			</div>
-			 		</a>
-		 		</div>
+		 		
+
 
                 <?php show_statistics($mysqli); ?>
 		 		

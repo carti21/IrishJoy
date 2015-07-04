@@ -229,11 +229,13 @@
 
     function show_panel(){
         ?>
-        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php"> Panel </a> </div>
-        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/categories.php"> Categories </a> </div>
-        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/posts-database.php" target="_blank"> Post Database </a> </div>
-        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/panel.php">Test gallery</a> </div>
-        <div class="menu_items"> <a href="<?php echo MAIN_URL; ?>panel/search.php">Search</a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php"> Panel </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>post-new.php"> New Post </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>users.php"> Users </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php" target="_blank"> Post Database </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php">Test gallery</a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
         <div class="menu_items"> <a href="<?php echo GOOGLE_ANALYTICS_URL; ?>" target="_blank" > Google Analytics </a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
         <div class="menu_items"> <a href="<?php echo EMAIL_URL; ?>" target="_blank">Check Mail</a> </div>
@@ -251,7 +253,7 @@
                 <img style="margin-right:3px" src="images/gear.png" border=0 width="15px" height="15px"> Panel 
             </button>
 
-            <a href="<?php echo PANEL_URL ?>members.php" style="text-decoration:none;">
+            <a href="<?php echo PANEL_URL ?>users.php" style="text-decoration:none;">
                 <div id="custom_menu1" style="border-radius:3px 3px 0px 0px;"> 
                     <img style="margin-right:3px;" src="images/members_custom.png" border=0 width="15px" height="15px">Members 
                 </div>
@@ -350,13 +352,13 @@
     function show_member_menu(){
         ?>
         <div id="member_menu">
-            <a  title="See all users list" href="<?php echo PANEL_URL; ?>members.php">Members</a>
+            <a  title="See all users list" href="<?php echo PANEL_URL; ?>users.php">Members</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>members-login-attempts.php" title="See all error logins from users">Members Login Attempts</a>
+            <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">Members Login Attempts</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>members-new.php" title="Add a new member">Add a member</a>
+            <a href="<?php echo PANEL_URL; ?>users-new.php" title="Add a new member">Add a member</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>members-login-traces.php" title="Show Login Traces">Login Traces</a>
+            <a href="<?php echo PANEL_URL; ?>users-login-traces.php" title="Show Login Traces">Login Traces</a>
         </div>
         <?php
     }
