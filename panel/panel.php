@@ -35,9 +35,7 @@
 				</div>
 			</div>
 		 	<div class="content">
-		 		
-
-
+		 	
                 <?php show_statistics($mysqli); ?>
 		 		
 		 	</div>		 		
