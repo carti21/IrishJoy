@@ -18,14 +18,12 @@
                 $post_counter  = getNumOfPostsCategory($mysqli, $post_category);
                 $post_counter--;
 
-                $post_author    = get_post_author($mysqli, $post_id);
-                $post_mem_count = getNumOfPosts($mysqli, $post_author);
-                $post_mem_count--;
+
 
 
                 delete_post($mysqli, $post_id, $post_category, $post_counter, $post_author, $post_mem_count);
 
-                header('Location: ./posts-database.php');
+                
 
             }
         }

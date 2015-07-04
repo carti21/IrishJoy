@@ -506,19 +506,13 @@
 
 
     function delete_post($mysqli, $id, $category, $category_post_numb, $author, $mem_post_counter) {
-        $query_del  = "DELETE FROM post WHERE id=$id";
-        $result_del = mysqli_query($mysqli, $query_del);
+        $query_del  = "DELETE FROM posts WHERE id=$id";
 
-        $query_update              = ("UPDATE category
-                            SET post_number='$category_post_numb'
-                            WHERE category_name='$category'");
-        $result_update_postcounter = mysqli_query($mysqli, $query_update);
-
-        $query_update              = ("UPDATE users
-                            SET post_counter='$mem_post_counter'
-                            WHERE username='$author'");
-        $result_update_postcounter = mysqli_query($mysqli, $query_update);
-
+        if(mysqli_query($mysqli, $query_del)){
+            header('Location: ./posts-database.php');
+        } else { 
+            die('Problem: '.mysqli_error($mysqli));
+        }  
     }
 
     function edit_post($mysqli, $post_id, $title, $category) {
@@ -571,7 +565,7 @@
         <div id="member_menu"  >
         <a title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
             |
-        <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=$id&del=1" title="Delete this post">Delete</a>
+        <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=<?php echo $id; ?>&del=1" title="Delete this post">Delete</a>
             |
         <a title="Add a new post" href="post-new.php">New Post</a>
         
