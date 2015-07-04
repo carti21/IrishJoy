@@ -49,7 +49,7 @@
     function login($email, $password, $user_ip, $mysqli) {
 
         // Using prepared Statements means that SQL injection is not possible.
-        if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM members WHERE email = ? LIMIT 1")) {
+        if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM users WHERE email = ? LIMIT 1")) {
             $stmt->bind_param('s', $email); // Bind "$email" to parameter.
             $stmt->execute(); // Execute the prepared query.
             $stmt->store_result();
@@ -101,7 +101,7 @@
   function login_check($mysqli) {
         if(isset($_SESSION[ 'user_id' ])){
             $id_user     = $_SESSION[ 'user_id' ];
-            $check_query = "SELECT id FROM members WHERE id='$id_user' LIMIT 1";
+            $check_query = "SELECT id FROM users WHERE id='$id_user' LIMIT 1";
             $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
 
             // Check if all session variables are set
@@ -110,7 +110,7 @@
                 $login_string = $_SESSION[ 'login_string' ];
                 $username     = $_SESSION[ 'username' ];
                 $user_browser = $_SERVER[ 'HTTP_USER_AGENT' ]; // Get the user-agent string of the user.
-                if ($stmt = $mysqli->prepare("SELECT password FROM members WHERE id = ? LIMIT 1")) {
+                if ($stmt = $mysqli->prepare("SELECT password FROM users WHERE id = ? LIMIT 1")) {
                     $stmt->bind_param('i', $user_id); // Bind "$user_id" to parameter.
                     $stmt->execute(); // Execute the prepared query.
                     $stmt->store_result();
@@ -297,7 +297,7 @@
     }
 
     function show_member_login_traces($mysqli) {
-        $query_select_trace = "SELECT id, member_email, time, ip FROM login_filter ORDER BY id DESC";
+        $query_select_trace = "SELECT id, user_id, time, ip FROM login_filter ORDER BY id DESC";
         $result_trace_login = mysqli_query($mysqli, $query_select_trace);
         ?>
 
@@ -314,7 +314,7 @@
             while ($data = mysqli_fetch_array($result_trace_login)) {
                 ?>
                 <tr>
-                    <td><?php echo"&nbsp;".substr($data[ 'member_email' ], 0, 30) ?> </td>
+                    <td><?php echo"&nbsp;".substr($data[ 'user_id' ], 0, 30) ?> </td>
                     <td title="<?php echo date("l, d F  H:i", strtotime($data[ 'time' ])); ?>" style="text-align:center; "><?php echo date("d.m.Y - H:i", strtotime($data[ 'time' ])); ?></td
                     <td style="text-align:center; "><?php echo $data[ 'ip' ]; ?></td>
                 </tr>
@@ -331,7 +331,7 @@
             $password    = hash('sha512', $password.$random_salt);
 
             if ($insert_stmt = $mysqli->prepare
-                ("INSERT INTO members (username, email, password, salt) VALUES (?, ?, ?, ?)")
+                ("INSERT INTO users (username, email, password, salt) VALUES (?, ?, ?, ?)")
             ) {
                 $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
                 // Execute the prepared query.
@@ -341,7 +341,7 @@
     }
 
     function delete_member($mysqli, $id) {
-        $query_del = "DELETE FROM members WHERE id=$id";
+        $query_del = "DELETE FROM users WHERE id=$id";
         $result_del = mysqli_query($mysqli, $query_del)
         or
         die('Problem: '.mysqli_error($mysqli));
@@ -350,9 +350,9 @@
     function show_member_menu(){
         ?>
         <div id="member_menu">
-            <a  title="See all members list" href="<?php echo PANEL_URL; ?>members.php">Members</a>
+            <a  title="See all users list" href="<?php echo PANEL_URL; ?>members.php">Members</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>members-login-attempts.php" title="See all error logins from members">Members Login Attempts</a>
+            <a href="<?php echo PANEL_URL; ?>members-login-attempts.php" title="See all error logins from users">Members Login Attempts</a>
             &nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>members-new.php" title="Add a new member">Add a member</a>
             &nbsp;&nbsp;&#124;
@@ -372,7 +372,7 @@
     }
 
     function view_member($mysqli, $member_id) {
-        $query_select_member = "SELECT id, username, email FROM members WHERE id = $member_id";
+        $query_select_member = "SELECT id, username, email FROM users WHERE id = $member_id";
         $result_member       = mysqli_query($mysqli, $query_select_member);
         $row_member          = mysqli_fetch_array($result_member);
 
@@ -385,10 +385,10 @@
 
     function show_members($mysqli) {
 
-        $query_select = ("SELECT post_counter FROM members");
+        $query_select = ("SELECT post_counter FROM users");
         $result_fetch = mysqli_query($mysqli, $query_select);
 
-        $query_select_mem = "SELECT id, username, email FROM members ORDER BY id";
+        $query_select_mem = "SELECT id, username, email FROM users ORDER BY id";
         $result_mem       = mysqli_query($mysqli, $query_select_mem);
 
         ?>
@@ -435,7 +435,7 @@
         $posts_result = mysqli_query($mysqli, $query_posts);
         $post_amount  = mysqli_num_rows($posts_result);
 
-        $query_members  = "SELECT id FROM members";
+        $query_members  = "SELECT id FROM users";
         $members_result = mysqli_query($mysqli, $query_members);
         $members_amount = mysqli_num_rows($members_result);
         ?>
@@ -456,7 +456,7 @@
                 <td><?php echo $category_amount;?></td> 
             </tr> 
             <tr> 
-                <td><b> Members </b></td> 
+                <td><b> users </b></td> 
                 <td><?php echo  $members_amount; ?></td> 
             </tr> 
             </tbody>
@@ -465,7 +465,7 @@
     }
 
     function getNumOfPosts($mysqli, $member) {
-        $query_select              = "SELECT post_counter FROM members WHERE username='$member'";
+        $query_select              = "SELECT post_counter FROM users WHERE username='$member'";
         $result_fetch              = mysqli_query($mysqli, $query_select);
         $result_select_postcounter = mysqli_fetch_array($result_fetch);
 
@@ -514,7 +514,7 @@
                             WHERE category_name='$category'");
         $result_update_postcounter = mysqli_query($mysqli, $query_update);
 
-        $query_update              = ("UPDATE members
+        $query_update              = ("UPDATE users
                             SET post_counter='$mem_post_counter'
                             WHERE username='$author'");
         $result_update_postcounter = mysqli_query($mysqli, $query_update);
