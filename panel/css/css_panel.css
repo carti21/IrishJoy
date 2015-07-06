@@ -267,7 +267,7 @@ button.custom_menu:focus {
 	float:right;	
 } 
 
-.member_menu{
+.user_menu{
 	width:511px;
 	height:20px;
 	padding:7px;
@@ -277,7 +277,7 @@ button.custom_menu:focus {
 	margin-bottom:20px;
 } 
 
-.member_menu a{
+.user_menu a{
 	padding-top:10px;
 	padding-left:12px;
 	color:#336699;
@@ -286,11 +286,11 @@ button.custom_menu:focus {
 	text-decoration:none;
 }
 
-.member_menu a:hover{
+.user_menu a:hover{
 	color:#68838B;
 }
 
-.members_new{
+.users_new{
 	width:300px;
 	min-height:500px;
 	padding:0px;
@@ -301,7 +301,7 @@ button.custom_menu:focus {
 	overflow-x: auto;
 } 
 
-.members_new input[type="text"], .content input[type="password"]{
+.users_new input[type="text"], .content input[type="password"]{
 	display:inline;
 	background:#ffffff;
 	border: 1px solid #c4c4c4;
@@ -319,7 +319,7 @@ button.custom_menu:focus {
 	margin-right:3px;
 }
 
-.members_new input:focus { 
+.users_new input:focus { 
     outline: none;
     border: 1px solid #7bc1f7;
     box-shadow: 0px 0px 8px #7bc1f7;
@@ -328,7 +328,7 @@ button.custom_menu:focus {
 
 }
 
-.members_new label{ 
+.users_new label{ 
     color:#336699;
 	font-weight:550;
 	font-family: Arial, Helvetica, sans-serif;

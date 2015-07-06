@@ -33,10 +33,10 @@
  			<div id="container">
 		 		<div id="content">
 					<div id="content"> 
-						<div><?php show_member_menu(); ?> </div>
+						<div><?php show_user_menu(); ?> </div>
 					
 							 
-					<?php show_member_login_traces($mysqli); ?>
+					<?php show_user_login_traces($mysqli); ?>
 		    		
 		    		<div id="pager" class="pager" style="margin-top:15px; margin-left:120px;">
 	<form>

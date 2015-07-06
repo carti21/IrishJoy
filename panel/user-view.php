@@ -9,7 +9,7 @@
 
 <html>
 	<head>
-		<title>Member View</title>
+		<title>user View</title>
 		<?php header_requires(); ?>
 		<script>
 			$("#custom_menu_button").ready(function(){
@@ -29,11 +29,11 @@
 
  		<div id="container">
 	 		<div id="content">
-	 			<?php view_member_menu();  ?>
+	 			<?php view_user_menu();  ?>
 	 			<?php
 
 	 				$id=$_GET['m_id'];
-					view_member($mysqli,$id);
+					view_user($mysqli,$id);
 
 	 			?>
 	 		</div>

@@ -9,7 +9,7 @@
 
 <html>
 	<head>
-		<title>Members login attempts</title>
+		<title>users login attempts</title>
 		<?php header_requires(); ?>
 	<script>
 		$("button#1").ready(function(){
@@ -35,7 +35,7 @@
  			<div id="container">
 		 		<div id="content">
 					<div id="content"> 
-						<div><?php show_member_menu(); ?> </div>
+						<div><?php show_user_menu(); ?> </div>
 					
 							 
 					<?php show_login_attempts($mysqli); ?>

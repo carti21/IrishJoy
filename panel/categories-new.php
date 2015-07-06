@@ -17,7 +17,7 @@
 			<div class="right_head_bar"> </div>
 		</div>
 		<div class="container">
- 			<div class="members_new" style="width: 350px">
+ 			<div class="users_new" style="width: 350px">
 				<div>	 
 					<form action="" method="post"></br></br>
 						<label>New Category Name</label>

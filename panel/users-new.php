@@ -9,7 +9,7 @@
 
 <html>
 	<head>
-		<title>Add new member</title>
+		<title>Add new user</title>
 		<?php header_requires(); ?>
 		<script type="text/javascript" src="includes/sha512.js"></script>
 		<script type="text/javascript" src="includes/forms.js"></script>
@@ -20,10 +20,10 @@
 	</div>	
 	<div class="container">
 		<div class="content">
-			<div class="members_new">
-				<p><b>Add a new Member</p></b></br>
+			<div class="users_new">
+				<p><b>Add a new user</p></b></br>
 				
-				<form method="post" action="" name="add_member" method="POST">
+				<form method="post" action="" name="add_user" method="POST">
 					<label>Username: </label>
 				    <input type="text" name="name" value=""> </br></br>
 							
@@ -34,21 +34,21 @@
 				    <input type="text" name="email" value=""></br></br></br>
 						    
 				    <div class="pull-right">
-				    	<button type="submit" name="add_member" id="content">Add member</button>
+				    	<button type="submit" name="add_user" id="content">Add user</button>
 				    </div>	
 				    <div class="pull-right" style="margin-right: 5px;">
-				    	<a href="members.php" target="__blank">Cancel</a>
+				    	<a href="users.php" target="__blank">Cancel</a>
 				    </div>	
 				</form>
 
 				<?php
-				if ( isset($_POST['add_member']) ){
+				if ( isset($_POST['add_user']) ){
 					/*echo"<pre>";
 					var_dump($_POST);
 					die();*/
 					if( ($_POST['name']) && ($_POST['password']) &&($_POST['email']) )
 					{
-						add_member($mysqli, $_POST['name'], $_POST['password'], $_POST['email']);
+						add_user($mysqli, $_POST['name'], $_POST['password'], $_POST['email']);
 						
 						header('Location: ./users.php');
 					}

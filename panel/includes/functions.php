@@ -94,7 +94,7 @@
         }
     
 
-    function show_member_whois(){
+    function show_user_whois(){
         return $_SESSION[ 'user_id' ];
     }
 
@@ -210,7 +210,7 @@
 
     function show_category_menu(){
         ?>
-        <div id="member_menu">
+        <div id="user_menu">
             <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php"> Categories </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
@@ -255,7 +255,7 @@
 
             <a href="<?php echo PANEL_URL ?>users.php" style="text-decoration:none;">
                 <div id="custom_menu1" style="border-radius:3px 3px 0px 0px;"> 
-                    <img style="margin-right:3px;" src="images/members_custom.png" border=0 width="15px" height="15px">Members 
+                    <img style="margin-right:3px;" src="images/users_custom.png" border=0 width="15px" height="15px">users 
                 </div>
             </a>
 
@@ -276,7 +276,7 @@
     <table id="table_style"> 
         <thead> 
             <tr> 
-                <th scope="col" align="center"><b> Member ID </b></th> 
+                <th scope="col" align="center"><b> user ID </b></th> 
                 <th scope="col" align="center"><b>Time</b></th> 
                 <th scope="col" align="center"><b>IP</b></th> 
             </tr>
@@ -298,7 +298,7 @@
     <?php
     }
 
-    function show_member_login_traces($mysqli) {
+    function show_user_login_traces($mysqli) {
         $query_select_trace = "SELECT id, user_id, time, ip FROM login_filter ORDER BY id DESC";
         $result_trace_login = mysqli_query($mysqli, $query_select_trace);
         ?>
@@ -327,7 +327,7 @@
         <?php
     }
 
-    function add_member($mysqli, $username, $password, $email) {
+    function add_user($mysqli, $username, $password, $email) {
         if ($username != '' and $password != '' and $email != '') {
             //$salt = substr( md5(rand()), 0, 32);
             $salt = 'b6996ff1f4b068b75f1b10e76dee99acf202c05a03fe3dd9745a92120d2ddcc2412e69078461bdcd4b04038697e76b1680647ca3837810c9a8feaaec691149a5';
@@ -343,30 +343,30 @@
         }
     }
 
-    function delete_member($mysqli, $id) {
+    function delete_user($mysqli, $id) {
         $query_del = "DELETE FROM users WHERE id=$id";
         $result_del = mysqli_query($mysqli, $query_del)
         or
         die('Problem: '.mysqli_error($mysqli));
     }
 
-    function show_member_menu(){
+    function show_user_menu(){
         ?>
-        <div id="member_menu">
-            <a  title="See all users list" href="<?php echo PANEL_URL; ?>users.php">Members</a>
+        <div id="user_menu">
+            <a  title="See all users list" href="<?php echo PANEL_URL; ?>users.php">users</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">Members Login Attempts</a>
+            <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">users Login Attempts</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>users-new.php" title="Add a new member">Add a member</a>
+            <a href="<?php echo PANEL_URL; ?>users-new.php" title="Add a new user">Add a user</a>
             &nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>users-login-traces.php" title="Show Login Traces">Login Traces</a>
         </div>
         <?php
     }
 
-    function view_member_menu(){
+    function view_user_menu(){
         ?>
-        <div id="member_menu">
+        <div id="user_menu">
             <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php">Edit Profile </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
@@ -374,19 +374,19 @@
         <?php
     }
 
-    function view_member($mysqli, $member_id) {
-        $query_select_member = "SELECT id, username, email FROM users WHERE id = $member_id";
-        $result_member       = mysqli_query($mysqli, $query_select_member);
-        $row_member          = mysqli_fetch_array($result_member);
+    function view_user($mysqli, $user_id) {
+        $query_select_user = "SELECT id, username, email FROM users WHERE id = $user_id";
+        $result_user       = mysqli_query($mysqli, $query_select_user);
+        $row_user          = mysqli_fetch_array($result_user);
 
 
-        echo "Name: ".$row_member[ 'username' ]." ";
+        echo "Name: ".$row_user[ 'username' ]." ";
         echo "</br>";
-        echo "Email: ".$row_member[ 'email' ]." ";
+        echo "Email: ".$row_user[ 'email' ]." ";
         echo "</br>";
     }
 
-    function show_members($mysqli) {
+    function show_users($mysqli) {
 
         $query_select = ("SELECT post_counter FROM users");
         $result_fetch = mysqli_query($mysqli, $query_select);
@@ -410,12 +410,12 @@
                 $post_nr = mysqli_fetch_array($result_fetch); ?>
                 
                 <tr>
-                    <td title="."Member&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
+                    <td title="."user&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
                     <td><?php echo $data[ 'email' ]; ?></td>
                     <td align="right"><?php echo $post_nr[ 'post_counter' ]; ?></td>
                     <td align="center">
-                        <a href="member-view.php?m_id="<?php echo $data[ 'id' ]; ?> >
-                            <img src="images/member.png" border=0 width="15" height="15">
+                        <a href="user-view.php?m_id="<?php echo $data[ 'id' ]; ?> >
+                            <img src="images/user.png" border=0 width="15" height="15">
                         </a>
                     </td>
                 </tr>
@@ -438,9 +438,9 @@
         $posts_result = mysqli_query($mysqli, $query_posts);
         $post_amount  = mysqli_num_rows($posts_result);
 
-        $query_members  = "SELECT id FROM users";
-        $members_result = mysqli_query($mysqli, $query_members);
-        $members_amount = mysqli_num_rows($members_result);
+        $query_users  = "SELECT id FROM users";
+        $users_result = mysqli_query($mysqli, $query_users);
+        $users_amount = mysqli_num_rows($users_result);
         ?>
         <table id="table_style"> 
             <thead> 
@@ -460,15 +460,15 @@
             </tr> 
             <tr> 
                 <td><b> users </b></td> 
-                <td><?php echo  $members_amount; ?></td> 
+                <td><?php echo  $users_amount; ?></td> 
             </tr> 
             </tbody>
         </table>
         <?php
     }
 
-    function getNumOfPosts($mysqli, $member) {
-        $query_select              = "SELECT post_counter FROM users WHERE username='$member'";
+    function getNumOfPosts($mysqli, $user) {
+        $query_select              = "SELECT post_counter FROM users WHERE username='$user'";
         $result_fetch              = mysqli_query($mysqli, $query_select);
         $result_select_postcounter = mysqli_fetch_array($result_fetch);
 
@@ -528,11 +528,11 @@
         }
     }
 
-    function new_post($mysqli, $member, $title, $category, $visibility, $img_new_name) {
+    function new_post($mysqli, $user, $title, $category, $visibility, $img_new_name) {
 
         if (($title != '') && ($category != '')) {
             $query_insert_post = "INSERT INTO posts (post_author, post_title, post_status, category_id, post_photo_name)
-                                       VALUES ('$member', '$title' , '$visibility', '$category', '$img_new_name')";
+                                       VALUES ('$user', '$title' , '$visibility', '$category', '$img_new_name')";
             $result_add_post   = mysqli_query($mysqli, $query_insert_post);
 
             echo '<p>New post has been added. </p>';
@@ -565,7 +565,7 @@
         $result_posts  = mysqli_query($mysqli, $query_posts);
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
-        <div id="member_menu"  >
+        <div id="user_menu"  >
         <a title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
             |
         <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=<?php echo $id; ?>&del=1" title="Delete this post">Delete</a>
@@ -658,7 +658,7 @@
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
         ?>
-        <div id="member_menu" style="width:491px;" >
+        <div id="user_menu" style="width:491px;" >
             <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'post_title' ]; ?></span>
             <a href="post-view.php?p_id=<?php echo $post_id; ?>">
                 <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">

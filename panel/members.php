@@ -10,20 +10,20 @@
 	{
 		if($_GET['id']>0)
 		{
-			delete_member($mysqli,$_GET['id']);
-			header("Location: members.php"); 
+			delete_user($mysqli,$_GET['id']);
+			header("Location: users.php"); 
 		}
 	}
  
 	if($_GET['edit']==1)
 	{
-		header("Location: members-edit.php?id=".$_GET['id']);
+		header("Location: users-edit.php?id=".$_GET['id']);
 	}  
 ?>
 
 <html>
 	<head>
-		<title>Members</title>
+		<title>users</title>
 		<?php header_requires(); ?>
 	<script>
 		$("#custom_menu_button").ready(function(){
@@ -45,11 +45,11 @@
 
  			<div id="container">
 		 		<div id="content">
-		 			<div> <?php show_member_menu(); ?> </div>
+		 			<div> <?php show_user_menu(); ?> </div>
 					
 					
 							 
-					<?php show_members($mysqli); ?>
+					<?php show_users($mysqli); ?>
 		    		
 		    		
 		 			
