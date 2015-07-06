@@ -1,6 +1,6 @@
 <?php
 
-    $root = realpath(__DIR__ . '/../..');
+    $root = realpath(__DIR__ . '/..');
     include "$root/config.php";
 
     function header_requires(){

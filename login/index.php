@@ -1,7 +1,7 @@
 <?php 
 
 	$root = realpath(__DIR__ . '/..');
-	include "$root/panel/includes/functions.php";
+	include "$root/panel/functions.php";
 
 
 	sec_session_start();

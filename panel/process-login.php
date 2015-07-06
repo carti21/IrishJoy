@@ -1,7 +1,6 @@
 <?php 
 
-include 'includes/db_connect.php';
-include 'includes/functions.php';
+include 'functions.php';
 sec_session_start(); // Our custom secure way of starting a php session. 
  
 if(isset($_POST['email'], $_POST['p'])) { 
