@@ -329,13 +329,14 @@
 
     function add_member($mysqli, $username, $password, $email) {
         if ($username != '' and $password != '' and $email != '') {
-            $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-            $password    = hash('sha512', $password.$random_salt);
-
+            //$salt = substr( md5(rand()), 0, 32);
+            $salt = 'b6996ff1f4b068b75f1b10e76dee99acf202c05a03fe3dd9745a92120d2ddcc2412e69078461bdcd4b04038697e76b1680647ca3837810c9a8feaaec691149a5';
+ 			//$password = substr( md5(rand()), 0, 7);
+ 			$password = hash('sha512', $password.$salt);
             if ($insert_stmt = $mysqli->prepare
                 ("INSERT INTO users (username, email, password, salt) VALUES (?, ?, ?, ?)")
             ) {
-                $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
+                $insert_stmt->bind_param('ssss', $username, $email, $password, $salt);
                 // Execute the prepared query.
                 $insert_stmt->execute();
             }
