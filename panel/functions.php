@@ -388,8 +388,8 @@
 
     function show_users($mysqli) {
 
-        $query_select = ("SELECT post_counter FROM users");
-        $result_fetch = mysqli_query($mysqli, $query_select);
+       /* $query_select = ("SELECT post_counter FROM users");
+        $result_fetch = mysqli_query($mysqli, $query_select);*/
 
         $query_select_mem = "SELECT id, username, email FROM users ORDER BY id";
         $result_mem       = mysqli_query($mysqli, $query_select_mem);
@@ -407,12 +407,12 @@
             <tbody>
                 <?php
                 while ($data = mysqli_fetch_array($result_mem)) {
-                $post_nr = mysqli_fetch_array($result_fetch); ?>
+                 ?>
                 
                 <tr>
                     <td title="."user&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
                     <td><?php echo $data[ 'email' ]; ?></td>
-                    <td align="right"><?php echo $post_nr[ 'post_counter' ]; ?></td>
+                    <td align="right"><?php echo "not set" ?></td>
                     <td align="center">
                         <a href="user-view.php?m_id="<?php echo $data[ 'id' ]; ?> >
                             <img src="images/user.png" border=0 width="15" height="15">
