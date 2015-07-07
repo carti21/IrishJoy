@@ -31,8 +31,8 @@
         $now = time();
         $valid_attempts = $now-(2*60*60);
 
-        if ($stmt = $mysqli->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > '$valid_attempts'")) {
-            $stmt->bind_param('i', $user_id);
+        if ($stmt = $mysqli->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > ?")) {
+            $stmt->bind_param('ii', $user_id, $valid_attempts);
             $stmt->execute();
             $stmt->store_result();
             if ($stmt->num_rows > 5) {
@@ -42,20 +42,22 @@
             else {
                 //clear to go
                 return false;
-            }
-        }
+            } 
+        } 
     }
 
-    function login($email, $password, $user_ip, $mysqli) {
+    function login($email, $password, $mysqli) {
 
         // Using prepared Statements means that SQL injection is not possible.
-        if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM users WHERE email = ? LIMIT 1")) {
+        if ($stmt = $mysqli->prepare("SELECT id, username, password FROM users WHERE email = ? LIMIT 1")) {
             $stmt->bind_param('s', $email); // Bind "$email" to parameter.
             $stmt->execute(); // Execute the prepared query.
             $stmt->store_result();
-            $stmt->bind_result($user_id, $username, $db_password, $salt); // get variables from result.
+            $stmt->bind_result($user_id, $username, $db_password); // get variables from result.
             $stmt->fetch();
-            $password = hash('sha512', $password.$salt); // hash the password with the unique salt.
+
+           /* var_dump(checkbrute($user_id, $mysqli));
+            die;*/
 
             if ($stmt->num_rows == 1) { // If the user exists
                 // We check if the account is locked from too many login attempts
@@ -64,85 +66,48 @@
                     return false;
                 }
                 else {
-                if ($db_password == $password) { // Check if the password in the database matches the password the user submitted.
-                    // Password is correct!
-                    $user_browser = $_SERVER[ 'HTTP_USER_AGENT' ]; // Get the user-agent string of the user.
-                    $user_id                    = preg_replace("/[^0-9]+/", "", $user_id); // XSS protection as we might print this value
-                    $_SESSION[ 'user_id' ]      = $user_id;
-                    $username                   = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // XSS protection as we might print this value
-                    $_SESSION[ 'username' ]     = $username;
-                    $_SESSION[ 'login_string' ] = hash('sha512', $password.$user_browser);
-
-                    // Login successful.
-                    return true;
-                }
+                    if (password_verify($password, $db_password)) { 
+                        // Password is correct!
+                        $_SESSION[ 'user_id' ]      = $user_id;
+                        $_SESSION[ 'email' ]        = $username;
+                        $_SESSION[ 'login_string' ] = password_hash($password, PASSWORD_DEFAULT);
+                        $_SESSION[ 'logged_in' ]    = true;
+                        // Login successful.
+                        return true;
+                    }
                     else {
                         // Password is not correct
+                        $time = time();
+                        
                         // We record this attempt in the database
-                        $now = time();
-                        $mysqli->query("INSERT INTO login_attempts (user_id, time , ip) VALUES ('$user_id', '$now','$user_ip')");
+                        if($insert_stmt_insert = $mysqli->prepare("INSERT INTO login_attempts (user_id, time ) VALUES (?, ?)")){
+                            $insert_stmt_insert->bind_param('ii', $user_id, $time);
+                            $insert_stmt_insert->execute();
+                        }
 
                         return false;
                     }
-                    }
-                }
-                else {
-                    // No user exists.
-                    return false;
                 }
             }
+            else {
+                // No user exists.
+                return false;
+            }
         }
-    
+    }
 
     function show_user_whois(){
         return $_SESSION[ 'user_id' ];
     }
 
-  function login_check($mysqli) {
-        if(isset($_SESSION[ 'user_id' ])){
-            $id_user     = $_SESSION[ 'user_id' ];
-            $check_query = "SELECT id FROM users WHERE id='$id_user' LIMIT 1";
-            $adm         = mysqli_fetch_array(mysqli_query($mysqli, $check_query));
+    function login_check($mysqli) {
 
-            // Check if all session variables are set
-            if (isset($_SESSION[ 'user_id' ], $_SESSION[ 'username' ], $_SESSION[ 'login_string' ])) {
-                $user_id      = $_SESSION[ 'user_id' ];
-                $login_string = $_SESSION[ 'login_string' ];
-                $username     = $_SESSION[ 'username' ];
-                $user_browser = $_SERVER[ 'HTTP_USER_AGENT' ]; // Get the user-agent string of the user.
-                if ($stmt = $mysqli->prepare("SELECT password FROM users WHERE id = ? LIMIT 1")) {
-                    $stmt->bind_param('i', $user_id); // Bind "$user_id" to parameter.
-                    $stmt->execute(); // Execute the prepared query.
-                    $stmt->store_result();
-                    if ($stmt->num_rows == 1) { // If the user exists
-                        $stmt->bind_result($password); // get variables from result.
-                        $stmt->fetch();
-                        $login_check = hash('sha512', $password.$user_browser);
-                        if ($login_check == $login_string) {
-                            // Logged In!!!!
-                            return true;
-                        }
-                        else {
-                            // Not logged in
-                            return false;
-                        }
-                    }
-                    else {
-                        // Not logged in
-                        return false;
-                    }
-                }
-                else {
-                    // Not logged in
-                    return false;
-                }
-            }
-            else {
-                // Not logged in
-                return false;
-            }
-        }   
-    }
+        if(isset($_SESSION[ 'user_id' ]) && isset($_SESSION[ 'logged_in' ]) && $_SESSION[ 'logged_in' ] == true ){
+
+            return true;
+        }
+        return false;
+    } 
 
     function delete_category($mysqli, $id) {
 
@@ -329,15 +294,10 @@
 
     function add_user($mysqli, $username, $password, $email) {
         if ($username != '' and $password != '' and $email != '') {
-            //$salt = substr( md5(rand()), 0, 32);
-            $salt = 'b6996ff1f4b068b75f1b10e76dee99acf202c05a03fe3dd9745a92120d2ddcc2412e69078461bdcd4b04038697e76b1680647ca3837810c9a8feaaec691149a5';
- 			//$password = substr( md5(rand()), 0, 7);
- 			$password = hash('sha512', $password.$salt);
-            if ($insert_stmt = $mysqli->prepare
-                ("INSERT INTO users (username, email, password, salt) VALUES (?, ?, ?, ?)")
-            ) {
-                $insert_stmt->bind_param('ssss', $username, $email, $password, $salt);
-                // Execute the prepared query.
+            $user_password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+            if ($insert_stmt = $mysqli->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)") ) {
+                $insert_stmt->bind_param('sss', $username, $email, $user_password_hash);
                 $insert_stmt->execute();
             }
         }
@@ -378,12 +338,12 @@
         $query_select_user = "SELECT id, username, email FROM users WHERE id = $user_id";
         $result_user       = mysqli_query($mysqli, $query_select_user);
         $row_user          = mysqli_fetch_array($result_user);
-
-
-        echo "Name: ".$row_user[ 'username' ]." ";
-        echo "</br>";
-        echo "Email: ".$row_user[ 'email' ]." ";
-        echo "</br>";
+        ?>
+       Name: <?php echo $row_user[ 'username' ]; ?>
+       </br>
+       Email: <?php echo $row_user[ 'email' ]; ?>
+       </br>
+        <?php
     }
 
     function show_users($mysqli) {

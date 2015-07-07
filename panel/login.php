@@ -29,9 +29,9 @@
 				<form action="process-login.php" method="post" name="login_form">
 					Email: <input type="text" name="email" style="margin-left:27px;"/></br> </br> 
 					Password: <input type="password" name="p" id="password" />
-					<button class="login" value="Login"  onclick="formhash(this.form, this.form.password);">Login</button>
+					<button class="login" value="Login">Login</button>
 				</form>
-				<p style="margin-left:80px;"> Close and go to back to <a href="http://irishjoy.flivetech.com">Main Page</a> </p>					
+				<p style="margin-left:80px;"> Close and go to back to <a href="<?php echo MAIN_URL; ?>">Main Page</a> </p>					
 			</div>
 		</div>		
 	</body>	

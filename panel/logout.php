@@ -1,6 +1,6 @@
 <?php 
 
-	require_once 'includes/functions.php';
+	require_once ('functions.php');
 	
 	sec_session_start();
 	// Unset all session values
