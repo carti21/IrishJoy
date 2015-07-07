@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2015 at 05:41 PM
+-- Generation Time: Jul 07, 2015 at 10:47 PM
 -- Server version: 5.5.43-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.9
+-- PHP Version: 5.5.9-1ubuntu4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -119,17 +119,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` char(128) NOT NULL,
-  `salt` char(128) NOT NULL,
   `status` int(12) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `salt`, `status`) VALUES
-(1, 'System', 'ardit@irishjoy.com', 'de28706d54420ad5395638095ade8ed889dd7cd5601d7a06c800f4d72577710a2865c16529c58f04be6c69cf86f5af00869377323863b12b480eb0e218986ea9', 'b6996ff1f4b068b75f1b10e76dee99acf202c05a03fe3dd9745a92120d2ddcc2412e69078461bdcd4b04038697e76b1680647ca3837810c9a8feaaec691149a5', NULL);
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `status`) VALUES
+(2, 'admin', 'admin', '$2y$10$5ZB0QuVdYF9kdE9DTUS.N.wIbz6KYYY5b82yTiF1woQaPO1HLyiuG', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
