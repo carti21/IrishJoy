@@ -289,8 +289,8 @@
         <?php
     }
 
-    function add_user($mysqli, $username, $password, $email) {
-        if ($username != '' and $password != '' and $email != '') {
+    function add_user($mysqli, $username, $password, $password_repeat, $email) {
+        if ($password == $password_repeat) {
             $user_password_hash = password_hash($password, PASSWORD_DEFAULT);
 
             if ($insert_stmt = $mysqli->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)") ) {

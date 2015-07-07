@@ -29,6 +29,9 @@
 							
 					<label>Password: </label>
 				    <input type="password" name="password" value=""></br></br>
+
+				    <label>Password Confirm: </label>
+				    <input type="password" name="password_repeat" value=""></br></br>
 						    
 				    <label>Email: </label>
 				    <input type="text" name="email" value=""></br></br></br>
@@ -48,7 +51,7 @@
 					die();*/
 					if( ($_POST['name']) && ($_POST['password']) &&($_POST['email']) )
 					{
-						add_user($mysqli, $_POST['name'], $_POST['password'], $_POST['email']);
+						add_user($mysqli, $_POST['name'], $_POST['password'], $_POST['password_repeat'], $_POST['email']);
 						
 						header('Location: ./users.php');
 					}
