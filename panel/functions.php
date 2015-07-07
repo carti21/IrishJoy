@@ -47,7 +47,6 @@
     }
 
     function login($email, $password, $mysqli) {
-
         // Using prepared Statements means that SQL injection is not possible.
         if ($stmt = $mysqli->prepare("SELECT id, username, password FROM users WHERE email = ? LIMIT 1")) {
             $stmt->bind_param('s', $email); // Bind "$email" to parameter.
@@ -56,8 +55,6 @@
             $stmt->bind_result($user_id, $username, $db_password); // get variables from result.
             $stmt->fetch();
 
-           /* var_dump(checkbrute($user_id, $mysqli));
-            die;*/
 
             if ($stmt->num_rows == 1) { // If the user exists
                 // We check if the account is locked from too many login attempts
