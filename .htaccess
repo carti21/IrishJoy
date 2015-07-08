@@ -1,0 +1,8 @@
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+#### Rule for Error Page - 404 ####
+ErrorDocument 404 http://localhost/irishjoy/404
