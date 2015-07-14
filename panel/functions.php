@@ -196,9 +196,7 @@
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>users.php"> Users </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php" target="_blank"> Post Database </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php">Test gallery</a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
-        <div class="menu_items"> <a href="<?php echo GOOGLE_ANALYTICS_URL; ?>" target="_blank" > Google Analytics </a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
         <div class="menu_items"> <a href="<?php echo EMAIL_URL; ?>" target="_blank">Check Mail</a> </div>
 
