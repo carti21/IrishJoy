@@ -13,9 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="css/login.css" />		
 		<link rel="icon" href="<?= MAIN_URL ?>panel/super/images/favicon.png" type="image/x-icon"> 
 	</head>
-	<body OnLoad="document.login_form.email.focus();">
-		<script type="text/javascript" src="includes/sha512.js"></script>
-		<script type="text/javascript" src="includes/forms.js"></script>
+	<body>
 		<?php
 			if(isset($_GET['error'])) {
 			  	echo "<script>
