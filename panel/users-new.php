@@ -37,18 +37,16 @@
 				    <input type="text" name="email" value=""></br></br></br>
 						    
 				    <div class="pull-right">
-				    	<button type="submit" name="add_user" id="content">Add user</button>
+				    	<button type="submit" name="add_user" id="content" class="content_button">Add user</button>
 				    </div>	
 				    <div class="pull-right" style="margin-right: 5px;">
-				    	<a href="users.php" target="__blank">Cancel</a>
+				    	<button href="users.php" target="__blank" class="content_button">Cancel</button>
 				    </div>	
 				</form>
 
 				<?php
 				if ( isset($_POST['add_user']) ){
-					/*echo"<pre>";
-					var_dump($_POST);
-					die();*/
+
 					if( ($_POST['name']) && ($_POST['password']) &&($_POST['email']) )
 					{
 						add_user($mysqli, $_POST['name'], $_POST['password'], $_POST['password_repeat'], $_POST['email']);

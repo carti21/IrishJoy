@@ -354,7 +354,7 @@
                 <tr>
                     <td title="."user&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
                     <td><?php echo $data[ 'email' ]; ?></td>
-                    <td align="right"><?php echo "not set" ?></td>
+                    <td align="right"><?php echo number_of_posts_user($mysqli, $data[ 'id' ]); ?></td>
                     <td align="center">
                         <a href="single-user.php?m_id=<?php echo $data[ 'id' ]; ?>" >
                             <img src="images/user.png" border=0 width="15" height="15">
