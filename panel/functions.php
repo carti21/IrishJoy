@@ -205,27 +205,6 @@
         <?php
     }
 
-    function head_custom_menu(){
-        ?>
-        <div style="float:right; margin-right: 30px;">
-            <button id="custom_menu_button" style="width:80px;" class="custom_menu" >
-                <img style="margin-right:3px" src="images/gear.png" border=0 width="15px" height="15px"> Panel 
-            </button>
-
-            <a href="<?php echo PANEL_URL ?>users.php" style="text-decoration:none;">
-                <div id="custom_menu1" style="border-radius:3px 3px 0px 0px;"> 
-                    <img style="margin-right:3px;" src="images/users_custom.png" border=0 width="15px" height="15px">users 
-                </div>
-            </a>
-
-            <a href="<?php echo PANEL_URL ?>logout.php" style="text-decoration:none;"> 
-                <div id="custom_menu3" style="border-radius:0px 0px 3px 3px;">
-                    <img style="margin-right:3px" src="images/logout.png" border=0 width="15px" height="15px"> Logout
-                </div>
-            </a>
-        </div>
-     <?php
-    }
 
     function show_login_attempts($mysqli) {
 
@@ -461,15 +440,22 @@
         return $data_cat[ 'post_category' ];
     }
 
-
+    /**
+    * @param $mysqli MySql Connections
+    * @param $id
+    * @param $category
+    * @param $category_post_numb
+    * @param $author
+    * @param $mem_post_counter
+     */
     function delete_post($mysqli, $id, $category, $category_post_numb, $author, $mem_post_counter) {
         $query_del  = "DELETE FROM posts WHERE id=$id";
 
         if(mysqli_query($mysqli, $query_del)){
             header('Location: ./posts-database.php');
-        } else { 
+        } else {
             die('Problem: '.mysqli_error($mysqli));
-        }  
+        }
     }
 
     function edit_post($mysqli, $post_id, $title, $category) {

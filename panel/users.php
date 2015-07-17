@@ -27,7 +27,6 @@
 		<?php header_requires(); ?>
 	</head>
 	<body>
-		<div class="head"> <?php head_custom_menu(); ?> </div>
 		<div class="container">
 	 		<div class="content">
 	 			<div> <?php show_user_menu(); ?> </div>									 
