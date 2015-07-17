@@ -27,10 +27,13 @@
 		<?php header_requires(); ?>
 	</head>
 	<body>
+		<div class="head">
+            <div class="right_head_bar"></div>
+        </div>
 		<div class="container">
 	 		<div class="content">
 	 			<div> <?php show_user_menu(); ?> </div>									 
-				<?php show_users($mysqli); ?>	 			
+				<?php show_all_users($mysqli); ?>	 			
 	 		</div>	 		
 			<div class="sidebar_right">
 				<div class="menu_bar">

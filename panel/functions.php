@@ -205,7 +205,6 @@
         <?php
     }
 
-
     function show_login_attempts($mysqli) {
 
     $query_select_mem = "SELECT user_id, act_time,ip FROM login_attempts ORDER BY act_time DESC ";
@@ -285,10 +284,10 @@
 
     function show_user_menu(){
         ?>
-        <div id="user_menu">
-            <a  title="See all users list" href="<?php echo PANEL_URL; ?>users.php">users</a>
+        <div class="user_menu">
+            <a  title="See all users list" href="<?php echo PANEL_URL; ?>users.php">Users</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">users Login Attempts</a>
+            <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">Users Login Attempts</a>
             &nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>users-new.php" title="Add a new user">Add a user</a>
             &nbsp;&nbsp;&#124;
@@ -299,7 +298,7 @@
 
     function view_user_menu(){
         ?>
-        <div id="user_menu">
+        <div class="user_menu">
             <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php">Edit Profile </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
@@ -307,24 +306,34 @@
         <?php
     }
 
-    function view_user($mysqli, $user_id) {
+    function view_single_user($mysqli, $user_id) {
         $query_select_user = "SELECT id, username, email FROM users WHERE id = $user_id";
         $result_user       = mysqli_query($mysqli, $query_select_user);
         $row_user          = mysqli_fetch_array($result_user);
         ?>
-       Name: <?php echo $row_user[ 'username' ]; ?>
-       </br>
-       Email: <?php echo $row_user[ 'email' ]; ?>
-       </br>
+        <p>
+            <strong>Name:</strong> <?php echo $row_user[ 'username' ]; ?>
+        </p>
+        <p>
+            <strong>Email:</strong> <?php echo $row_user[ 'email' ]; ?>
+        </p>
+        <p>
+            <strong>Number of Posts:</strong> <?php echo number_of_posts_user($mysqli, $user_id); ?>
+        </p>
         <?php
     }
 
-    function show_users($mysqli) {
+    function number_of_posts_user($mysqli, $user_id){
+        $query_select_user = "SELECT post_author FROM posts WHERE post_author = $user_id";
+        $result_user       = mysqli_query($mysqli, $query_select_user);
+        $row_user          = mysqli_fetch_array($result_user);
 
-       /* $query_select = ("SELECT post_counter FROM users");
-        $result_fetch = mysqli_query($mysqli, $query_select);*/
+        return count($row_user);
+    }
 
-        $query_select_mem = "SELECT id, username, email FROM users ORDER BY id";
+    function show_all_users($mysqli) {
+
+        $query_select_mem = "SELECT id, username, email FROM users";
         $result_mem       = mysqli_query($mysqli, $query_select_mem);
 
         ?>
@@ -347,7 +356,7 @@
                     <td><?php echo $data[ 'email' ]; ?></td>
                     <td align="right"><?php echo "not set" ?></td>
                     <td align="center">
-                        <a href="user-view.php?m_id="<?php echo $data[ 'id' ]; ?> >
+                        <a href="single-user.php?m_id=<?php echo $data[ 'id' ]; ?>" >
                             <img src="images/user.png" border=0 width="15" height="15">
                         </a>
                     </td>
