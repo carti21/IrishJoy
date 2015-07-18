@@ -1,5 +1,5 @@
 <?php 
-	require_once('includes/functions-public.php');
+	require_once('functions-public.php');
 
 	$id  = $_GET['p_id']; 
 	$cat = strtolower(get_cat($mysqli,$id));

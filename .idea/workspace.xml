@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b85f49e-c948-4ccf-bc2e-b58fc13401b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/panel/functions.php" afterPath="$PROJECT_DIR$/panel/functions.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/functions-public.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/panel/panel.php" afterPath="$PROJECT_DIR$/panel/panel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view-image.php" afterPath="$PROJECT_DIR$/view-image.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="irishjoy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,43 +30,97 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/panel/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.030261349">
-              <caret line="501" column="0" selection-start-line="501" selection-start-column="0" selection-end-line="501" selection-end-column="0" />
+            <state vertical-scroll-proportion="-12.055555">
+              <caret line="657" column="55" selection-start-line="657" selection-start-column="55" selection-end-line="657" selection-end-column="55" />
               <folding>
-                <marker date="1437119435926" expanded="true" signature="1490:1552" placeholder="SELECT time ..." />
-                <marker date="1437119435926" expanded="true" signature="2135:2199" placeholder="SELECT id, u..users..." />
-                <marker date="1437119435926" expanded="true" signature="3643:3700" placeholder="INSERT INTO ..." />
-                <marker date="1437119435926" expanded="true" signature="4447:4477" placeholder="DELETE FROM ..." />
-                <marker date="1437119435926" expanded="true" signature="4731:4793" placeholder="UPDATE categ..." />
-                <marker date="1437119435926" expanded="true" signature="5058:5117" placeholder="INSERT INTO ..." />
-                <marker date="1437119435926" expanded="true" signature="5377:5549" placeholder="SELECT categ..categories..." />
-                <marker date="1437119435926" expanded="true" signature="7359:7423" placeholder="SELECT post_..category..." />
-                <marker date="1437119435926" expanded="true" signature="9649:9719" placeholder="SELECT user_..login_attempts..." />
-                <marker date="1437119435926" expanded="true" signature="10700:10763" placeholder="SELECT id, u..." />
-                <marker date="1437119435926" expanded="true" signature="12050:12112" placeholder="INSERT INTO ..." />
-                <marker date="1437119435926" expanded="true" signature="12343:12370" placeholder="DELETE FROM ..." />
-                <marker date="1437119435926" expanded="true" signature="13593:13642" placeholder="SELECT id, u..users..." />
-                <marker date="1437119435926" expanded="true" signature="14140:14189" placeholder="SELECT id, u..users..." />
-                <marker date="1437119435926" expanded="true" signature="15509:15545" placeholder="SELECT categ..categories..." />
-                <marker date="1437119435926" expanded="true" signature="15712:15732" placeholder="SELECT id FR..posts..." />
-                <marker date="1437119435926" expanded="true" signature="15878:15898" placeholder="SELECT id FR..users..." />
-                <marker date="1437119435926" expanded="true" signature="16835:16888" placeholder="SELECT post_..users..." />
-                <marker date="1437119435926" expanded="true" signature="17202:17266" placeholder="SELECT post_..category..." />
-                <marker date="1437119435926" expanded="true" signature="17558:17601" placeholder="SELECT id, p..post..." />
-                <marker date="1437119435926" expanded="true" signature="17860:17904" placeholder="SELECT id, p..post..." />
-                <marker date="1437119435926" expanded="true" signature="18168:18214" placeholder="SELECT id, p..post..." />
-                <marker date="1437119435926" expanded="true" signature="18694:18721" placeholder="DELETE FROM ..." />
-                <marker date="1437119435926" expanded="true" signature="19119:19191" placeholder="UPDATE post ..." />
-                <marker date="1437119435926" expanded="true" signature="19563:19761" placeholder="INSERT INTO ..." />
-                <marker date="1437119435926" expanded="true" signature="20732:20800" placeholder="SELECT id, p..posts..." />
-                <marker date="1437119435926" expanded="true" signature="22144:22397" placeholder="SELECT posts..posts..." />
-                <marker date="1437119435926" expanded="true" signature="24674:24717" placeholder="SELECT id, p..post..." />
-                <marker date="1437119435926" expanded="true" signature="25506:25554" placeholder="SELECT id, p..post..." />
-                <marker date="1437119435926" expanded="true" signature="26079:26366" placeholder="SELECT posts..posts..." />
+                <marker date="1437138615299" expanded="true" signature="1490:1552" placeholder="SELECT time ..." />
+                <marker date="1437138615299" expanded="true" signature="2135:2199" placeholder="SELECT id, u..users..." />
+                <marker date="1437138615299" expanded="true" signature="3643:3700" placeholder="INSERT INTO ..." />
+                <marker date="1437138615299" expanded="true" signature="4447:4477" placeholder="DELETE FROM ..." />
+                <marker date="1437138615299" expanded="true" signature="4731:4793" placeholder="UPDATE categ..." />
+                <marker date="1437138615299" expanded="true" signature="5058:5117" placeholder="INSERT INTO ..." />
+                <marker date="1437138615299" expanded="true" signature="5377:5549" placeholder="SELECT categ..categories..." />
+                <marker date="1437138615299" expanded="true" signature="7359:7423" placeholder="SELECT post_..category..." />
+                <marker date="1437138615299" expanded="true" signature="14931:14967" placeholder="SELECT categ..categories..." />
+                <marker date="1437138615299" expanded="true" signature="15134:15154" placeholder="SELECT id FR..posts..." />
+                <marker date="1437138615299" expanded="true" signature="15300:15320" placeholder="SELECT id FR..users..." />
+                <marker date="1437138615299" expanded="true" signature="16257:16310" placeholder="SELECT post_..users..." />
+                <marker date="1437138615299" expanded="true" signature="16624:16688" placeholder="SELECT post_..category..." />
+                <marker date="1437138615299" expanded="true" signature="16980:17023" placeholder="SELECT id, p..post..." />
+                <marker date="1437138615299" expanded="true" signature="17282:17326" placeholder="SELECT id, p..post..." />
+                <marker date="1437138615299" expanded="true" signature="17590:17636" placeholder="SELECT id, p..post..." />
+                <marker date="1437138615299" expanded="true" signature="18116:18143" placeholder="DELETE FROM ..." />
+                <marker date="1437138615299" expanded="true" signature="18541:18613" placeholder="UPDATE post ..." />
+                <marker date="1437138615299" expanded="true" signature="18985:19183" placeholder="INSERT INTO ..." />
+                <marker date="1437138615299" expanded="true" signature="20154:20222" placeholder="SELECT id, p..posts..." />
+                <marker date="1437138615299" expanded="true" signature="21566:21819" placeholder="SELECT posts..posts..." />
+                <marker date="1437138615299" expanded="true" signature="24096:24139" placeholder="SELECT id, p..post..." />
+                <marker date="1437138615299" expanded="true" signature="24928:24976" placeholder="SELECT id, p..post..." />
+                <marker date="1437138615299" expanded="true" signature="25501:25788" placeholder="SELECT posts..posts..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="panel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/panel/panel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.038462">
+              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="404.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/404.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33287483">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view-image.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view-image.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.84615386">
+              <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.84615386">
+              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users-new.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/panel/users-new.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.384615">
+              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,6 +134,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/panel/functions.php" />
+        <option value="$PROJECT_DIR$/panel/panel.php" />
+        <option value="$PROJECT_DIR$/view-image.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -92,6 +155,25 @@
     <option name="x" value="-1" />
     <option name="width" value="1602" />
     <option name="height" value="875" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>PHP</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Code SmellPHP</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -116,7 +198,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -149,15 +230,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="irishjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="irishjoy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
@@ -216,7 +312,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1602" height="875" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -263,76 +359,112 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1437119435926" expanded="true" signature="1490:1552" placeholder="SELECT time ..." />
-            <marker date="1437119435926" expanded="true" signature="2135:2199" placeholder="SELECT id, u..users..." />
-            <marker date="1437119435926" expanded="true" signature="3643:3700" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="4447:4477" placeholder="DELETE FROM ..." />
-            <marker date="1437119435926" expanded="true" signature="4731:4793" placeholder="UPDATE categ..." />
-            <marker date="1437119435926" expanded="true" signature="5058:5117" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="5377:5549" placeholder="SELECT categ..categories..." />
-            <marker date="1437119435926" expanded="true" signature="7359:7423" placeholder="SELECT post_..category..." />
-            <marker date="1437119435926" expanded="true" signature="9649:9719" placeholder="SELECT user_..login_attempts..." />
-            <marker date="1437119435926" expanded="true" signature="10700:10763" placeholder="SELECT id, u..." />
-            <marker date="1437119435926" expanded="true" signature="12050:12112" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="12343:12370" placeholder="DELETE FROM ..." />
-            <marker date="1437119435926" expanded="true" signature="13593:13642" placeholder="SELECT id, u..users..." />
-            <marker date="1437119435926" expanded="true" signature="14140:14189" placeholder="SELECT id, u..users..." />
-            <marker date="1437119435926" expanded="true" signature="15509:15545" placeholder="SELECT categ..categories..." />
-            <marker date="1437119435926" expanded="true" signature="15712:15732" placeholder="SELECT id FR..posts..." />
-            <marker date="1437119435926" expanded="true" signature="15878:15898" placeholder="SELECT id FR..users..." />
-            <marker date="1437119435926" expanded="true" signature="16835:16888" placeholder="SELECT post_..users..." />
-            <marker date="1437119435926" expanded="true" signature="17202:17266" placeholder="SELECT post_..category..." />
-            <marker date="1437119435926" expanded="true" signature="17558:17601" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="17860:17904" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="18168:18214" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="18694:18721" placeholder="DELETE FROM ..." />
-            <marker date="1437119435926" expanded="true" signature="19119:19191" placeholder="UPDATE post ..." />
-            <marker date="1437119435926" expanded="true" signature="19563:19761" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="20732:20800" placeholder="SELECT id, p..posts..." />
-            <marker date="1437119435926" expanded="true" signature="22144:22397" placeholder="SELECT posts..posts..." />
-            <marker date="1437119435926" expanded="true" signature="24674:24717" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="25506:25554" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="26079:26366" placeholder="SELECT posts..posts..." />
+            <marker date="1437138615299" expanded="true" signature="1490:1552" placeholder="SELECT time ..." />
+            <marker date="1437138615299" expanded="true" signature="2135:2199" placeholder="SELECT id, u..users..." />
+            <marker date="1437138615299" expanded="true" signature="3643:3700" placeholder="INSERT INTO ..." />
+            <marker date="1437138615299" expanded="true" signature="4447:4477" placeholder="DELETE FROM ..." />
+            <marker date="1437138615299" expanded="true" signature="4731:4793" placeholder="UPDATE categ..." />
+            <marker date="1437138615299" expanded="true" signature="5058:5117" placeholder="INSERT INTO ..." />
+            <marker date="1437138615299" expanded="true" signature="5377:5549" placeholder="SELECT categ..categories..." />
+            <marker date="1437138615299" expanded="true" signature="7359:7423" placeholder="SELECT post_..category..." />
+            <marker date="1437138615299" expanded="true" signature="14931:14967" placeholder="SELECT categ..categories..." />
+            <marker date="1437138615299" expanded="true" signature="15134:15154" placeholder="SELECT id FR..posts..." />
+            <marker date="1437138615299" expanded="true" signature="15300:15320" placeholder="SELECT id FR..users..." />
+            <marker date="1437138615299" expanded="true" signature="16257:16310" placeholder="SELECT post_..users..." />
+            <marker date="1437138615299" expanded="true" signature="16624:16688" placeholder="SELECT post_..category..." />
+            <marker date="1437138615299" expanded="true" signature="16980:17023" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="17282:17326" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="17590:17636" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="18116:18143" placeholder="DELETE FROM ..." />
+            <marker date="1437138615299" expanded="true" signature="18541:18613" placeholder="UPDATE post ..." />
+            <marker date="1437138615299" expanded="true" signature="18985:19183" placeholder="INSERT INTO ..." />
+            <marker date="1437138615299" expanded="true" signature="20154:20222" placeholder="SELECT id, p..posts..." />
+            <marker date="1437138615299" expanded="true" signature="21566:21819" placeholder="SELECT posts..posts..." />
+            <marker date="1437138615299" expanded="true" signature="24096:24139" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="24928:24976" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="25501:25788" placeholder="SELECT posts..posts..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/panel/users-new.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/panel/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030261349">
-          <caret line="501" column="0" selection-start-line="501" selection-start-column="0" selection-end-line="501" selection-end-column="0" />
+        <state vertical-scroll-proportion="-12.055555">
+          <caret line="657" column="55" selection-start-line="657" selection-start-column="55" selection-end-line="657" selection-end-column="55" />
           <folding>
-            <marker date="1437119435926" expanded="true" signature="1490:1552" placeholder="SELECT time ..." />
-            <marker date="1437119435926" expanded="true" signature="2135:2199" placeholder="SELECT id, u..users..." />
-            <marker date="1437119435926" expanded="true" signature="3643:3700" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="4447:4477" placeholder="DELETE FROM ..." />
-            <marker date="1437119435926" expanded="true" signature="4731:4793" placeholder="UPDATE categ..." />
-            <marker date="1437119435926" expanded="true" signature="5058:5117" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="5377:5549" placeholder="SELECT categ..categories..." />
-            <marker date="1437119435926" expanded="true" signature="7359:7423" placeholder="SELECT post_..category..." />
-            <marker date="1437119435926" expanded="true" signature="9649:9719" placeholder="SELECT user_..login_attempts..." />
-            <marker date="1437119435926" expanded="true" signature="10700:10763" placeholder="SELECT id, u..." />
-            <marker date="1437119435926" expanded="true" signature="12050:12112" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="12343:12370" placeholder="DELETE FROM ..." />
-            <marker date="1437119435926" expanded="true" signature="13593:13642" placeholder="SELECT id, u..users..." />
-            <marker date="1437119435926" expanded="true" signature="14140:14189" placeholder="SELECT id, u..users..." />
-            <marker date="1437119435926" expanded="true" signature="15509:15545" placeholder="SELECT categ..categories..." />
-            <marker date="1437119435926" expanded="true" signature="15712:15732" placeholder="SELECT id FR..posts..." />
-            <marker date="1437119435926" expanded="true" signature="15878:15898" placeholder="SELECT id FR..users..." />
-            <marker date="1437119435926" expanded="true" signature="16835:16888" placeholder="SELECT post_..users..." />
-            <marker date="1437119435926" expanded="true" signature="17202:17266" placeholder="SELECT post_..category..." />
-            <marker date="1437119435926" expanded="true" signature="17558:17601" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="17860:17904" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="18168:18214" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="18694:18721" placeholder="DELETE FROM ..." />
-            <marker date="1437119435926" expanded="true" signature="19119:19191" placeholder="UPDATE post ..." />
-            <marker date="1437119435926" expanded="true" signature="19563:19761" placeholder="INSERT INTO ..." />
-            <marker date="1437119435926" expanded="true" signature="20732:20800" placeholder="SELECT id, p..posts..." />
-            <marker date="1437119435926" expanded="true" signature="22144:22397" placeholder="SELECT posts..posts..." />
-            <marker date="1437119435926" expanded="true" signature="24674:24717" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="25506:25554" placeholder="SELECT id, p..post..." />
-            <marker date="1437119435926" expanded="true" signature="26079:26366" placeholder="SELECT posts..posts..." />
+            <marker date="1437138615299" expanded="true" signature="1490:1552" placeholder="SELECT time ..." />
+            <marker date="1437138615299" expanded="true" signature="2135:2199" placeholder="SELECT id, u..users..." />
+            <marker date="1437138615299" expanded="true" signature="3643:3700" placeholder="INSERT INTO ..." />
+            <marker date="1437138615299" expanded="true" signature="4447:4477" placeholder="DELETE FROM ..." />
+            <marker date="1437138615299" expanded="true" signature="4731:4793" placeholder="UPDATE categ..." />
+            <marker date="1437138615299" expanded="true" signature="5058:5117" placeholder="INSERT INTO ..." />
+            <marker date="1437138615299" expanded="true" signature="5377:5549" placeholder="SELECT categ..categories..." />
+            <marker date="1437138615299" expanded="true" signature="7359:7423" placeholder="SELECT post_..category..." />
+            <marker date="1437138615299" expanded="true" signature="14931:14967" placeholder="SELECT categ..categories..." />
+            <marker date="1437138615299" expanded="true" signature="15134:15154" placeholder="SELECT id FR..posts..." />
+            <marker date="1437138615299" expanded="true" signature="15300:15320" placeholder="SELECT id FR..users..." />
+            <marker date="1437138615299" expanded="true" signature="16257:16310" placeholder="SELECT post_..users..." />
+            <marker date="1437138615299" expanded="true" signature="16624:16688" placeholder="SELECT post_..category..." />
+            <marker date="1437138615299" expanded="true" signature="16980:17023" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="17282:17326" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="17590:17636" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="18116:18143" placeholder="DELETE FROM ..." />
+            <marker date="1437138615299" expanded="true" signature="18541:18613" placeholder="UPDATE post ..." />
+            <marker date="1437138615299" expanded="true" signature="18985:19183" placeholder="INSERT INTO ..." />
+            <marker date="1437138615299" expanded="true" signature="20154:20222" placeholder="SELECT id, p..posts..." />
+            <marker date="1437138615299" expanded="true" signature="21566:21819" placeholder="SELECT posts..posts..." />
+            <marker date="1437138615299" expanded="true" signature="24096:24139" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="24928:24976" placeholder="SELECT id, p..post..." />
+            <marker date="1437138615299" expanded="true" signature="25501:25788" placeholder="SELECT posts..posts..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/panel/panel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.038462">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-image.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.84615386">
+          <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.84615386">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/404.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33287483">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
