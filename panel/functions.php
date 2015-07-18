@@ -137,12 +137,19 @@
         }
     }
 
+    function get_number_of_posts_category($mysqli, $category_id){
+        $query_select_category = "SELECT COUNT(*) AS id FROM posts WHERE category_id = $category_id";
+        $result_category       = mysqli_query($mysqli, $query_select_category);
+        $row_category          = mysqli_fetch_array($result_category);
+
+        return ($row_category['id']);
+    }
+
     function show_categories($mysqli) {
-        $query = "SELECT categories.id, categories.category_name, posts.post_views FROM categories 
-                    JOIN posts ON posts.category_id = categories.id ORDER BY categories.id ";
-        $result = mysqli_query($mysqli, $query) or die(mysqli_error());
+        $query = "SELECT id, category_name FROM categories ORDER BY category_name ";
+        $result = mysqli_query($mysqli, $query);
         ?>
-        <table id="table_style" > 
+        <table id="table_style">
             <thead> 
                 <tr> 
                     <th scope="col"><b> Category </b></th> 
@@ -153,11 +160,12 @@
             </thead>
             <tbody>
                 <?php 
-                while ($row = mysqli_fetch_array($result)) {
+                while ($row = mysqli_fetch_array($result)) { 
+                    $cat_id = $row['id'];
                     ?>
                     <tr>
-                        <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php $row[ 'id' ]; ?>"><?php echo $row[ 'category_name' ]; ?></td>
-                        <td align="center" ><?php echo $row['post_views'] ?></td>
+                        <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php echo $cat_id; ?>"><?php echo $row[ 'category_name' ]; ?></td>
+                        <td align="center" ><?php echo get_number_of_posts_category($mysqli, $cat_id); ?></td>
 
                         <td align="right"><a href="categories.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
                         <td align="center"><a onclick="return confirm('Press OK to delete the Category. ')" href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&del=1">Delete</a></td>
