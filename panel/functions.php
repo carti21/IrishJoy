@@ -93,7 +93,10 @@
         }
     }
 
-    function show_user_whois(){
+    /**
+     * @return int user_id
+     */
+    function get_user_id(){
         return $_SESSION[ 'user_id' ];
     }
 

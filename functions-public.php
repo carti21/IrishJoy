@@ -1,6 +1,6 @@
 <?php 
-	$root = realpath(__DIR__ . '/..');
-	include "$root/config.php";
+
+	include "config.php";
 
 	function show_meta_tags(){
 		?>
