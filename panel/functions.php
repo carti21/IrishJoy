@@ -3,6 +3,9 @@
     $root = realpath(__DIR__ . '/..');
     include "$root/config.php";
 
+    /**
+     * Shows the Header elements and includes
+     */
     function header_requires(){
         ?>
         <meta charset="UTF-8">
@@ -12,6 +15,10 @@
         <?php
     }
 
+    /**
+     * Starts the session
+     * @return [type] [description]
+     */
     function sec_session_start(){
         $session_name = 'sec_session_id'; // Set a custom session name
         $secure       = false; // Set to true if using https.
@@ -26,10 +33,18 @@
         session_regenerate_id(); // regenerated the session, delete the old one.  
     }
 
+    /**
+     * Checks if the user has many login attempts
+     * and is not allowed to login.
+     * @param  int $user_id 
+     * @param  $mysqli  [description]
+     * @return boolean  false if is clear and ready to go, true if
+     * the user has too many login attempts
+     */
     function checkbrute($user_id, $mysqli) {
         // Get timestamp of current time
         $now = time();
-        $valid_attempts = $now-(2*60*60);
+        $valid_attempts = $now - BLOCK_USER_DURATION;
 
         if ($stmt = $mysqli->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > ?")) {
             $stmt->bind_param('ii', $user_id, $valid_attempts);
@@ -100,6 +115,11 @@
         return $_SESSION[ 'user_id' ];
     }
 
+    /**
+     * Simply checks if the user is logged in or not
+     * @param  $mysqli MySql Connection
+     * @return boolean true if the user is logged, false if not
+     */
     function login_check($mysqli) {
 
         if(isset($_SESSION[ 'user_id' ]) && isset($_SESSION[ 'logged_in' ]) && $_SESSION[ 'logged_in' ] == true ){
