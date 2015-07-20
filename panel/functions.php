@@ -35,7 +35,7 @@
             $stmt->bind_param('ii', $user_id, $valid_attempts);
             $stmt->execute();
             $stmt->store_result();
-            if ($stmt->num_rows > 5) {
+            if ($stmt->num_rows > MAX_LOGIN_ATTEMPTS) {
                 //means that it has previous error login attempts in the past X minutes
                 return true;
             }
@@ -436,6 +436,12 @@
         return $result_select_postcounter[ 'post_number' ];
     }
 
+    /**
+    * Get the Post's Title
+    * @param  $mysqli  MySql Connection
+    * @param  $post_id  int
+    * @return string  Title of the Post
+    */
     function get_post_title($mysqli, $post_id) {
         $query_title  = "SELECT id, post_title FROM post WHERE id = $post_id";
         $result_title = mysqli_query($mysqli, $query_title);
@@ -444,6 +450,12 @@
         return $data_title[ 'post_title' ];
     }
 
+    /**
+    * Get the Post's Author name
+    * @param  $mysqli  MySql Connection
+    * @param  $post_id  int
+    * @return string  Name of the Author
+    */
     function get_post_author($mysqli, $post_id) {
         $query_author  = "SELECT id, post_author FROM post WHERE id = $post_id";
         $result_author = mysqli_query($mysqli, $query_author);
@@ -452,6 +464,12 @@
         return $data_author[ 'post_author' ];
     }
 
+    /**
+     * Gets the category of a post by id
+     * @param  $mysqli  MySql Connection parameters
+     * @param  $post_id  Id of the current post
+     * @return string  Category of the post
+     */
     function get_post_category($mysqli, $post_id) {
         $query_cat  = "SELECT id, post_category FROM post WHERE id = $post_id";
         $result_cat = mysqli_query($mysqli, $query_cat);

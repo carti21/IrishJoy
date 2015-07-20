@@ -21,5 +21,8 @@
 	define('GOOGLE_ANALYTICS_URL', '/irishjoy/');
 	define('PHPMYADMIN_URL', 'localhost/phpmyadmin/');
 	define('EMAIL_URL', '/irishjoy/');
+
+
+	define('MAX_LOGIN_ATTEMPTS', 5);
 	
 	
