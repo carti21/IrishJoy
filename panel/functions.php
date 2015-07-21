@@ -178,7 +178,6 @@
                     <th scope="col"><b> Category </b></th> 
                     <th scope="col" align="center"><b>Posts </b></th> 
                     <th scope="col" align="right"><b> Edit </b></th> 
-                    <th scope="col" align="center"><b> Delete </b></th> 
                 </tr>
             </thead>
             <tbody>
@@ -191,7 +190,6 @@
                         <td align="center" ><?php echo get_number_of_posts_category($mysqli, $cat_id); ?></td>
 
                         <td align="right"><a href="categories.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
-                        <td align="center"><a onclick="return confirm('Press OK to delete the Category. ')" href="categories.php?id="<?php echo $row[ 'id' ]; ?>"&del=1">Delete</a></td>
                     </tr>
                 <?php   
                 } 
