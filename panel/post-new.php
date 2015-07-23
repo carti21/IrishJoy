@@ -54,7 +54,7 @@
                 <?php
 
                     if (isset($_POST[ 'post_title' ])) {
-                        $user_id = show_user_whois();
+                        $user_id = get_user_id();
                         $img_name = upload_image($_FILES[ 'skedar' ][ 'name' ],
                             $_FILES[ 'skedar' ][ 'size' ],
                             $_FILES[ 'skedar' ][ 'tmp_name' ]

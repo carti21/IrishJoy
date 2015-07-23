@@ -232,6 +232,7 @@
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php"> Panel </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>post-new.php"> New Post </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories-new.php"> New Category </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>users.php"> Users </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php" target="_blank"> Post Database </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
@@ -533,11 +534,11 @@
         }
     }
 
-    function new_post($mysqli, $user, $title, $category, $visibility, $img_new_name) {
+    function new_post($mysqli, $user, $title, $category, $post_status, $img_new_name ) {
 
         if (($title != '') && ($category != '')) {
             $query_insert_post = "INSERT INTO posts (post_author, post_title, post_status, category_id, post_photo_name)
-                                       VALUES ('$user', '$title' , '$visibility', '$category', '$img_new_name')";
+                                       VALUES ('$user', '$title' , '$post_status', '$category', '$img_new_name')";
             $result_add_post   = mysqli_query($mysqli, $query_insert_post);
 
             echo '<p>New post has been added. </p>';

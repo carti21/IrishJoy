@@ -19,7 +19,7 @@
 	define('SERVER_URL', dirname( __FILE__ ).'/');
 	
 	define('GOOGLE_ANALYTICS_URL', '/irishjoy/');
-	define('PHPMYADMIN_URL', 'localhost/phpmyadmin/');
+	define('PHPMYADMIN_URL', 'http://localhost/phpmyadmin/');
 	define('EMAIL_URL', '/irishjoy/');
 
 

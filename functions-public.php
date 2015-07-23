@@ -29,7 +29,7 @@
 	  
 	function show_left_col_images($mysqli,$start_left){
 
-		$query_select_img = "SELECT id, post_photo_name FROM posts ORDER BY id DESC LIMIT " .$start_left. " , 7 ";
+		$query_select_img = "SELECT id, post_photo_name FROM posts WHERE post_status = 1 ORDER BY id DESC LIMIT " .$start_left. " , 7 ";
 		$result_img = mysqli_query($mysqli, $query_select_img);	
 		
 		while($row_img = mysqli_fetch_array($result_img)){
@@ -47,7 +47,7 @@
 	
 	function show_right_col_images($mysqli,$start_right){
 
-		$query_select_img = "SELECT id, post_photo_name FROM posts ORDER BY id DESC LIMIT ". $start_right. " , 7 "; 
+		$query_select_img = "SELECT id, post_photo_name FROM posts WHERE post_status = 1 ORDER BY id DESC LIMIT ". $start_right. " , 7 "; 
 		$result_img = mysqli_query($mysqli, $query_select_img);	
 		
 		while($row_img = mysqli_fetch_array($result_img)){
