@@ -20,8 +20,8 @@
  			<div class="users_new" style="width: 350px">
 				<div>	 
 					<form action="" method="post"></br></br>
-						<label>New Category Name</label>
-						<input type="text" name="new_category" />  </br></br></br>
+						<label>Edit Category</label>
+						<input type="text" name="new_category" value="<?php echo get_category_by_id($mysqli, $_GET['id'])?>"/>  </br></br></br>
 						<div style="float:right;">
 							<button id="content" name="add_category" value="Add Category"> Add Category </button>
 						</div>	
@@ -32,7 +32,8 @@
 						<?php
 							if (isset($_POST['new_category']))
 							{
-								new_category($mysqli,$_POST['new_category']);
+								edit_category($mysqli, $_POST['new_category'], $_GET['id'] );
+								header('Location: ./categories.php');
 							}
 						?>
 	    		</div>

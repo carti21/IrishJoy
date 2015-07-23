@@ -3,8 +3,8 @@
 	
 	sec_session_start();
 	if(login_check($mysqli) == true){
-	   header('Location: ./login.php');
-	} 
+	   header('Location: ./panel.php');
+	}
 ?>
 
 <html>

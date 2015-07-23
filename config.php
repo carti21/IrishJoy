@@ -1,5 +1,5 @@
 <?php 
-
+	
 	define('MAIN_URL', 'http://localhost/irishjoy/');
 
 	/*
@@ -14,7 +14,7 @@
 	/*
 	Paths - Changing not Recommanded. Only if changing folder structure directory
 	*/
-	define('UPLOADS_URL', MAIN_URL.'/uploads/');
+	define('UPLOADS_URL', MAIN_URL.'uploads/');
 	define('PANEL_URL', MAIN_URL.'panel/');
 	define('SERVER_URL', dirname( __FILE__ ).'/');
 	

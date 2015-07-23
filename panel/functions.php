@@ -137,10 +137,19 @@
         die('Problem: '.mysqli_error($mysqli));
     }
 
+    function get_category_by_id($mysqli, $id) {
+
+        $query_select = "SELECT category_name FROM categories WHERE id=$id";
+        $result_select = mysqli_query($mysqli, $query_select);
+        $row_category = mysqli_fetch_array($result_select);
+
+        return $row_category['category_name'];
+    }
+
     function edit_category($mysqli, $category_name, $id) {
 
         if ($category_name != '') {
-            $query_update = " UPDATE  category  SET category_name='$category_name' WHERE id=$id ";
+            $query_update = " UPDATE  categories  SET category_name='$category_name' WHERE id=$id ";
             $result_del = mysqli_query($mysqli, $query_update)
             or
             die('Problem: '.mysqli_error($mysqli));
@@ -177,7 +186,7 @@
                 <tr> 
                     <th scope="col"><b> Category </b></th> 
                     <th scope="col" align="center"><b>Posts </b></th> 
-                    <th scope="col" align="right"><b> Edit </b></th> 
+                    <th scope="col" align="center"><b> Edit </b></th> 
                 </tr>
             </thead>
             <tbody>
@@ -189,7 +198,7 @@
                         <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php echo $cat_id; ?>"><?php echo $row[ 'category_name' ]; ?></td>
                         <td align="center" ><?php echo get_number_of_posts_category($mysqli, $cat_id); ?></td>
 
-                        <td align="right"><a href="categories.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
+                        <td align="center"><a href="categories-edit.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
                     </tr>
                 <?php   
                 } 
