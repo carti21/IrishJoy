@@ -25,5 +25,6 @@
 
 	define('MAX_LOGIN_ATTEMPTS', 5);   
 	define('BLOCK_USER_DURATION', 2*60*60);
+	define('COOKIE_LIFETIME', 60*60*24);
 	
 	

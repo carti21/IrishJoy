@@ -23,7 +23,7 @@
         $session_name = 'sec_session_id'; // Set a custom session name
         $secure       = false; // Set to true if using https.
         $httponly     = true; // This stops javascript being able to access the session id.
-        $lifecookie   = 60*10; // lifetime of the cookie
+        $lifecookie   = COOKIE_LIFETIME; // lifetime of the cookie
 
         ini_set('session.use_only_cookies', 1); // Forces sessions to only use cookies. 
         $cookieParams = session_get_cookie_params(); // Gets current cookies params.
@@ -109,6 +109,7 @@
     }
 
     /**
+     * Returns the logged user id. Gets the id from the session
      * @return int user_id
      */
     function get_user_id(){
@@ -177,16 +178,21 @@
         return ($row_category['id']);
     }
 
-    function show_categories($mysqli) {
+    /**
+     * Function to display all categories and their number of posts
+     * @param  $mysqli MySql Connection
+     * @return Echos all the Categories table
+     */
+    function view_all_categories($mysqli) {
         $query = "SELECT id, category_name FROM categories ORDER BY category_name ";
         $result = mysqli_query($mysqli, $query);
         ?>
         <table id="table_style">
             <thead> 
                 <tr> 
-                    <th scope="col"><b> Category </b></th> 
-                    <th scope="col" align="center"><b>Posts </b></th> 
-                    <th scope="col" align="center"><b> Edit </b></th> 
+                    <th><b> Category </b></th> 
+                    <th align="center"><b>Number of Posts </b></th> 
+                    <th align="center"><b> Edit </b></th> 
                 </tr>
             </thead>
             <tbody>
@@ -195,7 +201,7 @@
                     $cat_id = $row['id'];
                     ?>
                     <tr>
-                        <td title="<?php $row[ 'category_name' ]?>"&#39;s&nbsp;ID&nbsp;&nbsp;"<?php echo $cat_id; ?>"><?php echo $row[ 'category_name' ]; ?></td>
+                        <td><strong><?php echo $row[ 'category_name' ]; ?></strong></td>
                         <td align="center" ><?php echo get_number_of_posts_category($mysqli, $cat_id); ?></td>
 
                         <td align="center"><a href="categories-edit.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
@@ -208,12 +214,16 @@
         <?php
     }
 
+    /**
+     * Function to show the Head menu of Categoris Page
+     * @return Echos the menu
+     */
     function show_category_menu(){
         ?>
-        <div id="user_menu">
-            <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php"> Categories </a>
+        <div class="head_menu_content">
+            <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
+            <a href="<?php echo PANEL_URL; ?>categories-new.php">Add a category </a>
         </div>
         <?php
     }
@@ -323,7 +333,7 @@
 
     function show_user_menu(){
         ?>
-        <div class="user_menu">
+        <div class="head_menu_content">
             <a  title="See all users list" href="<?php echo PANEL_URL; ?>users.php">Users</a>
             &nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">Users Login Attempts</a>
@@ -337,7 +347,7 @@
 
     function view_user_menu(){
         ?>
-        <div class="user_menu">
+        <div class="head_menu_content">
             <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php">Edit Profile </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
@@ -571,7 +581,7 @@
         $result_posts  = mysqli_query($mysqli, $query_posts);
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
-        <div class="user_menu"  >
+        <div class="head_menu_content"  >
         <a title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
             |
         <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=<?php echo $id; ?>&del=1" title="Delete this post">Delete</a>
@@ -664,7 +674,7 @@
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
         ?>
-        <div class="user_menu" style="width:491px;" >
+        <div class="head_menu_content" style="width:491px;" >
             <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'post_title' ]; ?></span>
             <a href="post-view.php?p_id=<?php echo $post_id; ?>">
                 <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">

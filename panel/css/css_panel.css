@@ -267,7 +267,7 @@ button.custom_menu:focus {
 	float:right;	
 } 
 
-.user_menu{
+.head_menu_content{
 	width:511px;
 	height:20px;
 	padding:7px;
@@ -277,7 +277,7 @@ button.custom_menu:focus {
 	margin-bottom:20px;
 } 
 
-.user_menu a{
+.head_menu_content a{
 	padding-top:10px;
 	padding-left:12px;
 	color:#336699;
@@ -286,7 +286,7 @@ button.custom_menu:focus {
 	text-decoration:none;
 }
 
-.user_menu a:hover{
+.head_menu_content a:hover{
 	color:#68838B;
 }
 

@@ -1,4 +1,5 @@
 <?php
+
     require_once('functions.php');
 
     sec_session_start();
@@ -18,7 +19,10 @@
         </div>
         <div class="container">
             <div class="content">
-                    <?php show_categories($mysqli); ?>
+                    <?php 
+                        show_category_menu();
+                        view_all_categories($mysqli); 
+                    ?>
             </div>
             <div class="sidebar_right">
                 <div class="menu_bar">

@@ -17,8 +17,9 @@
 			<div class="right_head_bar"></div>
 		</div>
 		<div class="container">
- 			<div class="users_new" style="width: 350px">
-				<div>	 
+		 	<div class="content">
+				<?php show_category_menu(); ?>
+	 			<div class="users_new" style="width: 350px">
 					<form action="" method="post"></br></br>
 						<label>New Category</label>
 						<input type="text" name="new_category" />  </br></br></br>
@@ -30,13 +31,12 @@
 						</div>	
 					</form>
 						<?php
-							if (isset($_POST['new_category']))
-							{
+							if (isset($_POST['new_category'])){
 								new_category($mysqli,$_POST['new_category']);
 							}
 						?>
-	    		</div>
-	 		</div>
+		 		</div>
+			</div>
 			<div class="sidebar_right">
 				<div class="menu_bar">
 					<?php show_panel() ?>
