@@ -30,7 +30,7 @@
 	<body style="background-color:#eee;">
 		<div id="head" style="height:35px; background-color:#336699; margin-bottom:10px;"> 
 			<div style="float:left; padding-left:40px; text-shadow: 0px 0px 6px rgba(255,255,255,0.7);padding-top: 7px;">
-				<a style="color:#fff; text-decoration:none;" href="<?= MAIN_URL ?>panel/super/panel.php">
+				<a style="color:#fff; text-decoration:none;" href="<?= PANEL_URL ?>panel.php">
 						<img style=" width:15px; height:auto; margin-bottom:-3px; margin-right:3px;"src="images/white_left_arrow.png">Back
 				</a>
 			</div>

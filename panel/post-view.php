@@ -1,6 +1,6 @@
 <?php
 
-    include 'includes/functions.php';
+    require_once('functions.php');
 
     sec_session_start();
     if (login_check($mysqli) == false) {
@@ -18,12 +18,7 @@
                 $post_counter  = getNumOfPostsCategory($mysqli, $post_category);
                 $post_counter--;
 
-
-
-
                 delete_post($mysqli, $post_id, $post_category, $post_counter, $post_author, $post_mem_count);
-
-                
 
             }
         }
@@ -35,8 +30,7 @@
     <?php header_requires(); ?>
     </head>
     <body>
-        <div class="head">     
-        </div>
+        <div class="head"></div>
         <div class="container">
             <div class="content">
                 <?php

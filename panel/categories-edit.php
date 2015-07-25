@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div class="head">
-			<div class="right_head_bar"> </div>
+			<div class="right_head_bar"></div>
 		</div>
 		<div class="container">
  			<div class="users_new" style="width: 350px">
@@ -23,10 +23,10 @@
 						<label>Edit Category</label>
 						<input type="text" name="new_category" value="<?php echo get_category_by_id($mysqli, $_GET['id'])?>"/>  </br></br></br>
 						<div style="float:right;">
-							<button id="content" name="add_category" value="Add Category"> Add Category </button>
+							<button class="content_button" name="add_category">Update Category</button>
 						</div>	
 						<div style="float:left; margin-right: 5px;">
-							<a href="categories.php" target="__blank">Go back to category</a>
+							<a href="categories.php" class="post-details" target="__blank">Go back to category</a>
 						</div>	
 					</form>
 						<?php
@@ -44,7 +44,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer" ><div style="margin-left:580px; margin-top:0px"> &copy; www.irishjoy.flivetech.com 2013</div></div>
 	</body>
 </html>
 

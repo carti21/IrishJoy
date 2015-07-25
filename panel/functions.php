@@ -571,7 +571,7 @@
         $result_posts  = mysqli_query($mysqli, $query_posts);
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
-        <div id="user_menu"  >
+        <div class="user_menu"  >
         <a title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
             |
         <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=<?php echo $id; ?>&del=1" title="Delete this post">Delete</a>

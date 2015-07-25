@@ -14,13 +14,13 @@
 	</head>
 	<body>
 		<div class="head">
-			<div class="right_head_bar"> </div>
+			<div class="right_head_bar"></div>
 		</div>
 		<div class="container">
  			<div class="users_new" style="width: 350px">
 				<div>	 
 					<form action="" method="post"></br></br>
-						<label>New Category Name</label>
+						<label>New Category</label>
 						<input type="text" name="new_category" />  </br></br></br>
 						<div style="float:right;">
 							<button id="content" name="add_category" value="Add Category"> Add Category </button>
@@ -43,7 +43,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer" ><div style="margin-left:580px; margin-top:0px"> &copy; www.irishjoy.flivetech.com 2013</div></div>
 	</body>
 </html>
 

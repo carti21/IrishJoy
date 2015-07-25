@@ -345,7 +345,7 @@ button.custom_menu:focus {
 	padding-top:12px;
 }
 
-/*  Butoni per contentin ne pergjithesi (butoni gri) */
+/*  Button showing on the conteng */
 button.content_button {
   background: #e9e3e3;
   border: 1px solid #bbb;
@@ -360,7 +360,7 @@ button.content_button {
   padding-right: 10px ;
   text-align: center;
   text-shadow: 0 1px 0 #fff;
-  width: 80px;
+  min-width: 80px;
   height: 30px;
 }
 
