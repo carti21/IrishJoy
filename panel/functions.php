@@ -244,7 +244,7 @@
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories-new.php"> New Category </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>users.php"> Users </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php" target="_blank"> Post Database </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php"> Post Database </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
 
@@ -752,6 +752,40 @@
         }
 
         return $ip;
+    }
+
+    function latest_posts_images_left($mysqli){
+
+        $query_select_img = "SELECT id, post_photo_name FROM posts ORDER BY id DESC LIMIT 5";
+        $result_img = mysqli_query($mysqli, $query_select_img); 
+        
+        while($row_img = mysqli_fetch_array($result_img)){
+            if($row_img['post_photo_name']!=''){
+                $img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
+                ?>
+                <a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
+                    <img class="panel_img_latest_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
+                </a>
+                <?php
+            } 
+        }
+    }
+
+    function latest_posts_images_right($mysqli){
+
+        $query_select_img = "SELECT id, post_photo_name FROM posts ORDER BY id DESC LIMIT 5";
+        $result_img = mysqli_query($mysqli, $query_select_img); 
+        
+        while($row_img = mysqli_fetch_array($result_img)){
+            if($row_img['post_photo_name']!=''){
+                $img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
+                ?>
+                <a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
+                    <img class="panel_img_latest_right" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
+                </a>
+                <?php
+            } 
+        }
     }
 
 ?>

@@ -17,12 +17,16 @@
  		<div class="container">
  			<div class="sidebar_right">
 				<div class="menu_bar">
-					<?php show_panel() ?>
+					<?php show_panel(); ?>
 				</div>
 			</div>
 		 	<div class="content">
-		 	
-                <?php show_statistics($mysqli); ?>
+		 		<div class="panel_latest_posts_left" style="width:200px;">
+					<?php latest_posts_images_left($mysqli); ?>
+		 		</div>
+                <?php 
+                	show_statistics($mysqli); 
+                ?>
 		 		
 		 	</div>		 		
  		</div>		

@@ -22,6 +22,19 @@ body{
 	color:#ffeeee;
 }
 
+.panel_img_latest_left{
+	max-width: 250px;
+	height: auto;
+	float:left;
+	margin-bottom:10px;
+}
+
+.panel_img_latest_right{
+	max-width: 250px;
+	height: auto;
+	float:right;
+}
+
 .right_head_bar{
 	width:200px;
 	height: 15px;

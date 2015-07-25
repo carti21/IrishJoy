@@ -24,7 +24,7 @@
 						<label>New Category</label>
 						<input type="text" name="new_category" />  </br></br></br>
 						<div style="float:right;">
-							<button id="content" name="add_category" value="Add Category"> Add Category </button>
+							<button class="content_button" name="add_category"> Add Category </button>
 						</div>	
 						<div style="float:left; margin-right: 5px;">
 							<a href="categories.php" target="__blank">Go back to category</a>
