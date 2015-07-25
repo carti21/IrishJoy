@@ -471,7 +471,7 @@
     * @return string  Title of the Post
     */
     function get_post_title($mysqli, $post_id) {
-        $query_title  = "SELECT id, post_title FROM post WHERE id = $post_id";
+        $query_title  = "SELECT post_title FROM posts WHERE id = $post_id LIMIT 1";
         $result_title = mysqli_query($mysqli, $query_title);
         $data_title   = mysqli_fetch_array($result_title);
 
@@ -660,11 +660,11 @@
     }
 
     function view_image_menu($mysqli, $post_id) {
-        $query_select_posts = "SELECT id, post_title FROM post WHERE id = $post_id";
+        $query_select_posts = "SELECT id, post_title FROM posts WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
         ?>
-        <div id="user_menu" style="width:491px;" >
+        <div class="user_menu" style="width:491px;" >
             <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'post_title' ]; ?></span>
             <a href="post-view.php?p_id=<?php echo $post_id; ?>">
                 <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">
@@ -677,7 +677,7 @@
     }
 
     function view_image($mysqli, $post_id) {
-        $query_select_posts = "SELECT id, post_photo_name FROM post WHERE id = $post_id";
+        $query_select_posts = "SELECT id, post_photo_name FROM posts WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
