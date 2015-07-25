@@ -23,7 +23,7 @@
 	define('EMAIL_URL', '/irishjoy/');
 
 
-	define('MAX_LOGIN_ATTEMPTS', 5);
+	define('MAX_LOGIN_ATTEMPTS', 5);   
 	define('BLOCK_USER_DURATION', 2*60*60);
 	
 	
