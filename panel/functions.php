@@ -669,7 +669,7 @@
         }
     }
 
-    function view_image_menu($mysqli, $post_id) {
+    function view_single_post_menu($mysqli, $post_id) {
         $query_select_posts = "SELECT id, post_title FROM posts WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
@@ -692,7 +692,7 @@
      * @param  int $post_id Id of the current post
      * @return Echos the current image
      */
-    function view_image($mysqli, $post_id) {
+    function view_single_post($mysqli, $post_id) {
         $query_select_posts = "SELECT id, post_photo_name FROM posts WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);

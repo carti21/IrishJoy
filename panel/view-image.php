@@ -19,9 +19,9 @@
 		<div class="container">
 			<div class="content">
 				<?php 
-					view_image_menu($mysqli,$post_id);	 
+					view_single_post_menu($mysqli,$post_id);	 
 
-					view_image($mysqli,$post_id )	 
+					view_single_post($mysqli,$post_id )	 
 				?>
 			</div>
 			<div class="sidebar_right">	
