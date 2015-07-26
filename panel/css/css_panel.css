@@ -23,16 +23,26 @@ body{
 }
 
 .panel_img_latest_left{
-	max-width: 250px;
+	max-width: 100%;
 	height: auto;
-	float:left;
 	margin-bottom:10px;
 }
 
 .panel_img_latest_right{
-	max-width: 250px;
+	max-width: 100%;
 	height: auto;
+	margin-bottom:10px;
+}
+
+.panel_latest_posts_left{
+	width: 250px;
+	float:left;
+}
+
+.panel_latest_posts_right{
+	width: 250px;
 	float:right;
+
 }
 
 .right_head_bar{

@@ -686,16 +686,26 @@
         <?php
     }
 
+    /**
+     * Function to show a current image by id
+     * @param  $mysqli MySql Connection
+     * @param  int $post_id Id of the current post
+     * @return Echos the current image
+     */
     function view_image($mysqli, $post_id) {
         $query_select_posts = "SELECT id, post_photo_name FROM posts WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
         $img_path = UPLOADS_URL . $row_post[ 'post_photo_name' ];
-        //echo "<img class=\"img_view_full\" src= \"$img_path\" />";
-        echo "<a href=\"post-view.php?p_id=".$row_post[ 'id' ]."\" ><img class=\"img_view_full\" title=\"Back to detailed view\" src= \"$img_path\" /></a>";
+        echo '<a href="post-view.php?p_id='.$row_post[ 'id' ].'><img class="img_view_full" title="Back to detailed view" src= '.$img_path .' /></a>';
     }
 
+    /**
+     * Function to show the Posts Database Table 
+     * @param  $mysqli MySql Connection
+     * @return Echos the table of all posts
+     */
     function show_posts_database($mysqli) {
         $query_select_posts = "SELECT posts.id, posts.post_author, posts.post_date, posts.post_title, posts.post_status, posts.category_id, posts.post_photo_name, posts.post_views, categories.category_name FROM posts 
                                JOIN categories ON categories.id = posts.category_id ORDER BY id DESC";
@@ -735,7 +745,10 @@
     <?php
     }
 
-
+    /**
+     * Function to show the IP of the user
+     * @return Returns the ip
+     */
     function getRealIpAddr(){
         if (!empty($_SERVER[ 'HTTP_CLIENT_IP' ])) //check ip from share internet
         {
@@ -754,9 +767,14 @@
         return $ip;
     }
 
+    /**
+     * Function to show the left column of images on the panel
+     * @param  $mysqli MySql Connection
+     * @return Echos the left column of images ( form 1 to 5 )
+     */
     function latest_posts_images_left($mysqli){
 
-        $query_select_img = "SELECT id, post_photo_name FROM posts ORDER BY id DESC LIMIT 5";
+        $query_select_img = "SELECT id, post_photo_name, post_date FROM posts ORDER BY post_date DESC LIMIT 0 ,5";
         $result_img = mysqli_query($mysqli, $query_select_img); 
         
         while($row_img = mysqli_fetch_array($result_img)){
@@ -771,9 +789,14 @@
         }
     }
 
+    /**
+     * Function to show the right column of images on the panel
+     * @param  $mysqli MySql Connection
+     * @return Echos the right column of images ( form 5 to 10 )
+     */
     function latest_posts_images_right($mysqli){
 
-        $query_select_img = "SELECT id, post_photo_name FROM posts ORDER BY id DESC LIMIT 5";
+        $query_select_img = "SELECT id, post_photo_name, post_date FROM posts ORDER BY post_date DESC LIMIT 5, 10";
         $result_img = mysqli_query($mysqli, $query_select_img); 
         
         while($row_img = mysqli_fetch_array($result_img)){

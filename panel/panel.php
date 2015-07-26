@@ -21,13 +21,13 @@
 				</div>
 			</div>
 		 	<div class="content">
-		 		<div class="panel_latest_posts_left" style="width:200px;">
+		 		<div class="panel_latest_posts_left">
 					<?php latest_posts_images_left($mysqli); ?>
 		 		</div>
-                <?php 
-                	show_statistics($mysqli); 
-                ?>
-		 		
+		 		<div class="panel_latest_posts_right">
+					<?php latest_posts_images_right($mysqli); ?>
+		 		</div>
+                <?php show_statistics($mysqli); ?>
 		 	</div>		 		
  		</div>		
 	</body>
