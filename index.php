@@ -42,8 +42,8 @@
 				<div class="content_img_left">
 		 			<?php 
 
-		 				if(isset($_GET['jump'])){
-		 					$page = $_GET['jump'];
+		 				if(isset($_GET['page'])){
+		 					$page = $_GET['page'];
 		 				} else {
 		 					$page = 0;
 		 				}
@@ -65,12 +65,12 @@
 		<div class="footer"> 
 			<p>
 				<?php 
-					if(isset($_GET['jump']))
+					if(isset($_GET['page']))
 					{
-						if($_GET['jump']!=0){
-							$page=$_GET['jump']; $page=$page-2; 
+						if($_GET['page']!=0){
+							$page=$_GET['page']; $page=$page-2; 
 							?>
-							<a href="?jump=<?php echo $page; ?>"> Prev Page </a>
+							<a href="?page=<?php echo $page; ?>"> Prev Page </a>
 							<?php
 						} else {
 							?>
@@ -85,16 +85,16 @@
 				
 					echo"&nbsp; &nbsp; &nbsp;";
 				
-					if(isset($_GET['jump'])){
-						$page=$_GET['jump']; 
+					if(isset($_GET['page'])){
+						$page=$_GET['page']; 
 						$page=$page+2; 
 						?>
-						<a href="<?php echo MAIN_URL; ?>?jump=$page"> Next Page</a>
+						<a href="<?php echo MAIN_URL; ?>?page=$page"> Next Page</a>
 						<?php
 					}
 				
 					else { 
-						echo"<a href=\"http://irishjoy.flivetech.com?jump=2\"> Next Page</a> ";
+						echo"<a href=\"http://irishjoy.flivetech.com?page=2\"> Next Page</a> ";
 					}
 				?>
 				

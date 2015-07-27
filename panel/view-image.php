@@ -19,14 +19,14 @@
 		<div class="container">
 			<div class="content">
 				<?php 
-					view_single_post_menu($mysqli,$post_id);	 
+					view_single_post_image_menu($mysqli,$post_id);	 
 
-					view_single_post($mysqli,$post_id )	 
+					view_single_post_image($mysqli,$post_id);
 				?>
 			</div>
 			<div class="sidebar_right">	
 				<div class="menu_bar">
-					<?php show_panel() ?>
+					<?php show_panel(); ?>
 				</div>
 			</div>
 		</div>

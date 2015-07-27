@@ -38,8 +38,9 @@
                         $id = $_GET[ 'p_id' ];
                     }
 
-                    view_post_menu($mysqli, $id);
-                    view_post($mysqli, $id);
+                    view_single_post_menu($mysqli, $id);
+                    
+                    view_single_post($mysqli, $id);
 
                     if(isset( $_GET['edit'])){
                         if ($_GET[ 'edit' ] == 'success') {

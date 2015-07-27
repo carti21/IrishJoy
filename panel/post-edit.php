@@ -50,7 +50,7 @@
                 <div style="float:right;">
                     <button class="content" type="submit" name="post_edit">Edit</button>
                 </div>
-                <a href="post-view.php?p_id=<?php echo "$id"; ?>">
+                <a href="single-post-view.php?p_id=<?php echo "$id"; ?>">
                     <img style="width:15px; margin-bottom:-3px; height:auto;"
                          src="images/left_arrow.png">Cancel editing</img></a>
                 </a>
