@@ -9,7 +9,7 @@
 
 <html>
 	<head>
-		<title>Add a new Categorie</title>
+		<title>Add a Category</title>
 		<?php header_requires(); ?>
 	</head>
 	<body>
@@ -19,20 +19,20 @@
 		<div class="container">
 		 	<div class="content">
 				<?php show_category_menu(); ?>
-	 			<div class="users_new" style="width: 350px">
+	 			<div class="users_new">
 					<form action="" method="post"></br></br>
 						<label>New Category</label>
 						<input type="text" name="new_category" />  </br></br></br>
-						<div style="float:right;">
+						<div class="pull-right">
 							<button class="content_button" name="add_category"> Add Category </button>
 						</div>	
-						<div style="float:left; margin-right: 5px;">
+						<div class="pull-left">
 							<a href="categories.php" target="__blank">Go back to category</a>
 						</div>	
 					</form>
 						<?php
 							if (isset($_POST['new_category'])){
-								new_category($mysqli,$_POST['new_category']);
+								add_category($mysqli,$_POST['new_category']);
 							}
 						?>
 		 		</div>

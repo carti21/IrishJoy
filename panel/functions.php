@@ -4,7 +4,7 @@
     include "$root/config.php";
 
     /**
-     * Shows the Header elements and includes
+     * Echos the Header elements and includes
      */
     function header_requires(){
         ?>
@@ -138,29 +138,32 @@
         die('Problem: '.mysqli_error($mysqli));
     }
 
-    function get_category_by_id($mysqli, $id) {
-
-        $query_select = "SELECT category_name FROM categories WHERE id=$id";
-        $result_select = mysqli_query($mysqli, $query_select);
-        $row_category = mysqli_fetch_array($result_select);
-
-        return $row_category['category_name'];
-    }
-
-    function edit_category($mysqli, $category_name, $id) {
+    /**
+    * Fucntion to Edit a specific Category
+    * @param  $mysqli MySql Connection
+    * @param  string $new_category_name the new name of the category to be stored
+    * @param  [type] $id ID of the current category that is going to change
+    * @return Returns to categories.php
+    */
+    function edit_category($mysqli, $new_category_name, $id) {
 
         if ($category_name != '') {
-            $query_update = " UPDATE  categories  SET category_name='$category_name' WHERE id=$id ";
-            $result_del = mysqli_query($mysqli, $query_update)
-            or
-            die('Problem: '.mysqli_error($mysqli));
+            $query_update = " UPDATE  categories  SET category_name='$new_category_name' WHERE id=$id ";
+            $result_del = mysqli_query($mysqli, $query_update);
+            header('Location: ./categories.php');
         }
     }
 
-    function new_category($mysqli, $cat_name) {
+    /**
+     * Function to create a category
+     * @param  $mysqli MySql Connection
+     * @param  string $category_name Name of the Category
+     * @return Returns to categories.php
+     */
+    function add_category($mysqli, $category_name) {
 
         if ($cat_name != '') {
-            $query_insert   = "INSERT INTO categories (category_name) VALUES ('$cat_name')";
+            $query_insert   = "INSERT INTO categories (category_name) VALUES ('$category_name')";
 
             if (!mysqli_query($mysqli,$query_insert)){
                   die('Problem: ' . mysqli_error($mysqli));
@@ -170,6 +173,12 @@
         }
     }
 
+    /**
+     * Gets the number of posts of a specific category
+     * @param  $mysqli MySql Connection
+     * @param  int $category_id ID of the current Category
+     * @return int Number of posts by the Category
+     */
     function get_number_of_posts_category($mysqli, $category_id){
         $query_select_category = "SELECT COUNT(*) AS id FROM posts WHERE category_id = $category_id";
         $result_category       = mysqli_query($mysqli, $query_select_category);
@@ -204,7 +213,7 @@
                         <td><strong><?php echo $row[ 'category_name' ]; ?></strong></td>
                         <td align="center" ><?php echo get_number_of_posts_category($mysqli, $cat_id); ?></td>
 
-                        <td align="center"><a href="categories-edit.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
+                        <td align="center"><a href="category-edit.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
                     </tr>
                 <?php   
                 } 
@@ -223,26 +232,18 @@
         <div class="head_menu_content">
             <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>categories-new.php">Add a category </a>
+            <a href="<?php echo PANEL_URL; ?>category-new.php">Add a category </a>
         </div>
         <?php
     }
 
-
-    function getNumOfCategoriesSP($mysqli, $cat_name) {
-        $query_select              = "SELECT post_number FROM category WHERE category_name='$cat_name'";
-        $result_fetch              = mysqli_query($mysqli, $query_select);
-        $result_select_postcounter = mysqli_fetch_array($result_fetch);
-
-        return $result_select_postcounter[ 'post_number' ];
-    }
 
     function show_panel(){
         ?>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php"> Panel </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>post-new.php"> New Post </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories-new.php"> New Category </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>category-new.php"> New Category </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>users.php"> Users </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php"> Post Database </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
@@ -350,7 +351,7 @@
         <div class="head_menu_content">
             <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php">Edit Profile </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>categories-new.php" title="Add a new category">Add a category </a>
+            <a href="<?php echo PANEL_URL; ?>category-new.php" title="Add a new category">Add a category </a>
         </div>
         <?php
     }

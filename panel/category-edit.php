@@ -17,23 +17,22 @@
 			<div class="right_head_bar"></div>
 		</div>
 		<div class="container">
- 			<div class="users_new" style="width: 350px">
+ 			<div class="content">
 				<div>	 
 					<form action="" method="post"></br></br>
 						<label>Edit Category</label>
-						<input type="text" name="new_category" value="<?php echo get_category_by_id($mysqli, $_GET['id'])?>"/>  </br></br></br>
-						<div style="float:right;">
+						<input type="text" name="new_category" value="<?php echo get_category_name($mysqli, $_GET['id'])?>"/></br></br></br>
+						<div class="pull-right">
 							<button class="content_button" name="add_category">Update Category</button>
 						</div>	
-						<div style="float:left; margin-right: 5px;">
+						<div class="pull-left">
 							<a href="categories.php" class="post-details" target="__blank">Go back to category</a>
 						</div>	
 					</form>
 						<?php
-							if (isset($_POST['new_category']))
-							{
+							if (isset($_POST['new_category'])){
 								edit_category($mysqli, $_POST['new_category'], $_GET['id'] );
-								header('Location: ./categories.php');
+							
 							}
 						?>
 	    		</div>
