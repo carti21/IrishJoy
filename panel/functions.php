@@ -96,9 +96,8 @@
                     }
                     else {
                         // Password is not correct. This record attempt is stored in the database
-                        $time = time();
-                        if($insert_stmt_insert = $mysqli->prepare("INSERT INTO login_attempts (user_id, time ) VALUES (?, ?)")){
-                            $insert_stmt_insert->bind_param('ii', $user_id, $time);
+                        if($insert_stmt_insert = $mysqli->prepare("INSERT INTO login_attempts (user_id ) VALUES (?)")){
+                            $insert_stmt_insert->bind_param('i', $user_id);
                             $insert_stmt_insert->execute();
                         }
                         return false;
@@ -295,6 +294,14 @@
         <?php
     }
 
+    /**
+     * Function to create a User
+     * @param $mysqli  MySql Connection
+     * @param string $username Username to be stored in the db
+     * @param string $password Password of the User
+     * @param string $password_repeat Password confirmation
+     * @param string $email Email of the User
+     */
     function add_user($mysqli, $username, $password, $password_repeat, $email) {
         if ($password == $password_repeat) {
             $user_password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -306,6 +313,11 @@
         }
     }
 
+    /**
+     * Function to delete a User from the database
+     * @param  $mysqli MySql Connection
+     * @param  int $id ID of the current User
+     */
     function delete_user($mysqli, $id) {
         $query_del = "DELETE FROM users WHERE id=$id";
         $result_del = mysqli_query($mysqli, $query_del)
