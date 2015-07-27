@@ -26,7 +26,7 @@
 			<div id="login">
 				<form action="process-login.php" method="post" name="login_form">
 					Email: <input type="text" name="email"/></br> </br> 
-					Password: <input type="password" name="password" id="password" />
+					Password: <input type="password" name="password"/>
 					<button class="login" value="Login">Login</button>
 				</form>
 				<p> Close and go to back to <a href="<?php echo MAIN_URL; ?>">Main Page</a> </p>					

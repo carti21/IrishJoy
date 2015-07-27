@@ -22,12 +22,11 @@
 			</div>
 		 	<div class="content">
 		 		<div class="panel_latest_posts_left">
-					<?php latest_posts_images_left($mysqli); ?>
+					<?php latest_posts_left($mysqli); ?>
 		 		</div>
 		 		<div class="panel_latest_posts_right">
-					<?php latest_posts_images_right($mysqli); ?>
+					<?php latest_posts_right($mysqli); ?>
 		 		</div>
-                <?php show_statistics($mysqli); ?>
 		 	</div>		 		
  		</div>		
 	</body>

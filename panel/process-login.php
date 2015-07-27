@@ -10,7 +10,7 @@
       $password = $_POST['password']; // The hashed password.
       $user_ip = getRealIpAddr();
 
-         if(login($email, $password, $mysqli) == true) {
+         if(login($mysqli, $email, $password) == true) {
             // Login success
             header('Location: ./panel.php');
          } else {

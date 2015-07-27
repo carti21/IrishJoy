@@ -592,3 +592,9 @@ table.tablesorter tbody tr:hover td{
 .items{
 	margin-bottom: 20px;
 }
+
+.left-arrow{
+	width:15px; 
+	margin-bottom:-3px; 
+	height:auto;"
+}

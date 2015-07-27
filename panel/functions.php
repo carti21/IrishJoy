@@ -68,7 +68,7 @@
      * @param  string $password Password of the user to be verified
      * @return bool true if login is done successfully, false otherwise
      */
-    function login($mysqli, $email, $password) {
+    function login($mysqli, $email, $password){
         // Using prepared Statements means that SQL injection is not possible.
         if ($stmt = $mysqli->prepare("SELECT id, username, password FROM users WHERE email = ? LIMIT 1")) {
             $stmt->bind_param('s', $email); // Bind "$email" to parameter.
@@ -594,9 +594,9 @@
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
         <div class="head_menu_content"  >
-        <a title="Edit this post" href="post-edit.php?p_id=<?php echo $id; ?>">Edit</a>
+        <a title="Edit this post" href="post-edit.php?p_id=<?php echo $post_id; ?>">Edit</a>
             |
-        <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=<?php echo $id; ?>&del=1" title="Delete this post">Delete</a>
+        <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=<?php echo $post_id; ?>&del=1" title="Delete this post">Delete</a>
             |
         <a title="Add a new post" href="post-new.php">New Post</a>
         
@@ -799,7 +799,7 @@
      * @param  $mysqli MySql Connection
      * @return Echos the left column of images ( form 1 to 5 )
      */
-    function latest_posts_images_left($mysqli){
+    function latest_posts_left($mysqli){
 
         $query_select_img = "SELECT id, post_photo_name, post_date FROM posts ORDER BY post_date DESC LIMIT 0 ,5";
         $result_img = mysqli_query($mysqli, $query_select_img); 
@@ -821,7 +821,7 @@
      * @param  $mysqli MySql Connection
      * @return Echos the right column of images ( form 5 to 10 )
      */
-    function latest_posts_images_right($mysqli){
+    function latest_posts_right($mysqli){
 
         $query_select_img = "SELECT id, post_photo_name, post_date FROM posts ORDER BY post_date DESC LIMIT 5, 10";
         $result_img = mysqli_query($mysqli, $query_select_img); 

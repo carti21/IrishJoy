@@ -9,7 +9,7 @@
 
 <html>
     <head>
-        <title>Add a new post</title>
+        <title>New Post</title>
         <?php header_requires(); ?>
     </head>
     <body>
@@ -24,19 +24,14 @@
                         <label class="label-post">Image Description or tags:</label>
                     </div>
                     <div class="form-control">
-                        <textarea name="post_title" rows="6" cols="50" style="padding:8px"></textarea>
+                        <textarea name="post_title" rows="6" cols="50"></textarea>
                     </div>
                     <div class="form-control">
                         <label class="label-post">Image Category:</label>
                         <select name="category_id">
-                            <option selected="true" style="display:none;">Select Category</option>
+                            <option selected="true">Select Category</option>
                             <?php
-                                $query_select_categ = "SELECT id, category_name FROM categories";
-                                $result_categ = mysqli_query($mysqli, $query_select_categ);
-                                while ($row_cat = mysqli_fetch_array($result_categ)) {
-                                    echo "<option value=\"".$row_cat[ 'id' ]."\">"
-                                        .$row_cat[ 'category_name' ]."</option>";
-                                }
+                                
                             ?>
                         </select>
                     </div>
