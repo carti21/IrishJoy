@@ -61,7 +61,14 @@
         } 
     }
 
-    function login($email, $password, $mysqli) {
+    /**
+     * Login Function
+     * @param  $mysqli MySql Connection
+     * @param  string $email Email of the user to be verified 
+     * @param  string $password Password of the user to be verified
+     * @return bool true if login is done successfully, false otherwise
+     */
+    function login($mysqli, $email, $password) {
         // Using prepared Statements means that SQL injection is not possible.
         if ($stmt = $mysqli->prepare("SELECT id, username, password FROM users WHERE email = ? LIMIT 1")) {
             $stmt->bind_param('s', $email); // Bind "$email" to parameter.
@@ -74,7 +81,7 @@
             if ($stmt->num_rows == 1) { // If the user exists
                 // We check if the account is locked from too many login attempts
                 if (checkbrute($user_id, $mysqli) == true) {
-                    // the account was suspended due to many login attempts
+                    // The account was suspended due to many login attempts
                     return false;
                 }
                 else {
@@ -84,25 +91,22 @@
                         $_SESSION[ 'email' ]        = $username;
                         $_SESSION[ 'login_string' ] = password_hash($password, PASSWORD_DEFAULT);
                         $_SESSION[ 'logged_in' ]    = true;
-                        // Login successful.
+                        // Login successfully.
                         return true;
                     }
                     else {
-                        // Password is not correct
+                        // Password is not correct. This record attempt is stored in the database
                         $time = time();
-                        
-                        // We record this attempt in the database
                         if($insert_stmt_insert = $mysqli->prepare("INSERT INTO login_attempts (user_id, time ) VALUES (?, ?)")){
                             $insert_stmt_insert->bind_param('ii', $user_id, $time);
                             $insert_stmt_insert->execute();
                         }
-
                         return false;
                     }
                 }
             }
             else {
-                // No user exists.
+                // User doesn't exists
                 return false;
             }
         }
@@ -239,7 +243,7 @@
 
 
     function show_panel(){
-        ?>
+        ?> 
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php"> Panel </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>post-new.php"> New Post </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a> </div>
@@ -248,6 +252,7 @@
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php"> Post Database </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>logout.php">Log Out</a> </div>
 
         </br>
 
