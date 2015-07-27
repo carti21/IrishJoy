@@ -20,7 +20,6 @@
 			<div class="content">
 				<?php 
 					view_single_post_image_menu($mysqli,$post_id);	 
-
 					view_single_post_image($mysqli,$post_id);
 				?>
 			</div>

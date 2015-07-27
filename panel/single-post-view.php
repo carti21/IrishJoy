@@ -13,20 +13,14 @@
         if ($_GET[ 'del' ] == 1) {
             if ($_GET[ 'p_id' ] > 0) {
                 $post_id = $_GET[ 'p_id' ];
-
-                $post_category = get_post_category($mysqli, $post_id);
-                $post_counter  = getNumOfPostsCategory($mysqli, $post_category);
-                $post_counter--;
-
                 delete_post($mysqli, $post_id, $post_category, $post_counter, $post_author, $post_mem_count);
-
             }
         }
     }
 ?>
 <html>
     <head>
-    <title>Img - <?php $id = $_GET[ 'p_id' ]; echo get_post_title($mysqli, $id); ?></title>
+    <title><?php $id = $_GET[ 'p_id' ]; echo get_post_title($mysqli, $id); ?></title>
     <?php header_requires(); ?>
     </head>
     <body>

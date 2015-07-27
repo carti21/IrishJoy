@@ -36,8 +36,8 @@
 			if($row_img['post_photo_name']!=''){
 				$img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
 				?>
-				<a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
-					<img class="content_img_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
+				<a href="single-post-image-view.php?p_id=<?php echo  $row_img['id'] ?>" >
+					<img class="content_img_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)">
 				</a>
 				<?php
 			} 
@@ -56,8 +56,8 @@
 				
 				$img_path = UPLOADS_URL .$row_img['post_photo_name'];
 				?>
-				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
-					<img src= "<?php echo $img_path; ?>" title="Permalink: (irishjoy.com/view-image.php?p_id=<?php echo  $row_img['id']; ?>)" class="content_img_right" >
+				<a href="single-post-image-view.php?p_id=<?php echo $row_img['id']; ?>" >
+					<img src= "<?php echo $img_path; ?>" title="Permalink: (irishjoy.com/single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)" class="content_img_right" >
 				</a>
 				<?php	
 			}
@@ -75,7 +75,7 @@
 			{
 				$img_path = UPLOADS_URL .$row_img['post_photo_name'];
 				?>
-				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
+				<a href="single-post-image-view.php?p_id=<?php echo $row_img['id']; ?>" >
 					<img class="content_img_left" src="<?php echo $img_path?>" />
 				</a>
 				<?php
@@ -94,7 +94,7 @@
 			{
 				$img_path = MAIN_URL . "tagged/".$row_img['post_photo_name'];
 				?>
-				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
+				<a href="single-post-image-view.php?p_id=<?php echo $row_img['id']; ?>" >
 					<img class="content_img_left" src="<?php echo $img_path?>" />
 				</a>
 				<?php

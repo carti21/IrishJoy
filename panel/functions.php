@@ -260,61 +260,37 @@
         <?php
     }
 
+    /**
+     * Function to show the bad login attemts of users
+     * @param  $mysqli MySql Connection
+     * @return Echos the table
+     */
     function show_login_attempts($mysqli) {
 
-    $query_select_mem = "SELECT user_id, act_time,ip FROM login_attempts ORDER BY act_time DESC ";
-    $result_mem       = mysqli_query($mysqli, $query_select_mem);
-    ?>
-    <table id="table_style"> 
-        <thead> 
-            <tr> 
-                <th scope="col" align="center"><b> user ID </b></th> 
-                <th scope="col" align="center"><b>Time</b></th> 
-                <th scope="col" align="center"><b>IP</b></th> 
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            while ($data = mysqli_fetch_array($result_mem)) {
-                ?>
-                <tr>
-                    <td align="center" ><?php echo $data[ 'user_id' ]; ?></td>
-                    <td align="center" title="<?php echo(date("l, d F  H:i", strtotime($data[ 'act_time' ])))?>"></td>
-                    <td align="center" ><?php echo $data[ 'ip' ]; ?></td>
-                </tr>
-                <?php
-            }
-            ?>
-        </tbody>
-    </table>
-    <?php
-    }
-
-    function show_user_login_traces($mysqli) {
-        $query_select_trace = "SELECT id, user_id, time, ip FROM login_filter ORDER BY id DESC";
-        $result_trace_login = mysqli_query($mysqli, $query_select_trace);
+        $query_select_mem = "SELECT user_id, act_time,ip FROM login_attempts ORDER BY act_time DESC ";
+        $result_mem       = mysqli_query($mysqli, $query_select_mem);
         ?>
-
-        <table cellspacing="1" class="tablesorter" style="cursor: default;"
-            <thead>
-                <tr>
-                    <th>&nbsp;U / Email</th>
-                    <th style="text-align:center; ">Time</th
-                    <th style="text-align:center; ">IP</th>
+        <table id="table_style"> 
+            <thead> 
+                <tr> 
+                    <th scope="col" align="center"><b> user ID </b></th> 
+                    <th scope="col" align="center"><b>Time</b></th> 
+                    <th scope="col" align="center"><b>IP</b></th> 
                 </tr>
             </thead>
-        <tbody>
-        <?php
-            while ($data = mysqli_fetch_array($result_trace_login)) {
-                ?>
-                <tr>
-                    <td><?php echo"&nbsp;".substr($data[ 'user_id' ], 0, 30) ?> </td>
-                    <td title="<?php echo date("l, d F  H:i", strtotime($data[ 'time' ])); ?>" style="text-align:center; "><?php echo date("d.m.Y - H:i", strtotime($data[ 'time' ])); ?></td
-                    <td style="text-align:center; "><?php echo $data[ 'ip' ]; ?></td>
-                </tr>
+            <tbody>
                 <?php
-            } ?>
-        </tbody>
+                while ($data = mysqli_fetch_array($result_mem)) {
+                    ?>
+                    <tr>
+                        <td align="center" ><?php echo $data[ 'user_id' ]; ?></td>
+                        <td align="center" title="<?php echo(date("l, d F  H:i", strtotime($data[ 'act_time' ])))?>"></td>
+                        <td align="center" ><?php echo $data[ 'ip' ]; ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
         </table>
         <?php
     }
@@ -345,8 +321,6 @@
             <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">Users Login Attempts</a>
             &nbsp;&nbsp;&#124;
             <a href="<?php echo PANEL_URL; ?>users-new.php" title="Add a new user">Add a user</a>
-            &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>users-login-traces.php" title="Show Login Traces">Login Traces</a>
         </div>
         <?php
     }
@@ -361,6 +335,12 @@
         <?php
     }
 
+    /**
+     * Function to show details about a single User
+     * @param  $mysqli Connection
+     * @param  int $user_id ID of the current User
+     * @return Echos the details of the User
+     */
     function view_single_user($mysqli, $user_id) {
         $query_select_user = "SELECT id, username, email FROM users WHERE id = $user_id";
         $result_user       = mysqli_query($mysqli, $query_select_user);
@@ -373,19 +353,32 @@
             <strong>Email:</strong> <?php echo $row_user[ 'email' ]; ?>
         </p>
         <p>
-            <strong>Number of Posts:</strong> <?php echo number_of_posts_user($mysqli, $user_id); ?>
+            <strong>Number of Posts:</strong> <?php echo get_users_number_of_posts($mysqli, $user_id); ?>
         </p>
         <?php
     }
 
-    function number_of_posts_user($mysqli, $user_id){
+    /**
+     * Function to get the number of Posts that has created a User
+     * @param  $mysqli MySql Connection
+     * @param  int $user_id ID of the current User
+     * @return int $number_of_posts Number of Posts of the User
+     */
+    function get_users_number_of_posts($mysqli, $user_id){
         $query_select_user = "SELECT post_author FROM posts WHERE post_author = $user_id";
         $result_user       = mysqli_query($mysqli, $query_select_user);
         $row_user          = mysqli_fetch_array($result_user);
 
-        return count($row_user);
+        $number_of_posts = count($row_user);
+
+        return $number_of_posts;
     }
 
+    /**
+     * Function to show the table of all Users
+     * @param  $mysqli MySql Connection
+     * @return Echos the table of the Users
+     */
     function show_all_users($mysqli) {
 
         $query_select_mem = "SELECT id, username, email FROM users";
@@ -405,18 +398,17 @@
                 <?php
                 while ($data = mysqli_fetch_array($result_mem)) {
                  ?>
-                
-                <tr>
-                    <td title="."user&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
-                    <td><?php echo $data[ 'email' ]; ?></td>
-                    <td align="right"><?php echo number_of_posts_user($mysqli, $data[ 'id' ]); ?></td>
-                    <td align="center">
-                        <a href="single-user.php?m_id=<?php echo $data[ 'id' ]; ?>" >
-                            <img src="images/user.png" border=0 width="15" height="15">
-                        </a>
-                    </td>
-                </tr>
-                <?php
+                    <tr>
+                        <td title="."user&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
+                        <td><?php echo $data[ 'email' ]; ?></td>
+                        <td align="right"><?php echo get_users_number_of_posts($mysqli, $data[ 'id' ]); ?></td>
+                        <td align="center">
+                            <a href="single-user.php?m_id=<?php echo $data[ 'id' ]; ?>" >
+                                <img src="images/user.png" border=0 width="15" height="15">
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
                 }
                 ?>
             </tbody>
@@ -464,22 +456,6 @@
         <?php
     }
 
-    function getNumOfPosts($mysqli, $user) {
-        $query_select              = "SELECT post_counter FROM users WHERE username='$user'";
-        $result_fetch              = mysqli_query($mysqli, $query_select);
-        $result_select_postcounter = mysqli_fetch_array($result_fetch);
-
-        return $result_select_postcounter[ 'post_counter' ];
-    }
-
-    function getNumOfPostsCategory($mysqli, $category) {
-        $query_select              = "SELECT post_number FROM category WHERE category_name='$category'";
-        $result_fetch              = mysqli_query($mysqli, $query_select);
-        $result_select_postcounter = mysqli_fetch_array($result_fetch);
-
-        return $result_select_postcounter[ 'post_number' ];
-    }
-
     /**
     * Get the Post's Title by ID
     * @param  $mysqli  MySql Connection
@@ -523,17 +499,15 @@
     }
 
     /**
-    * @param $mysqli MySql Connections
-    * @param $id
-    * @param $category
-    * @param $category_post_numb
-    * @param $author
-    * @param $mem_post_counter
+     * Function to delete a post
+     * @param  $mysqli MySql Connections
+     * @param  $post_id ID of the current post
+     * @return Returns to posts-database.php
      */
-    function delete_post($mysqli, $id, $category, $category_post_numb, $author, $mem_post_counter) {
-        $query_del  = "DELETE FROM posts WHERE id=$id";
+    function delete_post($mysqli, $post_id) {
+        $query_delelte_post  = "DELETE FROM posts WHERE id=$post_id";
 
-        if(mysqli_query($mysqli, $query_del)){
+        if(mysqli_query($mysqli, $query_delelte_post)){
             header('Location: ./posts-database.php');
         } else {
             die('Problem: '.mysqli_error($mysqli));
@@ -673,7 +647,7 @@
             else {
                 ?>
                </div>
-               <a href="view-image.php?p_id=<?php echo $row_post[ 'id' ]; ?>" ><img class="post_view_img" title="View full image" src="<?php echo $img_path; ?>" /></a>
+               <a href="single-post-image-view.php?p_id=<?php echo $row_post[ 'id' ]; ?>" ><img class="post_view_img" title="View full image" src="<?php echo $img_path; ?>" /></a>
                <?php
             }
         }
@@ -808,8 +782,8 @@
             if($row_img['post_photo_name']!=''){
                 $img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
                 ?>
-                <a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
-                    <img class="panel_img_latest_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
+                <a href="single-post-image-view.php?p_id=<?php echo  $row_img['id'] ?>" >
+                    <img class="panel_img_latest_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)">
                 </a>
                 <?php
             } 
@@ -830,8 +804,8 @@
             if($row_img['post_photo_name']!=''){
                 $img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
                 ?>
-                <a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
-                    <img class="panel_img_latest_right" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
+                <a href="single-post-image-view.php?p_id=<?php echo  $row_img['id'] ?>" >
+                    <img class="panel_img_latest_right" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)">
                 </a>
                 <?php
             } 
