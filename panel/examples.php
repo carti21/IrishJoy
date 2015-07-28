@@ -5,25 +5,25 @@
     if (login_check($mysqli) == false) {
          header('Location: ' . MAIN_URL);
     }
-
-	$post_id = $_GET['p_id'];	 
 ?>
 
 <html>
 	<head>
-		<title>View Image</title>
+		<title>My Examples</title>
 		<?php header_requires(); ?>
 	</head>
 	<body>
 		<div class="head"></div>
 		<div class="container">
-			<div class="content">
-				<?php 
-					view_single_post_image_menu($mysqli,$post_id);	 
-					view_single_post_image($mysqli,$post_id);
-				?>
-			</div>
-			<div class="sidebar_right">	
+	 		<div class="content">
+				<div class="content"> 
+					<h2>My Examples</h2>
+					<!-- Place your Example's code here. --> 
+
+
+	    		</div>
+	 		</div>
+			<div class="sidebar_right">
 				<div class="menu_bar">
 					<?php show_panel_menu(); ?>
 				</div>
@@ -31,3 +31,5 @@
 		</div>
 	</body>
 </html>
+
+					

@@ -37,7 +37,7 @@
 	 		</div>	 		
 			<div class="sidebar_right">
 				<div class="menu_bar">
-					<?php show_panel(); ?>
+					<?php show_panel_menu(); ?>
 				</div>
 			</div>
 		</div>

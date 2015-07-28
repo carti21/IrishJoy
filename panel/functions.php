@@ -236,7 +236,7 @@
      * Function to show the Panel on the right sidebar
      * @return [type] [description]
      */
-    function show_panel(){
+    function show_panel_menu(){
         ?> 
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php"> Panel </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>post-new.php"> New Post </a> </div>
