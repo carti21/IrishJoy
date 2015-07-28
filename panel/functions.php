@@ -247,6 +247,7 @@
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>statistics.php"> Statistics </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>examples.php"> Examples </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>logout.php">Log Out</a> </div>
 
         </br>
