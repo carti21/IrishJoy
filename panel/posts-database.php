@@ -10,7 +10,6 @@
 <html>
 	<head>
 		<title>Database</title>
-		<link rel="icon" href="<?= MAIN_URL ?>panel/super/images/database.png" type="image/x-icon"> 
 		<link rel="stylesheet" href="css/post_database_table.css" type="text/css" media="print, projection, screen" />
 		<link rel="stylesheet" type="text/css" href="css/css_panel.css" />
 		<script type="text/javascript" src="js/jquery-latest.js"></script>
@@ -24,8 +23,6 @@
 					.tablesorterPager({container: $("#pager")});
 			});
 		</script>
-
-	    
 	</head>
 	<body style="background-color:#eee;">
 		<div id="head" style="height:35px; background-color:#336699; margin-bottom:10px;"> 
