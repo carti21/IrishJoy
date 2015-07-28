@@ -133,14 +133,6 @@
         return false;
     } 
 
-    function delete_category($mysqli, $id) {
-
-        $query_del = "DELETE FROM category WHERE id=$id";
-        $result_del = mysqli_query($mysqli, $query_del)
-        or
-        die('Problem: '.mysqli_error($mysqli));
-    }
-
     /**
     * Fucntion to Edit a specific Category
     * @param  $mysqli MySql Connection
@@ -240,7 +232,10 @@
         <?php
     }
 
-
+    /**
+     * Function to show the Panel on the right sidebar
+     * @return [type] [description]
+     */
     function show_panel(){
         ?> 
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php"> Panel </a> </div>
@@ -381,7 +376,6 @@
         $row_user          = mysqli_fetch_array($result_user);
 
         $number_of_posts = count($row_user);
-
         return $number_of_posts;
     }
 
@@ -427,7 +421,11 @@
         <?php
     }
 
-
+    /**
+     * Function to show statistics of the Posts, Categories, Users
+     * @param $mysqli MySqli Connections
+     * @return Echos the Statistics table
+     */
     function show_statistics($mysqli) {
         $query_categories  = "SELECT category_name FROM categories";
         $categories_result = mysqli_query($mysqli, $query_categories);
