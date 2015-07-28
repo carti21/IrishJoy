@@ -249,6 +249,7 @@
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>category-new.php"> New Category </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>users.php"> Users </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php"> Post Database </a> </div>
+        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>statistics.php"> Statistics </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
         <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>logout.php">Log Out</a> </div>
@@ -525,7 +526,6 @@
     }
 
     function edit_post($mysqli, $post_id, $title, $category) {
-        //Nese nuk ka input tek titulli dhe kategoria, nuk shtohet
         if( ($title != " "))
         {
             $query_update_post  = "UPDATE post SET post_title='$title', post_category='$category' WHERE id=$post_id";
@@ -721,7 +721,6 @@
         $query_select_posts = "SELECT id, post_author, post_date, post_title, post_status, category_id, post_photo_name, post_views FROM posts ORDER BY post_date DESC";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
     ?>
-
         <table cellspacing="1" class="tablesorter">
             <thead> 
                 <tr> 
@@ -755,28 +754,6 @@
         </tbody> 
         </table> 
     <?php
-    }
-
-    /**
-     * Function to show the IP of the user
-     * @return Returns the ip
-     */
-    function getRealIpAddr(){
-        if (!empty($_SERVER[ 'HTTP_CLIENT_IP' ])) //check ip from share internet
-        {
-            $ip = $_SERVER[ 'HTTP_CLIENT_IP' ];
-        }
-        else {
-            if (!empty($_SERVER[ 'HTTP_X_FORWARDED_FOR' ])) //to check ip is pass from proxy
-            {
-                $ip = $_SERVER[ 'HTTP_X_FORWARDED_FOR' ];
-            }
-            else {
-                $ip = "".$_SERVER[ 'REMOTE_ADDR' ]." ";
-            }
-        }
-
-        return $ip;
     }
 
     /**
