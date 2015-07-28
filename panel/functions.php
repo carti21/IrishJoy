@@ -266,15 +266,14 @@
      */
     function show_login_attempts($mysqli) {
 
-        $query_select_mem = "SELECT user_id, act_time,ip FROM login_attempts ORDER BY act_time DESC ";
+        $query_select_mem = "SELECT user_id, time FROM login_attempts ORDER BY time DESC ";
         $result_mem       = mysqli_query($mysqli, $query_select_mem);
         ?>
         <table id="table_style"> 
             <thead> 
                 <tr> 
-                    <th scope="col" align="center"><b> user ID </b></th> 
-                    <th scope="col" align="center"><b>Time</b></th> 
-                    <th scope="col" align="center"><b>IP</b></th> 
+                    <th scope="col" align="center"><b> User  </b></th> 
+                    <th scope="col" align="center"><b> Time </b></th> 
                 </tr>
             </thead>
             <tbody>
@@ -282,9 +281,8 @@
                 while ($data = mysqli_fetch_array($result_mem)) {
                     ?>
                     <tr>
-                        <td align="center" ><?php echo $data[ 'user_id' ]; ?></td>
-                        <td align="center" title="<?php echo(date("l, d F  H:i", strtotime($data[ 'act_time' ])))?>"></td>
-                        <td align="center" ><?php echo $data[ 'ip' ]; ?></td>
+                        <td align="center"><?php echo get_user_name($mysqli, $data[ 'user_id' ]); ?></td>
+                        <td align="center"><?php echo $data[ 'time' ]; ?></td>
                     </tr>
                     <?php
                 }
@@ -720,8 +718,7 @@
      * @return Echos the table of all posts
      */
     function show_posts_database($mysqli) {
-        $query_select_posts = "SELECT posts.id, posts.post_author, posts.post_date, posts.post_title, posts.post_status, posts.category_id, posts.post_photo_name, posts.post_views, categories.category_name FROM posts 
-                               JOIN categories ON categories.id = posts.category_id ORDER BY id DESC";
+        $query_select_posts = "SELECT id, post_author, post_date, post_title, post_status, category_id, post_photo_name, post_views FROM posts ORDER BY post_date DESC";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
     ?>
 
@@ -740,19 +737,21 @@
             </thead> 
         <tbody> 
     <?php 
-        while ($data = mysqli_fetch_array($result_posts)) {
-    ?>
+        while ($data = mysqli_fetch_array($result_posts)){
+        ?>
             <tr>
                 <td style="cursor: default;" title="<?= $data[ 'post_title' ]; ?>"> <?= substr($data[ 'post_title' ], 0, 40); ?> </td>
                 <td title="<?= (date("l, d F  H:i", strtotime($data[ 'post_date' ]))) ?>" style="text-align:center; cursor: default;"> <?= (date("d.m.Y - H:i", strtotime($data[ 'post_date' ]))) ?> </td>
-                <td> <?= $data['post_author']; ?> </td>
-                <td> <?= $data['category_name']; ?> </td>
+                <td> <?php echo get_user_name($mysqli, $data['post_author']); ?> </td>
+                <td> <?php echo get_category_name($mysqli, $data['category_id']); ?> </td>
                 <td class="text-center" style="cursor: default;"> <?= $data['post_status'] ?> </td>
                 <td style="cursor: default;" title="<?= $data[ 'post_photo_name'] ?>"> <?= substr($data[ 'post_photo_name' ], 0, 15) ?> </td>
-                <td style="text-align:right;" ><?= $data[ 'post_views' ]; ?> </td>
+                <td class="text-center" ><?= $data[ 'post_views' ]; ?> </td>
                 <td title="View&nbsp;&nbsp; <?=$data['id'] ?>" style="text-align:center; cursor:default"><a href="single-post-view.php?p_id=<?= $data['id']; ?>" /><img src="images/open.png" class="p_db_img_view"></td>
             </tr>
-      <?php  } ?>
+            <?php  
+        } 
+            ?>
         </tbody> 
         </table> 
     <?php

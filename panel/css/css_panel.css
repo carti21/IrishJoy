@@ -598,3 +598,29 @@ table.tablesorter tbody tr:hover td{
 	margin-bottom:-3px; 
 	height:auto;"
 }
+
+.posts_database_head{
+	height:35px; 
+	background-color:#336699; 
+	margin-bottom:10px;
+}
+
+.posts_database_content{
+	width:970; 
+	margin-top: 0px;
+}
+
+.posts_database_right_box{
+	color:#FDFDFD; 
+	float:right; 
+	margin-right: 20px; 
+	margin-top: 7px; 
+	text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+}
+
+.posts_database_left_box{
+	float:left; 
+	padding-left:40px; 
+	text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+	padding-top: 7px;
+}
