@@ -730,7 +730,7 @@
                     <th> P/U &nbsp;&nbsp; </th>
                     <th> Image Name </th>
                     <th> Views </th>
-                    <th> Press </th>
+                    <th> Go To Post </th>
                 </tr> 
             </thead> 
         <tbody> 
