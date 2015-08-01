@@ -22,12 +22,30 @@
                     ?>
                     <p><b>Make the changes you want at this post:</br></b></p>
                     <form method="post" action="" enctype="multipart/form-data">
-                        <label>Title:</label>
-                        <input type="text" name="title_edit" value="<?php echo get_post_title($mysqli, $id); ?>"/>
-                        </br></br>
-                        <label> Category: </label>
-                        <hr>
-                        </br>
+                       <div class="form-control">
+                            <label class="label-post">Image Description or tags:</label>
+                        </div>
+                        <div class="form-control">
+                            <textarea name="post_title" rows="6" cols="50"><?php echo get_post_description($mysqli, $id); ?></textarea>
+                        </div>
+                        <div class="form-control">
+                        <label class="label-post">Image Category:</label>
+                        <select name="category_id">
+                            <option>Select Category</option>
+                            <?php 
+                                $categories_array = get_categories_array($mysqli);
+                                $post_category_id = get_post_category($mysqli, $id);
+                                foreach($categories_array as $category_id => $category_name){
+                                    ?>
+                                    <option value="<?php echo $id; ?>" <?php if($post_category_id == $category_id) echo 'selected'; ?> >
+                                        <?php echo $category_name; ?>
+                                    </option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
+
                         <div class="pull-right">
                             <button class="content_button" type="submit" name="post_edit">Edit</button>
                         </div>

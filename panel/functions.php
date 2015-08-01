@@ -800,7 +800,7 @@
     }
 
     /**
-     * Get all Categoris with an array
+     * Get all Categoris to an array
      * @param  $mysqli MySql Connection
      * @return array $categories_array [id]=>[category_name] array with
      * all teh Categories. Mostly used on dropdown select of categories
@@ -814,7 +814,25 @@
           $categories_array[$row['id']] = $row['category_name'];
         }
 
-        return ($categories_array);
+        return $categories_array;
     }
+
+     function get_post_description($mysqli, $post_id){
+        $query = "SELECT post_title FROM posts WHERE id = $post_id ";
+        $result = mysqli_query($mysqli, $query);
+        $row = mysqli_fetch_array($result);
+
+        return $row['post_title'];
+    }
+
+    function get_post_category($mysqli, $post_id){
+        $query = "SELECT category_id FROM posts WHERE id = $post_id ";
+        $result = mysqli_query($mysqli, $query);
+        $row = mysqli_fetch_array($result);
+
+        return $row['category_id'];
+    }
+
+
 
 ?>
