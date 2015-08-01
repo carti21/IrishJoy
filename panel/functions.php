@@ -730,7 +730,7 @@
                     <th> P/U &nbsp;&nbsp; </th>
                     <th> Image Name </th>
                     <th> Views </th>
-                    <th> Go To Post </th>
+                    <th class="text-center"> Go To Post </th>
                 </tr> 
             </thead> 
         <tbody> 
@@ -797,6 +797,24 @@
                 <?php
             } 
         }
+    }
+
+    /**
+     * Get all Categoris with an array
+     * @param  $mysqli MySql Connection
+     * @return array $categories_array [id]=>[category_name] array with
+     * all teh Categories. Mostly used on dropdown select of categories
+     */
+    function get_categories_array($mysqli){
+        $query = "SELECT id, category_name FROM categories ORDER BY category_name ";
+        $result = mysqli_query($mysqli, $query);
+
+        $categories_array = array();
+        while($row = mysqli_fetch_array($result)){
+          $categories_array[$row['id']] = $row['category_name'];
+        }
+
+        return ($categories_array);
     }
 
 ?>

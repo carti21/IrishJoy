@@ -29,9 +29,12 @@
                     <div class="form-control">
                         <label class="label-post">Image Category:</label>
                         <select name="category_id">
-                            <option selected="true">Select Category</option>
-                            <?php
-                                
+                            <option>Select Category</option>
+                            <?php 
+                                $categories_array = get_categories_array($mysqli);
+                                foreach($categories_array as $id=>$category){
+                                    echo "<option value='$id'>$category</option>";
+                                }
                             ?>
                         </select>
                     </div>
@@ -45,6 +48,10 @@
                         <input type="radio" name="post_status" value="0">Not Public
                     </div>
                     <button class="content_button">Publish</button>
+                    <pre>
+                     <?php
+                                //get_categories_array($mysqli);
+                            ?>
                 </form>
                 <?php
 
