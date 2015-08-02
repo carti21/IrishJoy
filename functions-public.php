@@ -57,7 +57,6 @@
 			} 
 		}
 	}
-
 	
 	function show_right_col_images($mysqli,$start_right){
 
@@ -150,4 +149,41 @@
 		$result_select_postcat = mysqli_fetch_array($result_fetch);
 		
 		return $result_select_postcat['category_id']; 
+	}
+
+	function show_left_col_images_by_category($mysqli,$start_left, $category_id){
+
+		$query_select_img = "SELECT id, image_name, category_id FROM posts WHERE status = 1 &&  category_id = $category_id ORDER BY id DESC LIMIT $start_left , 7 ";
+		$result_img = mysqli_query($mysqli, $query_select_img);	
+		
+		while($row_img = mysqli_fetch_array($result_img)){
+			if($row_img['image_name']!=''){
+				$img_path = MAIN_URL . "uploads/".$row_img['image_name'];
+				?>
+				<a href="view-image.php?p_id=<?php echo  $row_img['id'] ?>" >
+					<img class="content_img_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>view-image.php?p_id=<?php echo  $row_img['id']; ?>)">
+				</a>
+				<?php
+			} 
+		}
+	}
+
+
+	function show_right_col_images_by_category($mysqli,$start_right, $category_id){
+
+		$query_select_img = "SELECT id, image_name FROM posts WHERE status = 1 && category_id = $category_id ORDER BY id DESC LIMIT $start_right , 7 "; 
+		$result_img = mysqli_query($mysqli, $query_select_img);	
+		
+		while($row_img = mysqli_fetch_array($result_img)){
+
+			if($row_img['image_name']!=''){ 
+				
+				$img_path = UPLOADS_URL .$row_img['image_name'];
+				?>
+				<a href="view-image.php?p_id=<?php echo $row_img['id']; ?>" >
+					<img src= "<?php echo $img_path; ?>" title="Permalink: (irishjoy.com/view-image.php?p_id=<?php echo  $row_img['id']; ?>)" class="content_img_right" >
+				</a>
+				<?php	
+			}
+		}
 	}

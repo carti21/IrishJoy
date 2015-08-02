@@ -49,14 +49,14 @@
 		 				}
 
 		 				$start_left="$page"*7; 
-						show_left_col_images($mysqli,$start_left);
+						show_left_col_images_by_category($mysqli, $start_left, $_GET['cat_id']);
 		 			
 		 			?> 
 	 			</div> 
 	 			<div class="content_img_right"> 
 		 			<?php 
 		 				$start_right=(($page+1)*7); 
-						show_right_col_images($mysqli,$start_right);
+						show_right_col_images_by_category($mysqli, $start_right, $_GET['cat_id'])
 		 			
 		 			?>
 	 			</div>
