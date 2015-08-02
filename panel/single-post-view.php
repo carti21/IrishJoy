@@ -13,7 +13,7 @@
         if ($_GET[ 'del' ] == 1) {
             if ($_GET[ 'p_id' ] > 0) {
                 $post_id = $_GET[ 'p_id' ];
-                delete_post($mysqli, $post_id, $post_category, $post_counter, $post_author, $post_mem_count);
+                delete_post($mysqli, $post_id, $post_category, $post_counter, $user_id, $post_mem_count);
             }
         }
     }

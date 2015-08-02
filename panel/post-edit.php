@@ -26,7 +26,7 @@
                             <label class="label-post">Image Description or tags:</label>
                         </div>
                         <div class="form-control">
-                            <textarea name="post_title" rows="6" cols="50"><?php echo get_post_description($mysqli, $id); ?></textarea>
+                            <textarea name="description" rows="6" cols="50"><?php echo get_post_description($mysqli, $id); ?></textarea>
                         </div>
                         <div class="form-control">
                         <label class="label-post">Image Category:</label>
@@ -56,8 +56,8 @@
                     </form>
                     <?php
 
-                        if (isset($_POST[ 'post_title' ]) && isset($_POST[ 'category_id' ])) {
-                            $title    = $_POST[ 'post_title' ];
+                        if (isset($_POST[ 'description' ]) && isset($_POST[ 'category_id' ])) {
+                            $title    = $_POST[ 'description' ];
                             $category = $_POST[ 'category_id' ];
                             edit_post($mysqli, $id, $title, $category);
                             //header('Location: " ./single-post-view.php?p_id=".$post_id."&edit=success"');

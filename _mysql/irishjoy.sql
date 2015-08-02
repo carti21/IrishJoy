@@ -82,13 +82,13 @@ INSERT INTO `login_attempts` (`id`, `user_id`, `time`, `ip`) VALUES
 
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `post_author` int(30) NOT NULL,
-  `post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `post_title` text NOT NULL,
-  `post_status` int(11) NOT NULL DEFAULT '1',
+  `user_id` int(30) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` text NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
   `category_id` int(30) NOT NULL,
-  `post_views` bigint(20) NOT NULL,
-  `post_photo_name` text NOT NULL,
+  `views` bigint(20) NOT NULL,
+  `image_name` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `post_author`, `post_date`, `post_title`, `post_status`, `category_id`, `post_views`, `post_photo_name`) VALUES
+INSERT INTO `posts` (`id`, `user_id`, `created_at`, `description`, `status`, `category_id`, `views`, `image_name`) VALUES
 (10, 2, '2015-07-25 20:23:52', 'asdf', 1, 57, 0, '7342foggy_forest_by_jake_stewart.jpg'),
 (11, 2, '2015-07-25 20:25:16', 'asdf', 1, 61, 0, '4827crocosmia_by_sirpecangum.jpg'),
 (12, 2, '2015-07-25 20:25:24', 'asdf', 1, 66, 0, '5036mistymorning.jpg'),

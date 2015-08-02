@@ -372,7 +372,7 @@
      * @return int $number_of_posts Number of Posts of the User
      */
     function get_users_number_of_posts($mysqli, $user_id){
-        $query_select_user = "SELECT post_author FROM posts WHERE post_author = $user_id";
+        $query_select_user = "SELECT user_id FROM posts WHERE user_id = $user_id";
         $result_user       = mysqli_query($mysqli, $query_select_user);
         $row_user          = mysqli_fetch_array($result_user);
 
@@ -473,11 +473,11 @@
     * @return string  Title of the Post
     */
     function get_post_title($mysqli, $post_id){
-        $query_title  = "SELECT post_title FROM posts WHERE id = $post_id LIMIT 1";
+        $query_title  = "SELECT description FROM posts WHERE id = $post_id LIMIT 1";
         $result_title = mysqli_query($mysqli, $query_title);
         $data_title   = mysqli_fetch_array($result_title);
 
-        return $data_title[ 'post_title' ];
+        return $data_title[ 'description' ];
     }
 
     /**
@@ -525,16 +525,16 @@
     }
 
     function edit_post($mysqli, $post_id, $title, $category) {
-      
-        $query_update_post  = "UPDATE posts SET post_title='$title', category_id='$category' WHERE id=$post_id";
+
+        $query_update_post  = "UPDATE posts SET description='$title', category_id='$category' WHERE id=$post_id";
         $result_update_post = mysqli_query($mysqli, $query_update_post);
     }
 
-    function new_post($mysqli, $user, $title, $category, $post_status, $img_new_name ) {
+    function new_post($mysqli, $user, $title, $category, $status, $img_new_name ) {
 
         if (($title != '') && ($category != '')) {
-            $query_insert_post = "INSERT INTO posts (post_author, post_title, post_status, category_id, post_photo_name)
-                                       VALUES ('$user', '$title' , '$post_status', '$category', '$img_new_name')";
+            $query_insert_post = "INSERT INTO posts (user_id, description, status, category_id, image_name)
+                                       VALUES ('$user', '$title' , '$status', '$category', '$img_new_name')";
             $result_add_post   = mysqli_query($mysqli, $query_insert_post);
 
             echo '<p>New post has been added. </p>';
@@ -569,7 +569,7 @@
      * @return Echos the menu
      */
     function view_single_post_menu($mysqli, $post_id) {
-        $query_posts   = "SELECT id, post_status, post_date, post_views FROM posts WHERE id = $post_id";
+        $query_posts   = "SELECT id, status, created_at, views FROM posts WHERE id = $post_id";
         $result_posts  = mysqli_query($mysqli, $query_posts);
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
@@ -580,11 +580,11 @@
             |
         <a title="Add a new post" href="post-new.php">New Post</a>
         
-        <span title="<?php echo (date("l, d F, H:i", strtotime($row_post_menu[ 'post_date' ]))); ?>" style="margin-left:50px; color:#336699; cursor:default;">
-            <?php echo (date("d.m.Y - H:i", strtotime($row_post_menu[ 'post_date' ]))); ?>
+        <span title="<?php echo (date("l, d F, H:i", strtotime($row_post_menu[ 'created_at' ]))); ?>" style="margin-left:50px; color:#336699; cursor:default;">
+            <?php echo (date("d.m.Y - H:i", strtotime($row_post_menu[ 'created_at' ]))); ?>
         </span>
         <?php 
-        if ($row_post_menu[ 'post_status' ] == '1') {
+        if ($row_post_menu[ 'status' ] == '1') {
             ?>
             <span style="float:right; margin-right:10px; cursor:default; color:#008000; font-weight:bold;">
             Published
@@ -609,40 +609,40 @@
      * @return Echos divs with the information of the post
      */
     function view_single_post($mysqli, $post_id) {
-        $query_select_posts = "SELECT id, post_author, post_title, category_id, post_views, post_photo_name FROM posts WHERE  id = $post_id";
+        $query_select_posts = "SELECT id, user_id, description, category_id, views, image_name FROM posts WHERE  id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
-        if ( !empty($row_post[ 'post_title' ]) ) {
+        if ( !empty($row_post[ 'description' ]) ) {
             ?>
             <div class="pull-left">
                 <div class="items">
                     <span class="post-details">
-                    Title: </span><?php echo $row_post[ 'post_title' ]; ?>
+                    Title: </span><?php echo $row_post[ 'description' ]; ?>
                 </div>
                 <div class="items">
                     <span class="post-details">
-                    Img Name: </span><?php echo $row_post[ 'post_photo_name' ]; ?>
+                    Img Name: </span><?php echo $row_post[ 'image_name' ]; ?>
                 </div>
-                <div class="items">
+                <div class="items"> 
                     <span class="post-details">
                     Category: </span><?php echo get_category_name($mysqli, $row_post[ 'category_id' ]); ?>
                 </div>
                 <div class="items">
                     <span class="post-details">
-                    Author: </span><?php echo get_user_name($mysqli, $row_post['post_author'] ); ?>
+                    Author: </span><?php echo get_user_name($mysqli, $row_post['user_id'] ); ?>
                 </div>
                 <div class="items">
                 <span class="post-details">
-                Views: </span><b><?php echo $row_post[ 'post_views' ]; ?> 
+                Views: </span><b><?php echo $row_post[ 'views' ]; ?> 
                 </div>
                 
                 <a href="posts-database.php" class="post-details ">
                     <img style="width:15px; margin-bottom:-3px; height:auto;"src="images/left_arrow.png">Go to database
                 </a>
                 <?php
-                $img_path = UPLOADS_URL . $row_post[ 'post_photo_name' ];
-                if ($row_post[ 'post_photo_name' ] == '') {
+                $img_path = UPLOADS_URL . $row_post[ 'image_name' ];
+                if ($row_post[ 'image_name' ] == '') {
                     ?>
             </div>
                <p style="width:200px; float:right; color:red; font-weight:bold;">
@@ -673,12 +673,12 @@
      * @return Echos the menu with Delete
      */
     function view_single_post_image_menu($mysqli, $post_id) {
-        $query_select_posts = "SELECT id, post_title FROM posts WHERE id = $post_id";
+        $query_select_posts = "SELECT id, description FROM posts WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
         ?>
         <div class="head_menu_content" style="width:491px;" >
-            <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'post_title' ]; ?></span>
+            <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'description' ]; ?></span>
             <a href="single-post-view.php?p_id=<?php echo $post_id; ?>">
                 <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">
                     Back
@@ -696,11 +696,11 @@
      * @return Echos the current image
      */
     function view_single_post_image($mysqli, $post_id) {
-        $query_select_posts = "SELECT id, post_photo_name FROM posts WHERE id = $post_id";
+        $query_select_posts = "SELECT id, image_name FROM posts WHERE id = $post_id";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
-        $img_path = UPLOADS_URL . $row_post[ 'post_photo_name' ];
+        $img_path = UPLOADS_URL . $row_post[ 'image_name' ];
         ?>
         <a href="single-post-view.php?p_id=<?php echo $row_post[ 'id' ]; ?>">
             <img class="img_view_full" title="Back to detailed view" src=<?php echo $img_path ?> />
@@ -714,7 +714,7 @@
      * @return Echos the table of all posts
      */
     function show_posts_database($mysqli) {
-        $query_select_posts = "SELECT id, post_author, post_date, post_title, post_status, category_id, post_photo_name, post_views FROM posts ORDER BY post_date DESC";
+        $query_select_posts = "SELECT id, user_id, created_at, description, status, category_id, image_name, views FROM posts ORDER BY created_at DESC";
         $result_posts       = mysqli_query($mysqli, $query_select_posts);
     ?>
         <table cellspacing="1" class="tablesorter">
@@ -735,13 +735,13 @@
         while ($data = mysqli_fetch_array($result_posts)){
         ?>
             <tr>
-                <td style="cursor: default;" title="<?= $data[ 'post_title' ]; ?>"> <?= substr($data[ 'post_title' ], 0, 40); ?> </td>
-                <td title="<?= (date("l, d F  H:i", strtotime($data[ 'post_date' ]))) ?>" style="text-align:center; cursor: default;"> <?= (date("d.m.Y - H:i", strtotime($data[ 'post_date' ]))) ?> </td>
-                <td> <?php echo get_user_name($mysqli, $data['post_author']); ?> </td>
+                <td style="cursor: default;" title="<?= $data[ 'description' ]; ?>"> <?= substr($data[ 'description' ], 0, 40); ?> </td>
+                <td title="<?= (date("l, d F  H:i", strtotime($data[ 'created_at' ]))) ?>" style="text-align:center; cursor: default;"> <?= (date("d.m.Y - H:i", strtotime($data[ 'created_at' ]))) ?> </td>
+                <td> <?php echo get_user_name($mysqli, $data['user_id']); ?> </td>
                 <td> <?php echo get_category_name($mysqli, $data['category_id']); ?> </td>
-                <td class="text-center" style="cursor: default;"> <?= $data['post_status'] ?> </td>
-                <td style="cursor: default;" title="<?= $data[ 'post_photo_name'] ?>"> <?= substr($data[ 'post_photo_name' ], 0, 15) ?> </td>
-                <td class="text-center" ><?= $data[ 'post_views' ]; ?> </td>
+                <td class="text-center" style="cursor: default;"> <?= $data['status'] ?> </td>
+                <td style="cursor: default;" title="<?= $data[ 'image_name'] ?>"> <?= substr($data[ 'image_name' ], 0, 15) ?> </td>
+                <td class="text-center" ><?= $data[ 'views' ]; ?> </td>
                 <td title="View&nbsp;&nbsp; <?=$data['id'] ?>" style="text-align:center; cursor:default"><a href="single-post-view.php?p_id=<?= $data['id']; ?>" /><img src="images/open.png" class="p_db_img_view"></td>
             </tr>
             <?php  
@@ -759,12 +759,12 @@
      */
     function latest_posts_left($mysqli){
 
-        $query_select_img = "SELECT id, post_photo_name, post_date FROM posts ORDER BY post_date DESC LIMIT 0 ,5";
+        $query_select_img = "SELECT id, image_name, created_at FROM posts ORDER BY created_at DESC LIMIT 0 ,5";
         $result_img = mysqli_query($mysqli, $query_select_img); 
         
         while($row_img = mysqli_fetch_array($result_img)){
-            if($row_img['post_photo_name']!=''){
-                $img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
+            if($row_img['image_name']!=''){
+                $img_path = MAIN_URL . "uploads/".$row_img['image_name'];
                 ?>
                 <a href="single-post-image-view.php?p_id=<?php echo  $row_img['id'] ?>" >
                     <img class="panel_img_latest_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)">
@@ -781,12 +781,12 @@
      */
     function latest_posts_right($mysqli){
 
-        $query_select_img = "SELECT id, post_photo_name, post_date FROM posts ORDER BY post_date DESC LIMIT 5, 10";
+        $query_select_img = "SELECT id, image_name, created_at FROM posts ORDER BY created_at DESC LIMIT 5, 10";
         $result_img = mysqli_query($mysqli, $query_select_img); 
         
         while($row_img = mysqli_fetch_array($result_img)){
-            if($row_img['post_photo_name']!=''){
-                $img_path = MAIN_URL . "uploads/".$row_img['post_photo_name'];
+            if($row_img['image_name']!=''){
+                $img_path = MAIN_URL . "uploads/".$row_img['image_name'];
                 ?>
                 <a href="single-post-image-view.php?p_id=<?php echo  $row_img['id'] ?>" >
                     <img class="panel_img_latest_right" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)">
@@ -815,11 +815,11 @@
     }
 
      function get_post_description($mysqli, $post_id){
-        $query = "SELECT post_title FROM posts WHERE id = $post_id ";
+        $query = "SELECT description FROM posts WHERE id = $post_id ";
         $result = mysqli_query($mysqli, $query);
         $row = mysqli_fetch_array($result);
 
-        return $row['post_title'];
+        return $row['description'];
     }
 
     function get_post_category($mysqli, $post_id){

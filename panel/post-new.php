@@ -24,7 +24,7 @@
                         <label class="label-post">Image Description or tags:</label>
                     </div>
                     <div class="form-control">
-                        <textarea name="post_title" rows="6" cols="50"></textarea>
+                        <textarea name="description" rows="6" cols="50"></textarea>
                     </div>
                     <div class="form-control">
                         <label class="label-post">Image Category:</label>
@@ -44,8 +44,8 @@
                     </div>
                         <hr>
                     <div class="form-control">
-                        <input type="radio" name="post_status" value="1" checked>Public<br>
-                        <input type="radio" name="post_status" value="0">Not Public
+                        <input type="radio" name="status" value="1" checked>Public<br>
+                        <input type="radio" name="status" value="0">Not Public
                     </div>
                     <button class="content_button">Publish</button>
                     <pre>
@@ -55,7 +55,7 @@
                 </form>
                 <?php
 
-                    if (isset($_POST[ 'post_title' ])) {
+                    if (isset($_POST[ 'description' ])) {
                         $user_id = get_user_id();
                         $img_name = upload_image($_FILES[ 'skedar' ][ 'name' ],
                             $_FILES[ 'skedar' ][ 'size' ],
@@ -64,9 +64,9 @@
 
                         new_post($mysqli,
                             $user_id,
-                            $_POST[ 'post_title' ],
+                            $_POST[ 'description' ],
                             $_POST[ 'category_id' ],
-                            $_POST[ 'post_status' ],
+                            $_POST[ 'status' ],
                             $img_name
                         );
                     }
