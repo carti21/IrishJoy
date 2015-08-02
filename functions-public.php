@@ -12,19 +12,33 @@
 		<?php
 	}
 
-	function show_main_menu(){	
+	 /**
+     * Get all Categoris to an array
+     * @param  $mysqli MySql Connection
+     * @return array $categories_array [id]=>[category_name] array with
+     * all teh Categories. Mostly used on dropdown select of categories
+     */
+    function get_categories_array($mysqli){
+        $query = "SELECT id, category_name FROM categories ORDER BY category_name ";
+        $result = mysqli_query($mysqli, $query);
+
+        $categories_array = array();
+        while($row = mysqli_fetch_array($result)){
+          $categories_array[$row['id']] = $row['category_name'];
+        }
+
+        return $categories_array;
+    }
+
+	function show_main_menu($mysqli){	
+		$categories_array = get_categories_array($mysqli);
+		foreach($categories_array as $category_id => $category_name){
 		?>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/menswear"> menswear </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/design"> design </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/architecture"> architecture </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/cars"> cars </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/inspiration"> inspiration </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/girls"> girls </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/landscape"> landscape </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/interiors"> interior design </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/gears"> gears </a></div>
-		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>tagged/photography"> photography </a></div>
-		<?php			 
+
+		<div class="menu_items"><a href="<?php echo MAIN_URL; ?>categories.php?cat_id=<?php echo $category_id; ?>"><?php echo $category_name; ?></a></div>
+		
+		<?php			
+		} 
 	}	
 	  
 	function show_left_col_images($mysqli,$start_left){
