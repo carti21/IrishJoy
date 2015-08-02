@@ -525,12 +525,9 @@
     }
 
     function edit_post($mysqli, $post_id, $title, $category) {
-        if( ($title != " "))
-        {
-            $query_update_post  = "UPDATE post SET post_title='$title', post_category='$category' WHERE id=$post_id";
-            $result_update_post = mysqli_query($mysqli, $query_update_post);
-            header("Location: " . PANEL_URL ."single-post-view.php?p_id=".$post_id."&edit=success");
-        }
+      
+        $query_update_post  = "UPDATE posts SET post_title='$title', category_id='$category' WHERE id=$post_id";
+        $result_update_post = mysqli_query($mysqli, $query_update_post);
     }
 
     function new_post($mysqli, $user, $title, $category, $post_status, $img_new_name ) {

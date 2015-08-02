@@ -31,13 +31,13 @@
                         <div class="form-control">
                         <label class="label-post">Image Category:</label>
                         <select name="category_id">
-                            <option>Select Category</option>
+                            <option disabled selected>Select Category</option>
                             <?php 
                                 $categories_array = get_categories_array($mysqli);
                                 $post_category_id = get_post_category($mysqli, $id);
                                 foreach($categories_array as $category_id => $category_name){
                                     ?>
-                                    <option value="<?php echo $id; ?>" <?php if($post_category_id == $category_id) echo 'selected'; ?> >
+                                    <option value="<?php echo $category_id; ?>" <?php if($post_category_id == $category_id) echo 'selected'; ?> >
                                         <?php echo $category_name; ?>
                                     </option>
                                     <?php
@@ -55,12 +55,12 @@
                         </br> </br>
                     </form>
                     <?php
-                        if (isset($_POST[ 'title_edit' ]) && isset($_POST[ 'category' ])) {
-                            $title    = $_POST[ 'title_edit' ];
-                            $category = $_POST[ 'category' ];
-                            if (edit_post($mysqli, $id, $title, $category)) {
-                                echo "sukses";
-                            }
+
+                        if (isset($_POST[ 'post_title' ]) && isset($_POST[ 'category_id' ])) {
+                            $title    = $_POST[ 'post_title' ];
+                            $category = $_POST[ 'category_id' ];
+                            edit_post($mysqli, $id, $title, $category);
+                            //header('Location: " ./single-post-view.php?p_id=".$post_id."&edit=success"');
                         }
                     ?>
                 </div>
