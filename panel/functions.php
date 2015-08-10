@@ -157,7 +157,7 @@
      */
     function add_category($mysqli, $category_name) {
 
-        if ($cat_name != '') {
+        if ($category_name != '') {
             $query_insert   = "INSERT INTO categories (category_name) VALUES ('$category_name')";
 
             if (!mysqli_query($mysqli,$query_insert)){
