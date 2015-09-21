@@ -39,72 +39,18 @@
 				</div>
 			</div>	 		
 	 		<div class="content">
-				<div class="content_img_left">
-		 			<?php 
 
-		 				if(isset($_GET['page'])){
-		 					$page = $_GET['page'];
-		 				} else {
-		 					$page = 0;
-		 				}
+	 			<?php show_images($mysqli); ?>
 
-		 				$start_left="$page"*7; 
-						show_left_col_images($mysqli,$start_left);
-		 			
-		 			?> 
-	 			</div> 
-	 			<div class="content_img_right"> 
-		 			<?php 
-		 				$start_right=(($page+1)*7); 
-						show_right_col_images($mysqli,$start_right);
-		 			
-		 			?>
-	 			</div>
 	 		</div>			
 	 	</div>
 		<div class="footer"> 
-			<p>
-				<?php 
-					if(isset($_GET['page']))
-					{
-						if($_GET['page']!=0){
-							$page=$_GET['page']; $page=$page-2; 
-							?>
-							<a href="?page=<?php echo $page; ?>"> Prev Page </a>
-							<?php
-						} else {
-							?>
-							<a href="<?php echo MAIN_URL; ?>"> Prev Page </a> 
-							<?php
-						}
-					} else {
-						?>
-						<a href="<?php echo MAIN_URL; ?>"> Prev Page </a>
-						<?php
-					}
-				
-					echo"&nbsp; &nbsp; &nbsp;";
-				
-					if(isset($_GET['page'])){
-						$page=$_GET['page']; 
-						$page=$page+2; 
-						?>
-						<a href="<?php echo MAIN_URL; ?>?page=$page"> Next Page</a>
-						<?php
-					}
-				
-					else { 
-						echo"<a href=\"http://irishjoy.flivetech.com?page=2\"> Next Page</a> ";
-					}
-				?>
-				
-			</p>
+				<?php pagination(); ?>
+					
 			<div class="copyright"> 
-				&copy; www.irishjoy.com 2014 &nbsp;&nbsp;&nbsp; 
-				<a target="_blank" href="http://facebook.com/irishjoycom"> www.facebook.com/irishjoycom</a>
+				<a href"http://www.intolaravel.com/" target="_blank">Powered by: Intolaravel</a>
 			</div>
 	</div>
-	</body>  
-</html>
+	<?php show_footer_requires(); ?>
 
 		

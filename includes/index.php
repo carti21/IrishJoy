@@ -1,3 +1,0 @@
-<?php 
- 
-	/*Prevent File Listing*/
