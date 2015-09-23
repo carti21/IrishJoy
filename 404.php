@@ -4,7 +4,7 @@
 		<title></title>
 	</head>
 	<body>
-		<div style="width:400px; height:400px; margin:150px auto;" >
+		<div class="not_found_page">
 			<h2 style="font-family: arial;"> Page Not Found! </h2>
 		</div>
 	</body>

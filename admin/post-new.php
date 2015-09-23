@@ -1,8 +1,8 @@
 <?php
-    require_once('functions.php');
+    require_once('functions-admin.php');
 
     sec_session_start();
-    if (login_check($mysqli) == false) {
+    if (login_check($mysql_conn) == false) {
          header('Location: ' . MAIN_URL);
     }
 ?>
@@ -13,9 +13,7 @@
         <?php header_requires(); ?>
     </head>
     <body>
-        <div class="head">
-            <div class="right_head_bar"></div>
-        </div>
+        <div class="head"></div>
         <div class="container">
             <div class="content">
                 <h2>Add a new post:</h2>
@@ -31,7 +29,7 @@
                         <select name="category_id">
                             <option>Select Category</option>
                             <?php 
-                                $categories_array = get_categories_array($mysqli);
+                                $categories_array = get_categories_array($mysql_conn);
                                 foreach($categories_array as $id=>$category){
                                     echo "<option value='$id'>$category</option>";
                                 }
@@ -48,10 +46,6 @@
                         <input type="radio" name="status" value="0">Not Public
                     </div>
                     <button class="content_button">Publish</button>
-                    <pre>
-                     <?php
-                                //get_categories_array($mysqli);
-                            ?>
                 </form>
                 <?php
 
@@ -62,7 +56,7 @@
                             $_FILES[ 'skedar' ][ 'tmp_name' ]
                         );
 
-                        new_post($mysqli,
+                        new_post($mysql_conn,
                             $user_id,
                             $_POST[ 'description' ],
                             $_POST[ 'category_id' ],
@@ -74,9 +68,8 @@
             </div>
             <div class="sidebar_right">
                 <div class="menu_bar">
-                    <?php show_panel_menu(); ?>
+                    <?php show_admin_menu(); ?>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    <?php footer_requires($mysql_conn); ?>

@@ -1,8 +1,8 @@
 <?php
-    require_once('functions.php');
+    require_once('functions-admin.php');
 
     sec_session_start();
-    if(login_check($mysqli) == false){
+    if(login_check($mysql_conn) == false){
          header('Location: ' . MAIN_URL);
     }
 ?>
@@ -14,7 +14,6 @@
 		<script type="text/javascript" src="js/jquery-latest.js"></script>
 		<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 		<script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
-		<script type="text/javascript" src="js/docs.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				$("table")
@@ -26,7 +25,7 @@
 	<body>
 		<div class="posts_database_head"> 
 			<div class="posts_database_left_box">
-				<a style="color:#fff; text-decoration:none;" href="<?= PANEL_URL ?>panel.php">
+				<a style="color:#fff; text-decoration:none;" href="<?= ADMIN_URL ?>index.php">
 						<img style=" width:15px; height:auto; margin-bottom:-3px; margin-right:3px;" src="images/white_left_arrow.png">Back
 				</a>
 			</div>
@@ -38,9 +37,9 @@
 				?> 
 			</div> 
 		</div>
-		<div id="container" style="width:970; min-height: 600px; background-color:#eee; margin: auto;">
+		<div id="container" style="width:970px; min-height: 600px; background-color:#eee; margin: auto;">
 	 		<div id="posts_database_content">
-				<?php  show_posts_database($mysqli) ?>				
+				<?php  show_posts_database($mysql_conn) ?>
 
 				<div id="pager" class="pager" style="margin-top:15px; margin-left:310px;">
 					<form>
@@ -64,5 +63,4 @@
 				</div>		 	
 			</div>		
 		</div>
-	</body>
-</html>
+	<?php footer_requires($mysql_conn); ?>

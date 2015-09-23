@@ -1,12 +1,12 @@
 <?php
-    require_once('functions.php');
+    require_once('functions-admin.php');
 
     sec_session_start();
-    if (login_check($mysqli) == false) {
+    if (login_check($mysql_conn) == false) {
          header('Location: ' . MAIN_URL);
     }
 
-	$post_id = $_GET['p_id'];	 
+	$post_id = $_GET['post-id'];	 
 ?>
 
 <html>
@@ -19,15 +19,14 @@
 		<div class="container">
 			<div class="content">
 				<?php 
-					view_single_post_image_menu($mysqli,$post_id);	 
-					view_single_post_image($mysqli,$post_id);
+					view_single_post_image_menu($mysql_conn,$post_id);
+					view_single_post_image($mysql_conn,$post_id);
 				?>
 			</div>
 			<div class="sidebar_right">	
 				<div class="menu_bar">
-					<?php show_panel_menu(); ?>
+					<?php show_admin_menu(); ?>
 				</div>
 			</div>
 		</div>
-	</body>
-</html>
+	<?php footer_requires($mysql_conn); ?>

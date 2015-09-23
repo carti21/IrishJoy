@@ -35,12 +35,12 @@
 					<!-- Social Media Buttons goes here -->
 				</div>
 				<div class="menu_bar">
-					<?php show_main_menu($mysqli); ?> 
+					<?php show_main_menu($mysql_conn); ?>
 				</div>
 			</div>	 		
 	 		<div class="content">
 
-	 			<?php show_images($mysqli); ?>
+	 			<?php show_images($mysql_conn); ?>
 
 	 		</div>			
 	 	</div>

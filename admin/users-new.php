@@ -1,8 +1,8 @@
 <?php
-    require_once('functions.php');
+    require_once('functions-admin.php');
 
     sec_session_start();
-    if (login_check($mysqli) == false) {
+    if (login_check($mysql_conn) == false) {
          header('Location: ' . MAIN_URL);
     }
 ?>
@@ -13,26 +13,24 @@
 		<?php header_requires(); ?>
 	</head>
 	<body>
-		<div class="head">
-			<div class="right_head_bar"></div>
-		</div>	
+		<div class="head"></div>
 		<div class="container">
 			<div class="content">
 				<div class="users_new">
-					<p><b>Add a new user</p></b></br>
+					<p><b>Add a new user</b></p><br>
 					
-					<form method="post" action="" name="add_user" method="POST">
+					<form method="post" action="" name="add_user">
 						<label>Username: </label>
-					    <input type="text" name="name" value=""> </br></br>
+					    <input type="text" name="name" value=""> <br><br>
 								
 						<label>Password: </label>
-					    <input type="password" name="password" value=""></br></br>
+					    <input type="password" name="password" value=""><br><br>
 
 					    <label>Password Confirm: </label>
-					    <input type="password" name="password_repeat" value=""></br></br>
+					    <input type="password" name="password_repeat" value=""><br><br>
 							    
 					    <label>Email: </label>
-					    <input type="text" name="email" value=""></br></br></br>
+					    <input type="text" name="email" value=""><br><br><br>
 							    
 					    <div class="pull-right">
 					    	<button type="submit" name="add_user" id="content" class="content_button">Add user</button>
@@ -47,7 +45,7 @@
 
 						if( ($_POST['name']) && ($_POST['password']) &&($_POST['email']) )
 						{
-							add_user($mysqli, $_POST['name'], $_POST['password'], $_POST['password_repeat'], $_POST['email']);
+							add_user($mysql_conn, $_POST['name'], $_POST['password'], $_POST['password_repeat'], $_POST['email']);
 							
 							header('Location: ./users.php');
 						}
@@ -57,11 +55,10 @@
 		 	</div>	
 			<div class="sidebar_right">
 				<div class="menu_bar">
-					<?php show_panel_menu() ?>
+					<?php show_admin_menu() ?>
 				</div>
 			</div>
  		</div> 
-	</body>
-</html>
+	<?php footer_requires($mysql_conn); ?>
 
 					

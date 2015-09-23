@@ -6,10 +6,89 @@ body{
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-/*new*/
+
 .text-center{
 	text-align:center;
 }
+
+.pull-right{
+	float:right;
+}		
+
+.pull-left{
+	float:left;
+}
+
+
+/*------------------------------------------------------------------
+------------------------------------------------------------------*/
+
+/*Comonly Used button in content*/
+button.content_button {
+	background: #e9e3e3;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+	box-shadow: inset 0 0 1px 1px #f6f6f6;
+	color: #333;
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	font-weight: bold;
+	font-size: 12px/1;
+	padding-left: 10px ;
+	padding-right: 10px ;
+	text-align: center;
+	text-shadow: 0 1px 0 #fff;
+	min-width: 80px;
+	height: 30px;
+}
+
+button.content_button:hover {
+	background: #d9d9d9;
+	-webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
+	box-shadow: inset 0 0 1px 1px #eaeaea;
+	color: #222;
+	cursor: pointer;
+}
+
+button.content_button:active {
+	background: #d0d0d0;
+	-webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
+	box-shadow: inset 0 0 1px 1px #e3e3e3;
+	color: #000;	
+	outline:none
+}
+
+button.content_button:focus{
+	outline:none
+}
+
+
+.head_menu_content{
+	width:511px;
+	height:20px;
+	padding:7px;
+	background-color:#cccccc;
+	border:none;
+	margin-bottom:20px;
+} 
+
+.head_menu_content a{
+	padding-top:10px;
+	padding-left:12px;
+	color:#336699;
+	font-size:13px;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.head_menu_content a:hover{
+	color:#68838B;
+}
+/*------------------------------------------------------------------
+------------------------------------------------------------------*/
+
+
+
 
 .head{
 	width:100%;
@@ -22,91 +101,28 @@ body{
 	color:#ffeeee;
 }
 
-.panel_img_latest_left{
+.admin_img_latest_left{
 	max-width: 100%;
 	height: auto;
 	margin-bottom:10px;
 }
 
-.panel_img_latest_right{
+.admin_img_latest_right{
 	max-width: 100%;
 	height: auto;
 	margin-bottom:10px;
 }
 
-.panel_latest_posts_left{
+.admin_latest_posts_left{
 	width: 250px;
 	float:left;
 }
 
-.panel_latest_posts_right{
+.admin_latest_posts_right{
 	width: 250px;
 	float:right;
 
 }
-
-.right_head_bar{
-	width:200px;
-	height: 15px;
-	background:none ;
-	padding:0px;
-	margin-right:10px;
-	float:right;
-}
-
-button.custom_menu{
-  background: #fff;
-  border:1px black;
-  border-radius: 3px;
-  color: #333;
-  font-family: "helvetica neue", helvetica, arial, sans-serif;
-  font-weight: bold;
-  font-size: 12px/1;
-  padding-left: 10px ;
-  padding-right: 10px ;
-  text-align: center;
-  width: 110px;
-  height: 30px;
-  margin-bottom:1px;
-  margin-top:13px;
-}
-
-button.custom_menu:hover{
-   background-color:#F8F8F8;
-   border: 1px solid #F8F8FF;
-   box-shadow: 0px 0px 8px #F8F8FF;
-   -moz-box-shadow: 0px 0px 8px #F8F8FF;
-   -webkit-box-shadow: 0px 0px 8px #F8F8FF;
-}
-
-button.custom_menu:focus {
-	background-color:#F8F8F8;
-    border: 1px solid #F8F8FF;
-    box-shadow: 0px 0px 8px #F8F8FF;
-    -moz-box-shadow: 0px 0px 8px #F8F8FF;
-    -webkit-box-shadow: 0px 0px 8px #F8F8FF;
-    outline: none;
-} 
-
-.custom_menu1, .custom_menu2 ,.custom_menu3{
-	padding-top:5px;
-	font-weight:500;
-	width:100px;
-	height:30px;
-	background-color:#fff;
-	color:#333;
-	text-align:left;
-	text-decoration:none;
-	padding-left:10px;	
-}
-
-.custom_menu1:hover,.custom_menu2:hover,.custom_menu3:hover{
-	background-color:#808080;
-	color:#fff;
-	text-decoration:none;
-	font-weight:bold;
-}
-
 
 .container{
 	margin-left:auto;
@@ -169,39 +185,6 @@ button.custom_menu:focus {
 	vertical-align:text-top;
 }
 
-.tasks{
-	float:right
-}
-
-.tasks a{
-	color:black;
-	text-decoration:none;
-	cursor:pointer;
-	font-weight:bold;
-}
-
-.quick_tasks{
-	margin-right:5px;
-	width:245px;
-	height:40px;
-	border:1px solid #726E6D;
-	margin-bottom:20px;
-	text-align:center;	
-	box-shadow: 5px 5px 3px #888;
-	text-decoration:none;
-}
-
-.quick_tasks:hover{
-	background-color:#ffcc99;
-	color:#333333;
-	cursor:pointer;
-	font-weight:bold;
-}
-
-.quick_tasks_items{
-		margin-top:10px;
-}
-
 .sidebar_right{
 	width:300px;
 	min-height:600px;
@@ -209,27 +192,6 @@ button.custom_menu:focus {
 	border:none;
 	border-radius: none;
 	float:right;
-} 
-
-.ad_box{
-	width:300px;
-	height:250px;
-	background:none;
-	border:none;
-	border-radius: none;
-	overflow-x: auto;
-	margin: auto;
-	float:right;	
-} 
-
-.ad_bottom{
-	width:300px;
-	height:45px;
-	background-color :#cccccc;
-	border:none;
-	border-radius: none;
-	margin: auto;
-	float:right;	
 } 
 
 .menu_bar{
@@ -278,41 +240,6 @@ button.custom_menu:focus {
 	color: #777777;
 }
 
-.before_menu{
-	width:300px;
-	height:100px;
-	background-color :#cccccc;
-	border:none;
-	border-radius: none;
-	overflow-x: auto;
-	margin-top: 20px;
-	margin-bottom: 1px;
-	float:right;	
-} 
-
-.head_menu_content{
-	width:511px;
-	height:20px;
-	padding:7px;
-	
-	background-color:#cccccc;
-	border:none;
-	margin-bottom:20px;
-} 
-
-.head_menu_content a{
-	padding-top:10px;
-	padding-left:12px;
-	color:#336699;
-	font-size:13px;
-	font-weight:bold;
-	text-decoration:none;
-}
-
-.head_menu_content a:hover{
-	color:#68838B;
-}
-
 .users_new{
 	width:400px;
 	min-height:500px;
@@ -348,7 +275,6 @@ button.custom_menu:focus {
     box-shadow: 0px 0px 8px #7bc1f7;
     -moz-box-shadow: 0px 0px 8px #7bc1f7;
     -webkit-box-shadow: 0px 0px 8px #7bc1f7;
-
 }
 
 .users_new label{ 
@@ -368,45 +294,7 @@ button.custom_menu:focus {
 	padding-top:12px;
 }
 
-/*  Button showing on the conteng */
-button.content_button {
-  background: #e9e3e3;
-  border: 1px solid #bbb;
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
-  box-shadow: inset 0 0 1px 1px #f6f6f6;
-  color: #333;
-  font-family: "helvetica neue", helvetica, arial, sans-serif;
-  font-weight: bold;
-  font-size: 12px/1;
-  padding-left: 10px ;
-  padding-right: 10px ;
-  text-align: center;
-  text-shadow: 0 1px 0 #fff;
-  min-width: 80px;
-  height: 30px;
-}
 
-button.content_button:hover {
-  background: #d9d9d9;
-  -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
-  box-shadow: inset 0 0 1px 1px #eaeaea;
-  color: #222;
-  cursor: pointer;
-}
-
-button.content_button:active {
-  background: #d0d0d0;
-  -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
-  box-shadow: inset 0 0 1px 1px #e3e3e3;
-  color: #000;	
-  outline:none
-}
-
-button.content_button:focus{
-	outline:none
-}
-/* Mbaron css e butonit*/ 
 
 /* Css e tabeles se contentit (jo e posteve)*/ 
 #table_style{
@@ -488,11 +376,7 @@ img.img_view_full:hover{
 	opacity:0.9;
 }
 
-/*posts database*/
-.text-center{
-	text-align:center;
-}
-
+/*Posts Database*/
 table.tablesorter {
 	font-family:arial;
 	background-color: #CDCDCD;
@@ -511,7 +395,6 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 }
 
 table.tablesorter thead tr .header {
-	background-image: url('http://irishjoy.flivetech.com/panel/super/images/bg.png');
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
@@ -529,11 +412,11 @@ table.tablesorter tbody tr.odd td {
 }
 
 table.tablesorter thead tr .headerSortUp {
-	background-image: url('http://irishjoy.flvetech.com/panel/super/images/asc.gif');
+	background-image: url('../images/asc.gif');
 }
 
 table.tablesorter thead tr .headerSortDown {
-	background-image: url('http://irishjoy.flvetech.com/panel/super/images/desc.gif');
+	background-image: url('../images/desc.gif');
 }
 
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
@@ -570,18 +453,6 @@ table.tablesorter tbody tr:hover td{
 
 .form-control{
 	margin-bottom: 20px;
-}	
-
-.pull-right{
-	float:right;
-}		
-
-.pull-left{
-	float:left;
-}								
-
-.visibility{
-	width: 80px; text-align: center; background: none; float:right;
 }
 
 .post-details{
@@ -624,3 +495,116 @@ table.tablesorter tbody tr:hover td{
 	text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
 	padding-top: 7px;
 }
+
+.single-post-info{
+	width: 50%;
+	float:left;
+	word-break: break-all;
+}
+
+
+/* Login Styles */
+.container-login{
+	font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #404040;
+	background-image:url('../images/login_background.png');
+	height: 100%;
+}
+
+input, button, label {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	font-weight: 300;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+	
+div#login_box{
+	width:500px;
+	padding:15px;
+	margin:auto;
+}
+	
+div#login{
+	width:500px;
+	padding:15px;
+	margin-top:430px;
+	color:#bbb;
+	font:13px Geneva;
+	font-weight:550;
+	margin-left:0px;
+}
+
+#login a{
+	color:#B0E2FF;
+	text-decoration:underline;
+	font-weight:500;
+}
+
+#login a:hover{
+	text-decoration:none;
+	}
+
+div#login label{
+	display:block;
+}
+
+div#login input[type="text"], div#login input[type="password"]{
+	padding: 0 10px;
+	width: 300px;
+	height: 40px;
+	color: #fff;
+	text-shadow: 1px 1px 1px black;
+	background: rgba(0, 0, 0, 0.16);
+	border: 0;
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+	box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+div#login input:focus { 
+	color: white;
+	background: rgba(0, 0, 0, 0.1);
+	outline: 0;
+}
+
+/*  Butoni per login */
+button.login {
+	background: #e9e3e3;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+	box-shadow: inset 0 0 1px 1px #f6f6f6;
+	color: #333;
+	font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
+	padding: 8px 0 9px;
+	text-align: center;
+	text-shadow: 0 1px 0 #fff;
+	width: 80px;
+	height: 30px;
+	margin-left:10px;
+	outline:none;	
+}
+
+button.login:hover {
+	background: rgba(0, 0, 0, 0.1);
+	color: #fff;
+	cursor: default;
+	border:none;
+	text-shadow:none;
+	-webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+	box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+button.login:active {
+	background: rgba(0, 0, 0, 0.1);
+	color: #fff;
+	cursor: default;
+	border:none;
+	text-shadow:none;
+	-webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+	box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+	outline:none;
+}
+/* End of Login styles */

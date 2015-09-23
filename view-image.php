@@ -1,8 +1,8 @@
 <?php 
 	require_once('functions-public.php');
 
-	$id  = $_GET['p_id']; 
-	$cat = strtolower(get_cat($mysqli,$id));
+	$id  = $_GET['post-id']; 
+	$cat = strtolower(get_category_by_id($mysql_conn,$id));
 ?>
 <html>
 	<head>
@@ -22,17 +22,13 @@
 		</div> 	
  		<div class="container"> 
 			<div class="content">	
-	 			<?php 
-		 			$id=$_GET['p_id']; 
-					show_single_image($mysqli,$id);
-					$a=get_numb_views($mysqli,$id);
-					$a++;
-					
-					increment_numb_views($mysqli,$a,$id) 
+	 			<?php
+					show_single_image($mysql_conn);
 	 			?>						
 				<div class="after_full_image">
 					<div style="margin-top:18px; margin-left:15px;">
-						<?php echo"<span>TAGS:<a href=\"tagged/"."$cat\">#$cat</a></span>"?>
+						<!--to be checked later the hashtag links. maybe we remove them -->
+						<?php echo"<span>TAGS:<a href=\"#\">#$cat</a></span>"; ?>
 					</div>
 				</div>
 			</div>
@@ -53,7 +49,7 @@
 		</div>  
   		<div class="footer"> 
  			<div class="copyright">
- 				<a target="_blank" href="http://github.com/ArditMustafaraj/IrishJoy ">github.com/ArditMustafaraj/IrishJoy</a>
+ 				<a target="_blank" href="http://github.com/ArditMustafaraj/IrishJoy">github.com/ArditMustafaraj/IrishJoy</a>
  			</div>
  		</div>
 	</body>

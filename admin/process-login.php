@@ -1,6 +1,6 @@
 <?php 
 
-   require_once('functions.php');
+   require_once('functions-admin.php');
    
    sec_session_start();
     
@@ -9,9 +9,9 @@
       $email = $_POST['email'];
       $password = $_POST['password'];
 
-         if(login($mysqli, $email, $password) == true) {
+         if(login($mysql_conn, $email, $password) == true) {
             // Login success
-            header('Location: ./panel.php');
+            header('Location: ./index.php');
          } else {
             // Login failed
             header('Location: ./login.php?error=1');

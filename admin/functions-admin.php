@@ -1,33 +1,43 @@
 <?php
 
     $root = realpath(__DIR__ . '/..');
-    include "$root/config.php";
-
+    include ("$root/config.php");
+    
     /**
      * Echos the Header elements and includes
      */
     function header_requires(){
         ?>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="<?php echo PANEL_URL; ?>css/css_panel.css"/>
-        <link rel="icon" href="<?php echo PANEL_URL; ?>images/favicon.png" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_URL; ?>css/admin-style.css"/>
+        <link rel="icon" href="<?php echo ADMIN_URL; ?>images/favicon.png" type="image/x-icon">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <?php
     }
 
     /**
+     * Echos the Footer elements and includes
+     */
+    function footer_requires($mysql_conn){
+        ?>
+            </body>
+        </html>
+        <?php
+            // Closes the MySqli Connection
+            mysqli::close($mysql_conn);
+    }
+
+    /**
      * Starts the session
-     * @return [type] [description]
      */
     function sec_session_start(){
         $session_name = 'sec_session_id'; // Set a custom session name
-        $secure       = false; // Set to true if using https.
-        $httponly     = true; // This stops javascript being able to access the session id.
-        $lifecookie   = COOKIE_LIFETIME; // lifetime of the cookie
+        $secure       = false;            // Set to true if using https.
+        $httponly     = true;             // This stops javascript being able to access the session id.
 
         ini_set('session.use_only_cookies', 1); // Forces sessions to only use cookies. 
         $cookieParams = session_get_cookie_params(); // Gets current cookies params.
-        session_set_cookie_params($lifecookie, $cookieParams[ "path" ], $cookieParams[ "domain" ], $secure, $httponly);
+        session_set_cookie_params(COOKIE_LIFETIME, $cookieParams[ "path" ], $cookieParams[ "domain" ], $secure, $httponly);
         session_name($session_name); // Sets the session name to the one set above.
         session_start(); // Start the php session
         session_regenerate_id(); // regenerated the session, delete the old one.  
@@ -37,16 +47,16 @@
      * Checks if the user has many login attempts
      * and is not allowed to login.
      * @param  int $user_id 
-     * @param  $mysqli  [description]
+     * @param  $mysql_conn MySql Connection
      * @return boolean  false if is clear and ready to go, true if
      * the user has too many login attempts
      */
-    function checkbrute($user_id, $mysqli) {
+    function checkbrute($user_id, $mysql_conn) {
         // Get timestamp of current time
         $now = time();
         $valid_attempts = $now - BLOCK_USER_DURATION;
 
-        if ($stmt = $mysqli->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > ?")) {
+        if ($stmt = $mysql_conn->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > ?")) {
             $stmt->bind_param('ii', $user_id, $valid_attempts);
             $stmt->execute();
             $stmt->store_result();
@@ -63,14 +73,14 @@
 
     /**
      * Login Function
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  string $email Email of the user to be verified 
      * @param  string $password Password of the user to be verified
      * @return bool true if login is done successfully, false otherwise
      */
-    function login($mysqli, $email, $password){
+    function login($mysql_conn, $email, $password){
         // Using prepared Statements means that SQL injection is not possible.
-        if ($stmt = $mysqli->prepare("SELECT id, username, password FROM users WHERE email = ? LIMIT 1")) {
+        if ($stmt = $mysql_conn->prepare("SELECT id, username, password FROM users WHERE email = ? LIMIT 1")) {
             $stmt->bind_param('s', $email); // Bind "$email" to parameter.
             $stmt->execute(); // Execute the prepared query.
             $stmt->store_result();
@@ -80,7 +90,7 @@
 
             if ($stmt->num_rows == 1) { // If the user exists
                 // We check if the account is locked from too many login attempts
-                if (checkbrute($user_id, $mysqli) == true) {
+                if (checkbrute($user_id, $mysql_conn) == true) {
                     // The account was suspended due to many login attempts
                     return false;
                 }
@@ -96,7 +106,7 @@
                     }
                     else {
                         // Password is not correct. This record attempt is stored in the database
-                        if($insert_stmt_insert = $mysqli->prepare("INSERT INTO login_attempts (user_id ) VALUES (?)")){
+                        if($insert_stmt_insert = $mysql_conn->prepare("INSERT INTO login_attempts (user_id ) VALUES (?)")){
                             $insert_stmt_insert->bind_param('i', $user_id);
                             $insert_stmt_insert->execute();
                         }
@@ -121,10 +131,10 @@
 
     /**
      * Simply checks if the user is logged in or not
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @return boolean true if the user is logged, false if not
      */
-    function login_check($mysqli) {
+    function login_check($mysql_conn) {
 
         if(isset($_SESSION[ 'user_id' ]) && isset($_SESSION[ 'logged_in' ]) && $_SESSION[ 'logged_in' ] == true ){
 
@@ -135,33 +145,33 @@
 
     /**
     * Fucntion to Edit a specific Category
-    * @param  $mysqli MySql Connection
+    * @param  $mysql_conn MySql Connection
     * @param  string $new_category_name the new name of the category to be stored
     * @param  [type] $id ID of the current category that is going to change
     * @return Returns to categories.php
     */
-    function edit_category($mysqli, $new_category_name, $id) {
+    function edit_category($mysql_conn, $new_category_name, $id) {
 
-        if ($category_name != '') {
+        if ($new_category_name != '') {
             $query_update = " UPDATE  categories  SET category_name='$new_category_name' WHERE id=$id ";
-            $result_del = mysqli_query($mysqli, $query_update);
+            $result_del = mysqli_query($mysql_conn, $query_update);
             header('Location: ./categories.php');
         }
     }
 
     /**
      * Function to create a category
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  string $category_name Name of the Category
      * @return Returns to categories.php
      */
-    function add_category($mysqli, $category_name) {
+    function add_category($mysql_conn, $category_name) {
 
         if ($category_name != '') {
             $query_insert   = "INSERT INTO categories (category_name) VALUES ('$category_name')";
 
-            if (!mysqli_query($mysqli,$query_insert)){
-                  die('Problem: ' . mysqli_error($mysqli));
+            if (!mysqli_query($mysql_conn,$query_insert)){
+                  die('Problem: ' . mysqli_error($mysql_conn));
             } 
   
             header("Location: categories.php");
@@ -170,13 +180,13 @@
 
     /**
      * Gets the number of posts of a specific category
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  int $category_id ID of the current Category
      * @return int Number of posts by the Category
      */
-    function get_number_of_posts_category($mysqli, $category_id){
+    function get_number_of_posts_category($mysql_conn, $category_id){
         $query_select_category = "SELECT COUNT(*) AS id FROM posts WHERE category_id = $category_id";
-        $result_category       = mysqli_query($mysqli, $query_select_category);
+        $result_category       = mysqli_query($mysql_conn, $query_select_category);
         $row_category          = mysqli_fetch_array($result_category);
 
         return ($row_category['id']);
@@ -184,12 +194,12 @@
 
     /**
      * Function to display all categories and their number of posts
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @return Echos all the Categories table
      */
-    function view_all_categories($mysqli) {
+    function view_all_categories($mysql_conn) {
         $query = "SELECT id, category_name FROM categories ORDER BY category_name ";
-        $result = mysqli_query($mysqli, $query);
+        $result = mysqli_query($mysql_conn, $query);
         ?>
         <table id="table_style">
             <thead> 
@@ -202,11 +212,11 @@
             <tbody>
                 <?php 
                 while ($row = mysqli_fetch_array($result)) { 
-                    $cat_id = $row['id'];
+                    $category_id = $row['id'];
                     ?>
                     <tr>
                         <td><strong><?php echo $row[ 'category_name' ]; ?></strong></td>
-                        <td align="center" ><?php echo get_number_of_posts_category($mysqli, $cat_id); ?></td>
+                        <td align="center" ><?php echo get_number_of_posts_category($mysql_conn, $category_id); ?></td>
 
                         <td align="center"><a href="category-edit.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
                     </tr>
@@ -219,38 +229,36 @@
     }
 
     /**
-     * Function to show the Head menu of Categoris Page
+     * Function to show the Head menu of Categories Page
      * @return Echos the menu
      */
     function show_category_menu(){
         ?>
         <div class="head_menu_content">
-            <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a>
+            <a href="<?php echo ADMIN_URL; ?>categories.php"> Categories </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>category-new.php">Add a category </a>
+            <a href="<?php echo ADMIN_URL; ?>category-new.php">Add a category </a>
         </div>
         <?php
     }
 
     /**
-     * Function to show the Panel on the right sidebar
-     * @return [type] [description]
-     */
-    function show_panel_menu(){
+    * Function to show the admin on the right sidebar
+    */
+    function show_admin_menu(){
         ?> 
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>panel.php"> Panel </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>post-new.php"> New Post </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>categories.php"> Categories </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>category-new.php"> New Category </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>users.php"> Users </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>posts-database.php"> Post Database </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>statistics.php"> Statistics </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>search.php">Search</a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>index.php"> admin </a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>post-new.php"> New Post </a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>categories.php"> Categories </a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>category-new.php"> New Category </a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>users.php"> Users </a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>posts-database.php"> Post Database </a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>statistics.php"> Statistics </a> </div>
         <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>examples.php"> Examples </a> </div>
-        <div class="menu_items"> <a href="<?php echo PANEL_URL; ?>logout.php">Log Out</a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>examples.php"> Examples </a> </div>
+        <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>logout.php">Log Out</a> </div>
 
-        </br>
+        <br>
 
         <div class="menu_items"><a  href="<?php echo MAIN_URL; ?>" target="_blank"> Website - Public </a> </div>
         <?php
@@ -258,13 +266,13 @@
 
     /**
      * Function to show the bad login attemts of users
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @return Echos the table
      */
-    function show_login_attempts($mysqli) {
+    function show_login_attempts($mysql_conn) {
 
         $query_select_mem = "SELECT user_id, time FROM login_attempts ORDER BY time DESC ";
-        $result_mem       = mysqli_query($mysqli, $query_select_mem);
+        $result_mem       = mysqli_query($mysql_conn, $query_select_mem);
         ?>
         <table id="table_style"> 
             <thead> 
@@ -278,7 +286,7 @@
                 while ($data = mysqli_fetch_array($result_mem)) {
                     ?>
                     <tr>
-                        <td align="center"><?php echo get_user_name($mysqli, $data[ 'user_id' ]); ?></td>
+                        <td align="center"><?php echo get_user_name($mysql_conn, $data[ 'user_id' ]); ?></td>
                         <td align="center"><?php echo $data[ 'time' ]; ?></td>
                     </tr>
                     <?php
@@ -291,18 +299,20 @@
 
     /**
      * Function to create a User
-     * @param $mysqli  MySql Connection
+     * @param $mysql_conn  MySql Connection
      * @param string $username Username to be stored in the db
      * @param string $password Password of the User
      * @param string $password_repeat Password confirmation
      * @param string $email Email of the User
      */
-    function add_user($mysqli, $username, $password, $password_repeat, $email) {
+    function add_user($mysql_conn, $username, $password, $password_repeat, $email) {
         if ($password == $password_repeat) {
             $user_password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-            if ($insert_stmt = $mysqli->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)") ) {
-                $insert_stmt->bind_param('sss', $username, $email, $user_password_hash);
+            if ($insert_stmt = $mysql_conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)") ) {
+                if(!empty($insert_stmt)){
+                    $insert_stmt->bind_param('sss', $username, $email, $user_password_hash);
+                }
                 $insert_stmt->execute();
             }
         }
@@ -310,24 +320,26 @@
 
     /**
      * Function to delete a User from the database
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  int $id ID of the current User
      */
-    function delete_user($mysqli, $id) {
+    function delete_user($mysql_conn, $id) {
         $query_del = "DELETE FROM users WHERE id=$id";
-        $result_del = mysqli_query($mysqli, $query_del)
+        $result_del = mysqli_query($mysql_conn, $query_del)
         or
-        die('Problem: '.mysqli_error($mysqli));
+        die('Problem: '.mysqli_error($mysql_conn));
     }
 
-    function show_user_menu(){
+    /**
+ *
+ */function show_user_menu(){
         ?>
         <div class="head_menu_content">
-            <a  title="See all users list" href="<?php echo PANEL_URL; ?>users.php">Users</a>
+            <a  title="See all users list" href="<?php echo ADMIN_URL; ?>users.php">Users</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>users-login-attempts.php" title="See all error logins from users">Users Login Attempts</a>
+            <a href="<?php echo ADMIN_URL; ?>users-login-attempts.php" title="See all error logins from users">Users Login Attempts</a>
             &nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>users-new.php" title="Add a new user">Add a user</a>
+            <a href="<?php echo ADMIN_URL; ?>users-new.php" title="Add a new user">Add a user</a>
         </div>
         <?php
     }
@@ -335,22 +347,22 @@
     function view_user_menu(){
         ?>
         <div class="head_menu_content">
-            <a  title="See the list of all categories" href="<?php echo PANEL_URL; ?>categories.php">Edit Profile </a>
+            <a  title="See the list of all categories" href="<?php echo ADMIN_URL; ?>categories.php">Edit Profile </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&#124;
-            <a href="<?php echo PANEL_URL; ?>category-new.php" title="Add a new category">Add a category </a>
+            <a href="<?php echo ADMIN_URL; ?>category-new.php" title="Add a new category">Add a category </a>
         </div>
         <?php
     }
 
     /**
      * Function to show details about a single User
-     * @param  $mysqli Connection
+     * @param  $mysql_conn Connection
      * @param  int $user_id ID of the current User
      * @return Echos the details of the User
      */
-    function view_single_user($mysqli, $user_id) {
+    function view_single_user($mysql_conn, $user_id) {
         $query_select_user = "SELECT id, username, email FROM users WHERE id = $user_id";
-        $result_user       = mysqli_query($mysqli, $query_select_user);
+        $result_user       = mysqli_query($mysql_conn, $query_select_user);
         $row_user          = mysqli_fetch_array($result_user);
         ?>
         <p>
@@ -360,20 +372,20 @@
             <strong>Email:</strong> <?php echo $row_user[ 'email' ]; ?>
         </p>
         <p>
-            <strong>Number of Posts:</strong> <?php echo get_users_number_of_posts($mysqli, $user_id); ?>
+            <strong>Number of Posts:</strong> <?php echo get_users_number_of_posts($mysql_conn, $user_id); ?>
         </p>
         <?php
     }
 
     /**
      * Function to get the number of Posts that has created a User
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  int $user_id ID of the current User
      * @return int $number_of_posts Number of Posts of the User
      */
-    function get_users_number_of_posts($mysqli, $user_id){
+    function get_users_number_of_posts($mysql_conn, $user_id){
         $query_select_user = "SELECT user_id FROM posts WHERE user_id = $user_id";
-        $result_user       = mysqli_query($mysqli, $query_select_user);
+        $result_user       = mysqli_query($mysql_conn, $query_select_user);
         $row_user          = mysqli_fetch_array($result_user);
 
         $number_of_posts = count($row_user);
@@ -382,13 +394,13 @@
 
     /**
      * Function to show the table of all Users
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @return Echos the table of the Users
      */
-    function show_all_users($mysqli) {
+    function show_all_users($mysql_conn) {
 
         $query_select_mem = "SELECT id, username, email FROM users";
-        $result_mem       = mysqli_query($mysqli, $query_select_mem);
+        $result_mem       = mysqli_query($mysql_conn, $query_select_mem);
 
         ?>
         <table id="table_style"> 
@@ -405,9 +417,9 @@
                 while ($data = mysqli_fetch_array($result_mem)) {
                  ?>
                     <tr>
-                        <td title="."user&nbsp;ID:&nbsp;".$data[ 'id' ]."><?php echo $data[ 'username' ]; ?></td>
+                        <td title="user&nbsp;ID:&nbsp; <?php echo $data[ 'id' ]; ?>"><?php echo $data[ 'username' ]; ?></td>
                         <td><?php echo $data[ 'email' ]; ?></td>
-                        <td align="right"><?php echo get_users_number_of_posts($mysqli, $data[ 'id' ]); ?></td>
+                        <td align="right"><?php echo get_users_number_of_posts($mysql_conn, $data[ 'id' ]); ?></td>
                         <td align="center">
                             <a href="single-user.php?m_id=<?php echo $data[ 'id' ]; ?>" >
                                 <img src="images/user.png" border=0 width="15" height="15">
@@ -424,28 +436,28 @@
 
     /**
      * Function to show statistics of the Posts, Categories, Users
-     * @param $mysqli MySqli Connections
+     * @param $mysql_conn MySql Connections
      * @return Echos the Statistics table
      */
-    function show_statistics($mysqli) {
+    function show_statistics($mysql_conn) {
         $query_categories  = "SELECT category_name FROM categories";
-        $categories_result = mysqli_query($mysqli, $query_categories);
+        $categories_result = mysqli_query($mysql_conn, $query_categories);
         $category_amount   = mysqli_num_rows($categories_result);
 
 
         $query_posts  = "SELECT id FROM posts";
-        $posts_result = mysqli_query($mysqli, $query_posts);
+        $posts_result = mysqli_query($mysql_conn, $query_posts);
         $post_amount  = mysqli_num_rows($posts_result);
 
         $query_users  = "SELECT id FROM users";
-        $users_result = mysqli_query($mysqli, $query_users);
+        $users_result = mysqli_query($mysql_conn, $query_users);
         $users_amount = mysqli_num_rows($users_result);
         ?>
         <table id="table_style"> 
             <thead> 
                 <tr> 
-                    <th scope=\"col\"><b> Items </b></td>
-                    <th scope=\"col\"><b> Amount </b></td>
+                    <th scope="col"><b> Items </b></th>
+                    <th scope="col"><b> Amount </b></th>
                 </tr> 
             </thead> 
             <tbody>
@@ -468,13 +480,13 @@
 
     /**
     * Get the Post's Title by ID
-    * @param  $mysqli  MySql Connection
+    * @param  $mysql_conn  MySql Connection
     * @param  $post_id  int
     * @return string  Title of the Post
     */
-    function get_post_title($mysqli, $post_id){
+    function get_post_title($mysql_conn, $post_id){
         $query_title  = "SELECT description FROM posts WHERE id = $post_id LIMIT 1";
-        $result_title = mysqli_query($mysqli, $query_title);
+        $result_title = mysqli_query($mysql_conn, $query_title);
         $data_title   = mysqli_fetch_array($result_title);
 
         return $data_title[ 'description' ];
@@ -482,13 +494,13 @@
 
     /**
     * Get User's username by ID
-    * @param  $mysqli  MySql Connection
+    * @param  $mysql_conn  MySql Connection
     * @param  $user_id  int
     * @return string  Name of the User
     */
-    function get_user_name($mysqli, $user_id){
+    function get_user_name($mysql_conn, $user_id){
         $user_author  = "SELECT id, username FROM users WHERE id = $user_id";
-        $result_user = mysqli_query($mysqli, $user_author);
+        $result_user = mysqli_query($mysql_conn, $user_author);
         $data_user   = mysqli_fetch_array($result_user);
 
         return $data_user[ 'username' ];
@@ -496,13 +508,13 @@
 
     /**
      * Gets name of the category by ID
-     * @param  $mysqli  MySql Connection parameters
+     * @param  $mysql_conn  MySql Connection parameters
      * @param  $category_id  Id of the current category
      * @return string  Category name
      */
-    function get_category_name($mysqli, $category_id) {
+    function get_category_name($mysql_conn, $category_id) {
         $query_cat  = "SELECT category_name FROM categories WHERE id = $category_id";
-        $result_cat = mysqli_query($mysqli, $query_cat);
+        $result_cat = mysqli_query($mysql_conn, $query_cat);
         $data_cat   = mysqli_fetch_array($result_cat);
 
         return $data_cat[ 'category_name' ];
@@ -510,42 +522,47 @@
 
     /**
      * Function to delete a post
-     * @param  $mysqli MySql Connections
+     * @param  $mysql_conn MySql Connections
      * @param  $post_id ID of the current post
      * @return Returns to posts-database.php
      */
-    function delete_post($mysqli, $post_id) {
+    function delete_post($mysql_conn, $post_id) {
         $query_delelte_post  = "DELETE FROM posts WHERE id=$post_id";
 
-        if(mysqli_query($mysqli, $query_delelte_post)){
+        if(mysqli_query($mysql_conn, $query_delelte_post)){
             header('Location: ./posts-database.php');
         } else {
-            die('Problem: '.mysqli_error($mysqli));
+            die('Problem: '.mysqli_error($mysql_conn));
         }
     }
 
-    function edit_post($mysqli, $post_id, $title, $category) {
+    function edit_post($mysql_conn, $post_id, $title, $category) {
 
         $query_update_post  = "UPDATE posts SET description='$title', category_id='$category' WHERE id=$post_id";
-        $result_update_post = mysqli_query($mysqli, $query_update_post);
+        $result_update_post = mysqli_query($mysql_conn, $query_update_post);
     }
 
-    function new_post($mysqli, $user, $title, $category, $status, $img_new_name ) {
+    function new_post($mysql_conn, $user, $title, $category, $status, $img_new_name ) {
 
         if (($title != '') && ($category != '')) {
             $query_insert_post = "INSERT INTO posts (user_id, description, status, category_id, image_name)
                                        VALUES ('$user', '$title' , '$status', '$category', '$img_new_name')";
-            $result_add_post   = mysqli_query($mysqli, $query_insert_post);
+            $result_add_post   = mysqli_query($mysql_conn, $query_insert_post);
 
             echo '<p>New post has been added. </p>';
         }
     }
 
+    /**
+    * @param $img_name
+    * @param $img_size
+    * @param $tmp
+     * @return string
+    */
     function upload_image($img_name, $img_size, $tmp) {
         // duhet futur kushti qe shef a esht apo jo img nisur nga prapashtesa
 
-        if ($img_size < 1024*1024*2) // size < 2MB
-        {
+        if ($img_size < 1024 * 1024 * 2){
             // emrit i shtohet nje nr random qe mos ngaterrohet
             $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
 
@@ -564,58 +581,59 @@
 
     /**
      * Shows the Single Post Page Head Menu
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  int $post_id  ID of the current post
      * @return Echos the menu
      */
-    function view_single_post_menu($mysqli, $post_id) {
+    function view_single_post_menu($mysql_conn, $post_id) {
         $query_posts   = "SELECT id, status, created_at, views FROM posts WHERE id = $post_id";
-        $result_posts  = mysqli_query($mysqli, $query_posts);
+        $result_posts  = mysqli_query($mysql_conn, $query_posts);
         $row_post_menu = mysqli_fetch_array($result_posts);
         ?>
         <div class="head_menu_content"  >
-        <a title="Edit this post" href="post-edit.php?p_id=<?php echo $post_id; ?>">Edit</a>
-            |
-        <a onclick="return confirm('Press OK to delete this post. ')" href="?p_id=<?php echo $post_id; ?>&del=1" title="Delete this post">Delete</a>
-            |
-        <a title="Add a new post" href="post-new.php">New Post</a>
-        
-        <span title="<?php echo (date("l, d F, H:i", strtotime($row_post_menu[ 'created_at' ]))); ?>" style="margin-left:50px; color:#336699; cursor:default;">
-            <?php echo (date("d.m.Y - H:i", strtotime($row_post_menu[ 'created_at' ]))); ?>
-        </span>
-        <?php 
-        if ($row_post_menu[ 'status' ] == '1') {
-            ?>
-            <span style="float:right; margin-right:10px; cursor:default; color:#008000; font-weight:bold;">
-            Published
+            <a title="Edit this post" href="post-edit.php?post-id=<?php echo $post_id; ?>">Edit</a>
+                |
+            <a onclick="return confirm('Press OK to delete this post. ')" href="?post-id=<?php echo $post_id; ?>&del=1" title="Delete this post">Delete</a>
+                |
+            <a title="Add a new post" href="post-new.php">New Post</a>
+
+            <span title="<?php echo (date("l, d F, H:i", strtotime($row_post_menu[ 'created_at' ]))); ?>" style="margin-left:50px; color:#336699; cursor:default;">
+                <?php echo (date("d.m.Y - H:i", strtotime($row_post_menu[ 'created_at' ]))); ?>
             </span>
-            <?php 
-        }
-        else {
-            ?>
-            <span style="float:right; margin-right:10px; color:#AF0000; font-weight:bold;">
-            Not Published
-            </p>
-            <?php 
-        } ?>
+            <?php
+            if ($row_post_menu[ 'status' ] == '1') {
+                ?>
+                <span style="float:right; margin-right:10px; cursor:default; color:#008000; font-weight:bold;">
+                Published
+                </span>
+                <?php
+            }
+            else {
+                ?>
+                <span style="float:right; margin-right:10px; color:#AF0000; font-weight:bold;">
+                    Not Published
+                    </p>
+                </span>
+                <?php
+            } ?>
         </div>
         <?php 
     }
 
     /**
      * Function to display Single Post's Details
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
      * @return Echos divs with the information of the post
      */
-    function view_single_post($mysqli, $post_id) {
+    function view_single_post($mysql_conn, $post_id) {
         $query_select_posts = "SELECT id, user_id, description, category_id, views, image_name FROM posts WHERE  id = $post_id";
-        $result_posts       = mysqli_query($mysqli, $query_select_posts);
+        $result_posts       = mysqli_query($mysql_conn, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
         if ( !empty($row_post[ 'description' ]) ) {
             ?>
-            <div class="pull-left">
+            <div class="single-post-info">
                 <div class="items">
                     <span class="post-details">
                     Title: </span><?php echo $row_post[ 'description' ]; ?>
@@ -626,11 +644,11 @@
                 </div>
                 <div class="items"> 
                     <span class="post-details">
-                    Category: </span><?php echo get_category_name($mysqli, $row_post[ 'category_id' ]); ?>
+                    Category: </span><?php echo get_category_name($mysql_conn, $row_post[ 'category_id' ]); ?>
                 </div>
                 <div class="items">
                     <span class="post-details">
-                    Author: </span><?php echo get_user_name($mysqli, $row_post['user_id'] ); ?>
+                    Author: </span><?php echo get_user_name($mysql_conn, $row_post['user_id'] ); ?>
                 </div>
                 <div class="items">
                 <span class="post-details">
@@ -638,7 +656,7 @@
                 </div>
                 
                 <a href="posts-database.php" class="post-details ">
-                    <img style="width:15px; margin-bottom:-3px; height:auto;"src="images/left_arrow.png">Go to database
+                    <img style="width:15px; margin-bottom:-3px; height:auto;" src="images/left_arrow.png" width="128" height="128">Go to database
                 </a>
                 <?php
                 $img_path = UPLOADS_URL . $row_post[ 'image_name' ];
@@ -653,7 +671,7 @@
             else {
                 ?>
                </div>
-               <a href="single-post-image-view.php?p_id=<?php echo $row_post[ 'id' ]; ?>" ><img class="post_view_img" title="View full image" src="<?php echo $img_path; ?>" /></a>
+               <a href="single-post-image-view.php?post-id=<?php echo $row_post[ 'id' ]; ?>" ><img class="post_view_img" title="View full image" src="<?php echo $img_path; ?>" /></a>
                <?php
             }
         }
@@ -668,18 +686,18 @@
 
     /**
      * Function to show the menu on the Single-Post-Image
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
      * @return Echos the menu with Delete
      */
-    function view_single_post_image_menu($mysqli, $post_id) {
+    function view_single_post_image_menu($mysql_conn, $post_id) {
         $query_select_posts = "SELECT id, description FROM posts WHERE id = $post_id";
-        $result_posts       = mysqli_query($mysqli, $query_select_posts);
+        $result_posts       = mysqli_query($mysql_conn, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
         ?>
         <div class="head_menu_content" style="width:491px;" >
             <span style="color:#336699; padding-left:10px"><?php echo $row_post[ 'description' ]; ?></span>
-            <a href="single-post-view.php?p_id=<?php echo $post_id; ?>">
+            <a href="single-post-view.php?post-id=<?php echo $post_id; ?>">
                 <span style="float:right; margin-right:10px; color:#336699; font-weight:bold;">
                     Back
                 </span>
@@ -691,18 +709,18 @@
 
     /**
      * Function to show a current image by id
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
      * @return Echos the current image
      */
-    function view_single_post_image($mysqli, $post_id) {
+    function view_single_post_image($mysql_conn, $post_id) {
         $query_select_posts = "SELECT id, image_name FROM posts WHERE id = $post_id";
-        $result_posts       = mysqli_query($mysqli, $query_select_posts);
+        $result_posts       = mysqli_query($mysql_conn, $query_select_posts);
         $row_post           = mysqli_fetch_array($result_posts);
 
         $img_path = UPLOADS_URL . $row_post[ 'image_name' ];
         ?>
-        <a href="single-post-view.php?p_id=<?php echo $row_post[ 'id' ]; ?>">
+        <a href="single-post-view.php?post-id=<?php echo $row_post[ 'id' ]; ?>">
             <img class="img_view_full" title="Back to detailed view" src=<?php echo $img_path ?> />
         </a>
         <?php
@@ -710,12 +728,12 @@
 
     /**
      * Function to show the Posts Database Table 
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @return Echos the table of all posts
      */
-    function show_posts_database($mysqli) {
+    function show_posts_database($mysql_conn) {
         $query_select_posts = "SELECT id, user_id, created_at, description, status, category_id, image_name, views FROM posts ORDER BY created_at DESC";
-        $result_posts       = mysqli_query($mysqli, $query_select_posts);
+        $result_posts       = mysqli_query($mysql_conn, $query_select_posts);
     ?>
         <table cellspacing="1" class="tablesorter">
             <thead> 
@@ -737,12 +755,12 @@
             <tr>
                 <td style="cursor: default;" title="<?= $data[ 'description' ]; ?>"> <?= substr($data[ 'description' ], 0, 40); ?> </td>
                 <td title="<?= (date("l, d F  H:i", strtotime($data[ 'created_at' ]))) ?>" style="text-align:center; cursor: default;"> <?= (date("d.m.Y - H:i", strtotime($data[ 'created_at' ]))) ?> </td>
-                <td> <?php echo get_user_name($mysqli, $data['user_id']); ?> </td>
-                <td> <?php echo get_category_name($mysqli, $data['category_id']); ?> </td>
+                <td> <?php echo get_user_name($mysql_conn, $data['user_id']); ?> </td>
+                <td> <?php echo get_category_name($mysql_conn, $data['category_id']); ?> </td>
                 <td class="text-center" style="cursor: default;"> <?= $data['status'] ?> </td>
                 <td style="cursor: default;" title="<?= $data[ 'image_name'] ?>"> <?= substr($data[ 'image_name' ], 0, 15) ?> </td>
                 <td class="text-center" ><?= $data[ 'views' ]; ?> </td>
-                <td title="View&nbsp;&nbsp; <?=$data['id'] ?>" style="text-align:center; cursor:default"><a href="single-post-view.php?p_id=<?= $data['id']; ?>" /><img src="images/open.png" class="p_db_img_view"></td>
+                <td title="View&nbsp;&nbsp; <?=$data['id'] ?>" style="text-align:center; cursor:default"><a href="single-post-view.php?post-id=<?= $data['id']; ?>" /><img src="images/open.png" class="p_db_img_view"></td>
             </tr>
             <?php  
         } 
@@ -753,21 +771,21 @@
     }
 
     /**
-     * Function to show the left column of images on the panel
-     * @param  $mysqli MySql Connection
+     * Function to show the left column of images on the admin
+     * @param  $mysql_conn MySql Connection
      * @return Echos the left column of images ( form 1 to 5 )
      */
-    function latest_posts_left($mysqli){
+    function latest_posts_left($mysql_conn){
 
         $query_select_img = "SELECT id, image_name, created_at FROM posts ORDER BY created_at DESC LIMIT 0 ,5";
-        $result_img = mysqli_query($mysqli, $query_select_img); 
+        $result_img = mysqli_query($mysql_conn, $query_select_img);
         
         while($row_img = mysqli_fetch_array($result_img)){
             if($row_img['image_name']!=''){
                 $img_path = MAIN_URL . "uploads/".$row_img['image_name'];
                 ?>
-                <a href="single-post-image-view.php?p_id=<?php echo  $row_img['id'] ?>" >
-                    <img class="panel_img_latest_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)">
+                <a href="single-post-image-view.php?post-id=<?php echo  $row_img['id'] ?>" >
+                    <img class="admin_img_latest_left" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?post-id=<?php echo  $row_img['id']; ?>)">
                 </a>
                 <?php
             } 
@@ -775,21 +793,21 @@
     }
 
     /**
-     * Function to show the right column of images on the panel
-     * @param  $mysqli MySql Connection
+     * Function to show the right column of images on the admin
+     * @param  $mysql_conn MySql Connection
      * @return Echos the right column of images ( form 5 to 10 )
      */
-    function latest_posts_right($mysqli){
+    function latest_posts_right($mysql_conn){
 
         $query_select_img = "SELECT id, image_name, created_at FROM posts ORDER BY created_at DESC LIMIT 5, 10";
-        $result_img = mysqli_query($mysqli, $query_select_img); 
+        $result_img = mysqli_query($mysql_conn, $query_select_img);
         
         while($row_img = mysqli_fetch_array($result_img)){
             if($row_img['image_name']!=''){
                 $img_path = MAIN_URL . "uploads/".$row_img['image_name'];
                 ?>
-                <a href="single-post-image-view.php?p_id=<?php echo  $row_img['id'] ?>" >
-                    <img class="panel_img_latest_right" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?p_id=<?php echo  $row_img['id']; ?>)">
+                <a href="single-post-image-view.php?post-id=<?php echo  $row_img['id'] ?>" >
+                    <img class="admin_img_latest_right" src= "<?php echo $img_path; ?>" title="Permalink: (<?php echo MAIN_URL; ?>single-post-image-view.php?post-id=<?php echo  $row_img['id']; ?>)">
                 </a>
                 <?php
             } 
@@ -798,13 +816,13 @@
 
     /**
      * Get all Categoris to an array
-     * @param  $mysqli MySql Connection
+     * @param  $mysql_conn MySql Connection
      * @return array $categories_array [id]=>[category_name] array with
      * all teh Categories. Mostly used on dropdown select of categories
      */
-    function get_categories_array($mysqli){
+    function get_categories_array($mysql_conn){
         $query = "SELECT id, category_name FROM categories ORDER BY category_name ";
-        $result = mysqli_query($mysqli, $query);
+        $result = mysqli_query($mysql_conn, $query);
 
         $categories_array = array();
         while($row = mysqli_fetch_array($result)){
@@ -814,22 +832,20 @@
         return $categories_array;
     }
 
-     function get_post_description($mysqli, $post_id){
+     function get_post_description($mysql_conn, $post_id){
         $query = "SELECT description FROM posts WHERE id = $post_id ";
-        $result = mysqli_query($mysqli, $query);
+        $result = mysqli_query($mysql_conn, $query);
         $row = mysqli_fetch_array($result);
 
         return $row['description'];
     }
 
-    function get_post_category($mysqli, $post_id){
+    function get_post_category($mysql_conn, $post_id){
         $query = "SELECT category_id FROM posts WHERE id = $post_id ";
-        $result = mysqli_query($mysqli, $query);
+        $result = mysqli_query($mysql_conn, $query);
         $row = mysqli_fetch_array($result);
 
         return $row['category_id'];
     }
-
-
 
 ?>

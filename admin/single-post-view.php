@@ -1,9 +1,9 @@
 <?php
 
-    require_once('functions.php');
+    require_once('functions-admin.php');
 
     sec_session_start();
-    if (login_check($mysqli) == false) {
+    if (login_check($mysql_conn) == false) {
          header('Location: ' . MAIN_URL);
     }
 
@@ -11,16 +11,16 @@
 <?php
     if(isset($_GET['del'])){
         if ($_GET[ 'del' ] == 1) {
-            if ($_GET[ 'p_id' ] > 0) {
-                $post_id = $_GET[ 'p_id' ];
-                delete_post($mysqli, $post_id, $post_category, $post_counter, $user_id, $post_mem_count);
+            if ($_GET[ 'post-id' ] > 0) {
+                $post_id = $_GET[ 'post-id' ];
+                delete_post($mysql_conn, $post_id, $post_category, $post_counter, $user_id, $post_mem_count);
             }
         }
     }
 ?>
 <html>
     <head>
-    <title><?php $id = $_GET[ 'p_id' ]; echo get_post_title($mysqli, $id); ?></title>
+    <title><?php $id = $_GET[ 'post-id' ]; echo get_post_title($mysql_conn, $id); ?></title>
     <?php header_requires(); ?>
     </head>
     <body>
@@ -28,13 +28,13 @@
         <div class="container">
             <div class="content">
                 <?php
-                    if(isset( $_GET['p_id'])){
-                        $id = $_GET[ 'p_id' ];
+                    if(isset( $_GET['post-id'])){
+                        $id = $_GET[ 'post-id' ];
                     }
 
-                    view_single_post_menu($mysqli, $id);
+                    view_single_post_menu($mysql_conn, $id);
                     
-                    view_single_post($mysqli, $id);
+                    view_single_post($mysql_conn, $id);
 
                     if(isset( $_GET['edit'])){
                         if ($_GET[ 'edit' ] == 'success') {
@@ -47,9 +47,8 @@
             </div>
             <div class="sidebar_right">
                 <div class="menu_bar">
-                    <?php show_panel_menu(); ?>
+                    <?php show_admin_menu(); ?>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    <?php footer_requires($mysql_conn); ?>

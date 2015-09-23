@@ -1,8 +1,8 @@
 <?php
-    require_once('functions.php');
+    require_once('functions-admin.php');
 
     sec_session_start();
-    if (login_check($mysqli) == false) {
+    if (login_check($mysql_conn) == false) {
          header('Location: ' . MAIN_URL);
     }
 ?>
@@ -18,16 +18,15 @@
 	 		<div class="content">
 				<div class="content"> 
 					<div><?php show_user_menu(); ?> </div>
-					<?php show_login_attempts($mysqli); ?>
+					<?php show_login_attempts($mysql_conn); ?>
 	    		</div>
 	 		</div>
 			<div class="sidebar_right">
 				<div class="menu_bar">
-					<?php show_panel_menu(); ?>
+					<?php show_admin_menu(); ?>
 				</div>
 			</div>
 		</div>
-	</body>
-</html>
+	<?php footer_requires($mysql_conn); ?>
 
 					

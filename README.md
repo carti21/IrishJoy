@@ -32,6 +32,16 @@ All the configurations details are located in <code>/config.php</code>, such as 
 		user: admin
 		pass: admin
 
+### What will you learn:
+
+PHP and MySql communication
+Create Insert Update Delete actions with query
+$_GET and $_POST HTTP Requests
+Basic PHP functions
+HTML and CSS 
+
+
+
 
 Config.php
 ```php
@@ -41,9 +51,9 @@ Config.php
 	Database Configurations
 	*/
 	define('HOST', 'localhost'); // The host you want to connect to.
-	define('USER', 'root'); // The database username.
-	define('PASSWORD', '112'); // The database password. 
-	define('DATABASE', 'pro'); // The database name.
+	define('USER', 'root');      // The database username.
+	define('PASSWORD', '112');   // The database password. 
+	define('DATABASE', 'pro');   // The database name.
 ```
 
 ### Conclusion
