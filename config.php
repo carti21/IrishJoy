@@ -1,6 +1,6 @@
 <?php 
 	
-	define('MAIN_URL', 'http://localhost/pro/');
+	define('MAIN_URL', 'http://localhost/irishjoy/');
 
 	/*
 	Database Configurations
