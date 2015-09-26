@@ -15,7 +15,7 @@
 		<div class="head">
 			<div style="margin: 0 auto; position: relative; width:40%; padding-top: 30px;">
 				<a href="<?php echo MAIN_URL; ?>">
-				<img src="<?php echo MAIN_URL; ?>images/head_logo.jpg">
+				<img src="<?php echo MAIN_URL; ?>images/head_logo.jpg" alt="Irishjoy - Learn the Basics of PHP in a Real-World Project">
 				</a>
 			</div>	
 		</div>
@@ -23,12 +23,12 @@
 	 		<div class="sidebar_right">
 				<div class="ad_box">
 					<a href="#"> 
-						<img src="images/ads.png">
+						<img src="images/ads.png" alt="">
 					</a>
 				</div>
 				<div class="ad_bottom">
 					<div style="margin-top:15px;">
-						<a href"http://www.intolaravel.com/">Our Partners</a>
+						<a href="http://www.intolaravel.com/">Our Partners</a>
 					</div>
 				</div>
 				<div class="before_menu">
@@ -48,7 +48,7 @@
 				<?php pagination(); ?>
 					
 			<div class="copyright"> 
-				<a href"http://www.intolaravel.com/" target="_blank">Powered by: Intolaravel</a>
+				<a href="http://www.intolaravel.com/" target="_blank">Powered by: Intolaravel</a>
 			</div>
 	</div>
 	<?php show_footer_requires(); ?>

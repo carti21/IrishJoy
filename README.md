@@ -19,7 +19,6 @@ Entities
 * Statistics
 * Categories
 
-All the configurations details are located in <code>/config.php</code>, such as paths, db credentials and cookies lifetime.
 
 ### How do you install it?
 
@@ -40,7 +39,7 @@ $_GET and $_POST HTTP Requests
 Basic PHP functions
 HTML and CSS 
 
-
+All the configurations details are located in /config.php, such as paths, db credentials and cookies lifetime.
 
 
 Config.php
