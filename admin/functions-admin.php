@@ -24,7 +24,7 @@
         </html>
         <?php
             // Closes the MySqli Connection
-            mysqli::close($mysql_conn);
+            mysqli_close($mysql_conn);
     }
 
     /**
@@ -545,9 +545,12 @@
     function new_post($mysql_conn, $user, $title, $category, $status, $img_new_name ) {
 
         if (($title != '') && ($category != '')) {
+
             $query_insert_post = "INSERT INTO posts (user_id, description, status, category_id, image_name)
                                        VALUES ('$user', '$title' , '$status', '$category', '$img_new_name')";
             $result_add_post   = mysqli_query($mysql_conn, $query_insert_post);
+
+             upload_image();
 
             echo '<p>New post has been added. </p>';
         }
@@ -559,15 +562,18 @@
     * @param $tmp
      * @return string
     */
-    function upload_image($img_name, $img_size, $tmp) {
-        // duhet futur kushti qe shef a esht apo jo img nisur nga prapashtesa
+    function upload_image() {
 
-        if ($img_size < 1024 * 1024 * 2){
-            // emrit i shtohet nje nr random qe mos ngaterrohet
-            $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
 
-            if (move_uploaded_file($tmp, SERVER_URL.'uploads/'.$img_new_name)) {
+        $uploaded_image = $_FILES['input_image'];
+
+        if ($uploaded_image['size'] < 1024 * 1024 * 2 *222){
+
+            $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $uploaded_image['name']));
+
+            if (move_uploaded_file($uploaded_image['tmp_name'], SERVER_URL.'uploads/'.$img_new_name)) {
                 chmod(SERVER_URL.'uploads/'.$img_new_name, 0666);
+
                 echo '<p>The image was updated successfully</p>';
 
                 return $img_new_name;

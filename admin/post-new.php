@@ -38,18 +38,25 @@
                     </div>
                     <div class="form-control">
                         <label>Choose the image from your computer</label>
-                        <input type="file" name="skedar" size="40">
+                        <input type="file" name="input_image" size="40">
                     </div>
                         <hr>
                     <div class="form-control">
                         <input type="radio" name="status" value="1" checked>Public<br>
                         <input type="radio" name="status" value="0">Not Public
                     </div>
-                    <button class="content_button">Publish</button>
+                    <input name="content_button" type="submit" value="Publish">
                 </form>
                 <?php
 
-                    if (isset($_POST[ 'description' ])) {
+
+                    if(isset($_POST['content_button'])){
+                        new_post($mysql_conn,
+
+
+                    }
+
+                    /*if (isset($_POST[ 'description' ])) {
                         $user_id = get_user_id();
                         $img_name = upload_image($_FILES[ 'skedar' ][ 'name' ],
                             $_FILES[ 'skedar' ][ 'size' ],
@@ -63,7 +70,7 @@
                             $_POST[ 'status' ],
                             $img_name
                         );
-                    }
+                    }*/
                 ?>
             </div>
             <div class="sidebar_right">

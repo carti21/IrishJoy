@@ -38,7 +38,7 @@
 				</a>
 			</div>
 			<div class="ad_bottom">
-				<div style="margin-top:15px;"><a href"http://www.flivetech.com/">Our Partners</a></div>
+				<div style="margin-top:15px;"><a href"http://www.intolaravel.com/">Our Partners</a></div>
 			</div>
 			<div class="before_menu">
 				<!-- Social Media Buttons goes here -->
