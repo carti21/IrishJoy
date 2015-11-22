@@ -542,18 +542,27 @@
         $result_update_post = mysqli_query($mysql_conn, $query_update_post);
     }
 
-    function new_post($mysql_conn, $user, $title, $category, $status, $img_new_name ) {
 
-        if (($title != '') && ($category != '')) {
+    /**
+     * @param $mysql_conn MySql Connection
+     * @param $user
+     * @param $title
+     * @param $category
+     * @param $status
+     * @param $img_new_name
+     */
+    function new_post($mysql_conn, $user, $description, $category_id, $status, $img_name ) {
+
+            $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
 
             $query_insert_post = "INSERT INTO posts (user_id, description, status, category_id, image_name)
-                                       VALUES ('$user', '$title' , '$status', '$category', '$img_new_name')";
+                                       VALUES ('$user', '$description' , '$status', '$category_id', '$img_new_name')";
             $result_add_post   = mysqli_query($mysql_conn, $query_insert_post);
 
-             upload_image();
+
+             upload_image($img_new_name);
 
             echo '<p>New post has been added. </p>';
-        }
     }
 
     /**
@@ -562,14 +571,12 @@
     * @param $tmp
      * @return string
     */
-    function upload_image() {
+    function upload_image($img_new_name) {
 
 
         $uploaded_image = $_FILES['input_image'];
 
         if ($uploaded_image['size'] < 1024 * 1024 * 2 *222){
-
-            $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $uploaded_image['name']));
 
             if (move_uploaded_file($uploaded_image['tmp_name'], SERVER_URL.'uploads/'.$img_new_name)) {
                 chmod(SERVER_URL.'uploads/'.$img_new_name, 0666);
