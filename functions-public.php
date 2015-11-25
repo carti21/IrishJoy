@@ -65,6 +65,8 @@
 
 		if( isset($_GET['category-id']) && $_GET['category-id'] >1 ){
 			$cat_query_string = "AND category_id = " . $_GET['category-id'];
+		} else {
+		    $cat_query_string = '';
 		}
 
 		$min = ($page - 1) * 14; 
