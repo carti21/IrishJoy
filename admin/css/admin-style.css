@@ -593,3 +593,26 @@ button.login:active {
 }
 
 /* End of Login styles */
+.arrow {
+    width: 20px;
+    height: auto;
+}
+
+.pageDisplay {
+    height: 20px;
+    margin-top: -5px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.pager {
+    margin-top: 15px;
+    margin-left: 310px;
+}
+
+.containerDatabase {
+    width: 970px;
+    min-height: 600px;
+    background-color: #eee;
+    margin: auto;
+}
