@@ -23,8 +23,8 @@
             </body>
         </html>
         <?php
-            // Closes the MySqli Connection
-            mysqli::close($mysql_conn);
+            // Closes the MySql Connection
+            mysqli_close($mysql_conn);
     }
 
     /**
