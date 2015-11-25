@@ -23,7 +23,7 @@
             </div>
             <div class="sidebar_right">
                 <div class="menu_bar">
-                    <?php show_admin_menu(); ?>
+                	<?php show_admin_menu(); ?>
                 </div>
             </div>
         </div>

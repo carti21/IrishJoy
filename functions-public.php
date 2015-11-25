@@ -3,7 +3,7 @@
 	include("config.php");
 
 	/**
-	 * Function to show meta_tags in the beggining of HTML
+	 * Function to show meta_tags in the beginning of HTML
 	 */
 	function show_meta_tags(){
 		?>
@@ -11,7 +11,7 @@
 		<meta name="description" content="Photography, Images, Design, Architecture, Interior, Design, Cars, Gallery, Girls, Landscape">
 		<meta name="keywords" content="Photography, Images, Design, Architecture, Interior, Design, Cars, Gallery, Girls, Landscape">
 		<meta name="author" content="<?php echo MAIN_URL; ?>">
-		<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1" >
+		<meta http-equiv="Content-Type" content="text/html" charset="ISO-8859-1" >
 		<?php
 	}
 
@@ -28,7 +28,7 @@
 
     /**
      * Function to show all the Categories on the Right Main Menu
-     * @param  $mysql_conn Mysql Connection
+     * @param  object $mysql_conn MySql Connection
      */
 	function show_main_menu($mysql_conn){
 		$query = "SELECT id, category_name FROM categories ORDER BY category_name";
@@ -53,7 +53,7 @@
 	/**
 	 * Function to show the images in the main page.
 	 * The Images are displayed in two column from 7 images each.
-	 * @param  $mysql_conn MySql Connection
+	 * @param  object $mysql_conn MySql Connection
 	 */
 	function show_images($mysql_conn){
 
@@ -129,7 +129,7 @@
 	/**
 	 * Function to show a single image by id
 	 * Also increments the number of views in the database
-	 * @param  $mysql_conn MySql connection
+	 * @param  object $mysql_conn MySql Connection
 	 */
 	function show_single_image($mysql_conn){
 		$post_id = $_GET['post-id']; 
@@ -150,12 +150,12 @@
 
 		$query_update=("UPDATE posts SET views=$views WHERE id='$post_id'");
 
-		$result_update_postcounter = mysqli_query($mysql_conn,$query_update) ;
+		$result_update_post_counter = mysqli_query($mysql_conn,$query_update) ;
 	}
 
 	/**
 	 * Function to get the category name by ID of the Post
-	 * @param  $mysql_conn MySql Connection
+	 * @param  object $mysql_conn MySql Connection
 	 * @param  int $post_id The id of the Post
 	 * @return string Category Name
 	 */
@@ -163,7 +163,7 @@
 
 		$query_select_post_cat= "SELECT category_id FROM posts WHERE id = $post_id" ;
 		$result_fetch = mysqli_query($mysql_conn,$query_select_post_cat);
-		$result_select_postcat = mysqli_fetch_array($result_fetch);
+		$result_select_post_cat = mysqli_fetch_array($result_fetch);
 		
-		return $result_select_postcat['category_id']; 
+		return $result_select_post_cat['category_id'];
 	}

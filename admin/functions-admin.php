@@ -1,7 +1,7 @@
 <?php
 
-    $root = realpath(__DIR__ . '/..');
-    include ("$root/config.php");
+    $root = realpath( __DIR__ . '/..' );
+    include ( $root . "/config.php" );
     
     /**
      * Echos the Header elements and includes
@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_URL; ?>css/admin-style.css"/>
         <link rel="icon" href="<?php echo ADMIN_URL; ?>images/favicon.png" type="image/x-icon">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
         <?php
     }
 
@@ -24,7 +24,7 @@
         </html>
         <?php
             // Closes the MySqli Connection
-            mysqli_close($mysql_conn);
+            mysqli::close($mysql_conn);
     }
 
     /**
@@ -47,7 +47,7 @@
      * Checks if the user has many login attempts
      * and is not allowed to login.
      * @param  int $user_id 
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @return boolean  false if is clear and ready to go, true if
      * the user has too many login attempts
      */
@@ -67,14 +67,14 @@
             else {
                 //clear to go
                 return false;
-            } 
-        } 
+            }
+        }
     }
 
     /**
      * Login Function
-     * @param  $mysql_conn MySql Connection
-     * @param  string $email Email of the user to be verified 
+     * @param  object $mysql_conn MySql Connection
+     * @param  string $email Email of the user to be verified
      * @param  string $password Password of the user to be verified
      * @return bool true if login is done successfully, false otherwise
      */
@@ -95,7 +95,7 @@
                     return false;
                 }
                 else {
-                    if (password_verify($password, $db_password)) { 
+                    if (password_verify($password, $db_password)) {
                         // Password is correct!
                         $_SESSION[ 'user_id' ]      = $user_id;
                         $_SESSION[ 'email' ]        = $username;
@@ -131,7 +131,7 @@
 
     /**
      * Simply checks if the user is logged in or not
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @return boolean true if the user is logged, false if not
      */
     function login_check($mysql_conn) {
@@ -141,11 +141,11 @@
             return true;
         }
         return false;
-    } 
+    }
 
     /**
     * Fucntion to Edit a specific Category
-    * @param  $mysql_conn MySql Connection
+    * @param  object $mysql_conn MySql Connection
     * @param  string $new_category_name the new name of the category to be stored
     * @param  [type] $id ID of the current category that is going to change
     * @return Returns to categories.php
@@ -161,7 +161,7 @@
 
     /**
      * Function to create a category
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  string $category_name Name of the Category
      * @return Returns to categories.php
      */
@@ -172,15 +172,15 @@
 
             if (!mysqli_query($mysql_conn,$query_insert)){
                   die('Problem: ' . mysqli_error($mysql_conn));
-            } 
-  
+            }
+
             header("Location: categories.php");
         }
     }
 
     /**
      * Gets the number of posts of a specific category
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $category_id ID of the current Category
      * @return int Number of posts by the Category
      */
@@ -194,7 +194,7 @@
 
     /**
      * Function to display all categories and their number of posts
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @return Echos all the Categories table
      */
     function view_all_categories($mysql_conn) {
@@ -202,16 +202,16 @@
         $result = mysqli_query($mysql_conn, $query);
         ?>
         <table id="table_style">
-            <thead> 
-                <tr> 
-                    <th><b> Category </b></th> 
-                    <th align="center"><b>Number of Posts </b></th> 
-                    <th align="center"><b> Edit </b></th> 
+            <thead>
+                <tr>
+                    <th><b> Category </b></th>
+                    <th align="center"><b>Number of Posts </b></th>
+                    <th align="center"><b> Edit </b></th>
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                while ($row = mysqli_fetch_array($result)) { 
+                <?php
+                while ($row = mysqli_fetch_array($result)) {
                     $category_id = $row['id'];
                     ?>
                     <tr>
@@ -220,8 +220,8 @@
 
                         <td align="center"><a href="category-edit.php?id=<?php echo $row[ 'id' ]; ?>&edit=1">Edit</a></td>
                     </tr>
-                <?php   
-                } 
+                <?php
+                }
                 ?>
             </tbody>
         </table>
@@ -246,7 +246,7 @@
     * Function to show the admin on the right sidebar
     */
     function show_admin_menu(){
-        ?> 
+        ?>
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>index.php"> admin </a> </div>
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>post-new.php"> New Post </a> </div>
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>categories.php"> Categories </a> </div>
@@ -266,7 +266,7 @@
 
     /**
      * Function to show the bad login attemts of users
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @return Echos the table
      */
     function show_login_attempts($mysql_conn) {
@@ -274,11 +274,11 @@
         $query_select_mem = "SELECT user_id, time FROM login_attempts ORDER BY time DESC ";
         $result_mem       = mysqli_query($mysql_conn, $query_select_mem);
         ?>
-        <table id="table_style"> 
-            <thead> 
-                <tr> 
-                    <th scope="col" align="center"><b> User  </b></th> 
-                    <th scope="col" align="center"><b> Time </b></th> 
+        <table id="table_style">
+            <thead>
+                <tr>
+                    <th scope="col" align="center"><b> User  </b></th>
+                    <th scope="col" align="center"><b> Time </b></th>
                 </tr>
             </thead>
             <tbody>
@@ -320,7 +320,7 @@
 
     /**
      * Function to delete a User from the database
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $id ID of the current User
      */
     function delete_user($mysql_conn, $id) {
@@ -379,7 +379,7 @@
 
     /**
      * Function to get the number of Posts that has created a User
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $user_id ID of the current User
      * @return int $number_of_posts Number of Posts of the User
      */
@@ -394,7 +394,7 @@
 
     /**
      * Function to show the table of all Users
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @return Echos the table of the Users
      */
     function show_all_users($mysql_conn) {
@@ -403,13 +403,13 @@
         $result_mem       = mysqli_query($mysql_conn, $query_select_mem);
 
         ?>
-        <table id="table_style"> 
-            <thead> 
-            <tr> 
-                <th scope="col"><b> Username </b></th> 
-                <th scope="col"><b> Email </b></th> 
-                <th scope="col" align="right"><b>Posts</b></th> 
-                <th scope="col" align="center"><b> View </b></th> 
+        <table id="table_style">
+            <thead>
+            <tr>
+                <th scope="col"><b> Username </b></th>
+                <th scope="col"><b> Email </b></th>
+                <th scope="col" align="right"><b>Posts</b></th>
+                <th scope="col" align="center"><b> View </b></th>
             </tr>
             </thead>
             <tbody>
@@ -453,26 +453,26 @@
         $users_result = mysqli_query($mysql_conn, $query_users);
         $users_amount = mysqli_num_rows($users_result);
         ?>
-        <table id="table_style"> 
-            <thead> 
-                <tr> 
+        <table id="table_style">
+            <thead>
+                <tr>
                     <th scope="col"><b> Items </b></th>
                     <th scope="col"><b> Amount </b></th>
-                </tr> 
-            </thead> 
+                </tr>
+            </thead>
             <tbody>
-            <tr> 
-                <td><b> Posts </b></td> 
-                <td><?php echo $post_amount;?></td> 
-            </tr> 
-            <tr> 
-                <td><b> Categories </b></td> 
-                <td><?php echo $category_amount;?></td> 
-            </tr> 
-            <tr> 
-                <td><b> users </b></td> 
-                <td><?php echo  $users_amount; ?></td> 
-            </tr> 
+            <tr>
+                <td><b> Posts </b></td>
+                <td><?php echo $post_amount;?></td>
+            </tr>
+            <tr>
+                <td><b> Categories </b></td>
+                <td><?php echo $category_amount;?></td>
+            </tr>
+            <tr>
+                <td><b> users </b></td>
+                <td><?php echo  $users_amount; ?></td>
+            </tr>
             </tbody>
         </table>
         <?php
@@ -522,14 +522,14 @@
 
     /**
      * Function to delete a post
-     * @param  $mysql_conn MySql Connections
+     * @param  object $mysql_conn MySql Connections
      * @param  $post_id ID of the current post
      * @return Returns to posts-database.php
      */
     function delete_post($mysql_conn, $post_id) {
-        $query_delelte_post  = "DELETE FROM posts WHERE id=$post_id";
+        $query_delete_post  = "DELETE FROM posts WHERE id=$post_id";
 
-        if(mysqli_query($mysql_conn, $query_delelte_post)){
+        if(mysqli_query($mysql_conn, $query_delete_post)){
             header('Location: ./posts-database.php');
         } else {
             die('Problem: '.mysqli_error($mysql_conn));
@@ -542,14 +542,13 @@
         $result_update_post = mysqli_query($mysql_conn, $query_update_post);
     }
 
-
-    /**
-     * @param $mysql_conn MySql Connection
+     /**
+     * @param object $mysql_conn MySql Connection
      * @param $user
-     * @param $title
-     * @param $category
+     * @param $description
+     * @param $category_id
      * @param $status
-     * @param $img_new_name
+     * @param $img_name
      */
     function new_post($mysql_conn, $user, $description, $category_id, $status, $img_name ) {
 
@@ -592,9 +591,10 @@
         }
     }
 
+
     /**
      * Shows the Single Post Page Head Menu
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $post_id  ID of the current post
      * @return Echos the menu
      */
@@ -630,12 +630,12 @@
                 <?php
             } ?>
         </div>
-        <?php 
+        <?php
     }
 
     /**
      * Function to display Single Post's Details
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
      * @return Echos divs with the information of the post
      */
@@ -655,7 +655,7 @@
                     <span class="post-details">
                     Img Name: </span><?php echo $row_post[ 'image_name' ]; ?>
                 </div>
-                <div class="items"> 
+                <div class="items">
                     <span class="post-details">
                     Category: </span><?php echo get_category_name($mysql_conn, $row_post[ 'category_id' ]); ?>
                 </div>
@@ -665,9 +665,9 @@
                 </div>
                 <div class="items">
                 <span class="post-details">
-                Views: </span><b><?php echo $row_post[ 'views' ]; ?> 
+                Views: </span><b><?php echo $row_post[ 'views' ]; ?>
                 </div>
-                
+
                 <a href="posts-database.php" class="post-details ">
                     <img style="width:15px; margin-bottom:-3px; height:auto;" src="images/left_arrow.png" width="128" height="128">Go to database
                 </a>
@@ -699,7 +699,7 @@
 
     /**
      * Function to show the menu on the Single-Post-Image
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
      * @return Echos the menu with Delete
      */
@@ -722,7 +722,7 @@
 
     /**
      * Function to show a current image by id
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
      * @return Echos the current image
      */
@@ -740,8 +740,8 @@
     }
 
     /**
-     * Function to show the Posts Database Table 
-     * @param  $mysql_conn MySql Connection
+     * Function to show the Posts Database Table
+     * @param  object $mysql_conn MySql Connection
      * @return Echos the table of all posts
      */
     function show_posts_database($mysql_conn) {
@@ -749,20 +749,20 @@
         $result_posts       = mysqli_query($mysql_conn, $query_select_posts);
     ?>
         <table cellspacing="1" class="tablesorter">
-            <thead> 
-                <tr> 
-                    <th> Post title / Description </th> 
+            <thead>
+                <tr>
+                    <th> Post title / Description </th>
                     <th> Date </th>
-                    <th> Author </th> 
-                    <th> Category </th> 
+                    <th> Author </th>
+                    <th> Category </th>
                     <th> P/U &nbsp;&nbsp; </th>
                     <th> Image Name </th>
                     <th> Views </th>
                     <th class="text-center"> Go To Post </th>
-                </tr> 
-            </thead> 
-        <tbody> 
-    <?php 
+                </tr>
+            </thead>
+        <tbody>
+    <?php
         while ($data = mysqli_fetch_array($result_posts)){
         ?>
             <tr>
@@ -775,17 +775,17 @@
                 <td class="text-center" ><?= $data[ 'views' ]; ?> </td>
                 <td title="View&nbsp;&nbsp; <?=$data['id'] ?>" style="text-align:center; cursor:default"><a href="single-post-view.php?post-id=<?= $data['id']; ?>" /><img src="images/open.png" class="p_db_img_view"></td>
             </tr>
-            <?php  
-        } 
+            <?php
+        }
             ?>
-        </tbody> 
-        </table> 
+        </tbody>
+        </table>
     <?php
     }
 
     /**
      * Function to show the left column of images on the admin
-     * @param  $mysql_conn MySql Connection
+     * @param  object $mysql_conn MySql Connection
      * @return Echos the left column of images ( form 1 to 5 )
      */
     function latest_posts_left($mysql_conn){
@@ -807,8 +807,8 @@
 
     /**
      * Function to show the right column of images on the admin
-     * @param  $mysql_conn MySql Connection
-     * @return Echos the right column of images ( form 5 to 10 )
+     * @param  object $mysql_conn MySql Connection
+     * @return string - shows the right column of images ( form 5 to 10 )
      */
     function latest_posts_right($mysql_conn){
 
@@ -828,8 +828,8 @@
     }
 
     /**
-     * Get all Categoris to an array
-     * @param  $mysql_conn MySql Connection
+     * Get all Categories to an array
+     * @param  string $mysql_conn MySql Connection
      * @return array $categories_array [id]=>[category_name] array with
      * all teh Categories. Mostly used on dropdown select of categories
      */

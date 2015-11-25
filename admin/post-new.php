@@ -58,7 +58,7 @@ if (login_check($mysql_conn) == false) {
             $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
             $img_name = $_FILES['input_image']['name'];
             $user_id = $_SESSION['user_id'];
-            
+
             new_post($mysql_conn, $user_id, $description, $category_id, $status, $img_name);
         }
         ?>

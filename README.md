@@ -4,7 +4,8 @@
 <p>Learn the Basics of PHP in a Real-World Project</p>
 </blockquote>
 
-![IrishJoy](https://raw.githubusercontent.com/ArditMustafaraj/IrishJoy/master/images/wiki_irishjoy.png)
+
+![IrishJoy](https://raw.githubusercontent.com/ArditMustafaraj/IrishJoy/master/images/wiki_irishjoyz.png)
 
 Requirements
 
@@ -19,6 +20,7 @@ Entities
 * Statistics
 * Categories
 
+All the configurations details are located in <code>/config.php</code>, such as paths, db credentials and cookies lifetime.
 
 ### How do you install it?
 
@@ -39,7 +41,7 @@ $_GET and $_POST HTTP Requests
 Basic PHP functions
 HTML and CSS 
 
-All the configurations details are located in /config.php, such as paths, db credentials and cookies lifetime.
+
 
 
 Config.php
@@ -51,8 +53,8 @@ Config.php
 	*/
 	define('HOST', 'localhost'); // The host you want to connect to.
 	define('USER', 'root');      // The database username.
-	define('PASSWORD', '');   // The database password.
-	define('DATABASE', 'irishjoy');   // The database name.
+	define('PASSWORD', '112');   // The database password. 
+	define('DATABASE', 'pro');   // The database name.
 ```
 
 ### Conclusion
