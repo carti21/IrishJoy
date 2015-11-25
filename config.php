@@ -3,7 +3,7 @@
 /**
  * Main Directory
  */
-define('MAIN_URL', 'http://localhost/irishjoy/');
+define('MAIN_URL', 'http://localhost/IrishJoy/');
 
 /**
  * Database Configurations
