@@ -8,10 +8,10 @@
 ?>
 
     <html>
-    <head>
-        <title>Post Edit</title>
-        <?php header_requires(); ?>
-    </head>
+<head>
+    <title>Post Edit</title>
+    <?php header_requires(); ?>
+</head>
 <body>
 <div class="head"></div>
 <div class="container">
@@ -67,8 +67,8 @@
             if (isset($_POST['description']) && isset($_POST['category_id'])) {
 
                 $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
-                $category = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_SPECIAL_CHARS);
-                $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
+                $category    = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_SPECIAL_CHARS);
+                $status      = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
 
                 edit_post($mysql_conn, $id, $description, $category, $status);
             }
@@ -81,5 +81,5 @@
         </div>
     </div>
 </div>
-</div>
+</body>
 <?php footer_requires($mysql_conn); ?>

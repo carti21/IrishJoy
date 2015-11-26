@@ -550,8 +550,9 @@
         $result_update_post = mysqli_query($mysql_conn, $query_update_post);
 
         if($result_update_post == true){
-
-            header('Location: " ./single-post-view.php?post-id=".$post_id."&edit=success"');
+            echo "Successfully edited";
+        } else {
+            echo "There was a problem on editing the post.";
         }
 
     }
