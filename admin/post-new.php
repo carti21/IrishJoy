@@ -1,10 +1,10 @@
 <?php
-require_once('functions-admin.php');
+    require_once('functions-admin.php');
 
-sec_session_start();
-if (login_check($mysql_conn) == false) {
-    header('Location: ' . MAIN_URL);
-}
+    sec_session_start();
+    if (login_check($mysql_conn) == false) {
+        header('Location: ' . MAIN_URL);
+    }
 ?>
 
     <html>
@@ -30,10 +30,10 @@ if (login_check($mysql_conn) == false) {
                 <select name="category_id">
                     <option>Select Category</option>
                     <?php
-                    $categories_array = get_categories_array($mysql_conn);
-                    foreach ($categories_array as $id => $category) {
-                        echo "<option value='$id'>$category</option>";
-                    }
+                        $categories_array = get_categories_array($mysql_conn);
+                        foreach ($categories_array as $id => $category) {
+                            echo "<option value='$id'>$category</option>";
+                        }
                     ?>
                 </select>
             </div>
@@ -50,17 +50,16 @@ if (login_check($mysql_conn) == false) {
         </form>
         <?php
 
+            if (isset($_POST['content_button'])) {
 
-        if (isset($_POST['content_button'])) {
+                $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
+                $category_id = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_SPECIAL_CHARS);
+                $status      = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
+                $img_name    = $_FILES['input_image']['name'];
+                $user_id     = filter_var($_SESSION['user_id']);
 
-            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
-            $category_id = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_SPECIAL_CHARS);
-            $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
-            $img_name = $_FILES['input_image']['name'];
-            $user_id = $_SESSION['user_id'];
-
-            new_post($mysql_conn, $user_id, $description, $category_id, $status, $img_name);
-        }
+                new_post($mysql_conn, $user_id, $description, $category_id, $status, $img_name);
+            }
         ?>
     </div>
     <div class="sidebar_right">
