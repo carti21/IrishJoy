@@ -1,14 +1,14 @@
 <?php
-require_once('functions-public.php');
+    require_once('functions-public.php');
 
-$id = $_GET['post-id'];
-$cat = strtolower(get_category_by_id($mysql_conn, $id));
+    $id  = filter_input(INPUT_GET, 'post-id', FILTER_SANITIZE_SPECIAL_CHARS);
+    $cat = strtolower(get_category_by_id($mysql_conn, $id));
 ?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>IrishJoy.com - <?php echo "#";
-        echo "$cat" ?> - Inspiration Is Everywhere</title>
+            echo "$cat" ?> - Inspiration Is Everywhere</title>
     <?php show_meta_tags(); ?>
     <link rel="stylesheet" type="text/css" href="css/public-style.css"/>
     <link rel="icon" href="<?php echo MAIN_URL; ?>images/favicon.png" type="image/x-icon">
@@ -24,7 +24,7 @@ $cat = strtolower(get_category_by_id($mysql_conn, $id));
 <div class="container">
     <div class="content">
         <?php
-        show_single_image($mysql_conn);
+            show_single_image($mysql_conn);
         ?>
         <div class="after_full_image">
             <div style="margin-top:18px; margin-left:15px;">
