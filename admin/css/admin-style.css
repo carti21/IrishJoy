@@ -102,6 +102,9 @@ button.content_button:focus {
     margin-bottom: 10px;
 }
 
+.admin_img_latest_left:hover {
+    opacity: 0.9;
+}
 .admin_img_latest_right {
     max-width: 100%;
     height: auto;
@@ -372,15 +375,15 @@ table.tablesorter {
 }
 
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-    background-color: #336699;
     border: 1px solid #2B2827;
     font-size: 8pt;
     padding: 4px;
     color: #FDFDFD;
 }
 
-table.tablesorter thead tr .header {
+table.tablesorter tr .header {
     background: no-repeat center right;
+    background-color: #336699;
     cursor: pointer;
 }
 
