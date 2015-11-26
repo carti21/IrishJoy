@@ -45,7 +45,7 @@ $cat = strtolower(get_category_by_id($mysql_conn, $id));
         <!-- Social Media Buttons goes here -->
     </div>
     <div class="menu_bar">
-        <?php show_main_menu() ?>
+        <?php show_main_menu($mysql_conn) ?>
     </div>
 </div>
 <div class="footer">
