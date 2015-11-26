@@ -524,7 +524,7 @@
      * Function to delete a post
      * @param  object $mysql_conn MySql Connections
      * @param  $post_id ID of the current post
-     * @return Returns to posts-database.php
+     * @return redirect to posts-database.php
      */
     function delete_post($mysql_conn, $post_id) {
         $query_delete_post  = "DELETE FROM posts WHERE id=$post_id";
@@ -536,10 +536,24 @@
         }
     }
 
-    function edit_post($mysql_conn, $post_id, $title, $category) {
+    /**
+    * Function to edit one post
+    * @param $mysql_conn object $mysql_conn MySql Connections
+    * @param $post_id int ID of the current post
+    * @param $title string new title of the post
+    * @param $category int the id of category of the post
+    * @param $status int status of the new post
+     */
+    function edit_post($mysql_conn, $post_id, $title, $category, $status) {
 
-        $query_update_post  = "UPDATE posts SET description='$title', category_id='$category' WHERE id=$post_id";
+        $query_update_post  = "UPDATE posts SET description='$title', category_id='$category', status='$status' WHERE id=$post_id";
         $result_update_post = mysqli_query($mysql_conn, $query_update_post);
+
+        if($result_update_post == true){
+
+            header('Location: " ./single-post-view.php?post-id=".$post_id."&edit=success"');
+        }
+
     }
 
      /**
@@ -851,6 +865,14 @@
         $row = mysqli_fetch_array($result);
 
         return $row['description'];
+    }
+
+    function get_post_status($mysql_conn, $post_id){
+        $query = "SELECT status FROM posts WHERE id = $post_id ";
+        $result = mysqli_query($mysql_conn, $query);
+        $row = mysqli_fetch_array($result);
+
+        return $row['status'];
     }
 
     function get_post_category($mysql_conn, $post_id){
