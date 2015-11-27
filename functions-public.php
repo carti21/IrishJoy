@@ -192,7 +192,7 @@
 	 * @param  int $post_id The id of the Post
 	 * @return string Category Name
 	 */
-	function get_category_by_id($mysql_conn,$post_id) {
+	function get_category_by_post_id($mysql_conn,$post_id) {
 
 		$query_select_post_cat= "SELECT category_id FROM posts WHERE id = $post_id" ;
 		$result_fetch = mysqli_query($mysql_conn,$query_select_post_cat);
@@ -200,3 +200,17 @@
 		
 		return $result_select_post_cat['category_id'];
 	}
+
+   /**
+    * @param object $mysql_conn MySql Connection
+    * @param int $category_id The id of the Category
+    * @return string Category name
+    */
+    function get_category_name($mysql_conn, $category_id){
+
+        $query_select_post_cat= "SELECT category_name FROM categories WHERE id = $category_id" ;
+		$result_fetch = mysqli_query($mysql_conn,$query_select_post_cat);
+		$result_select_category_name = mysqli_fetch_array($result_fetch);
+
+		return $result_select_category_name['category_name'];
+    }

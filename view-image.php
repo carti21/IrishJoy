@@ -1,14 +1,15 @@
 <?php
     require_once('functions-public.php');
 
-    $id  = filter_input(INPUT_GET, 'post-id', FILTER_SANITIZE_SPECIAL_CHARS);
-    $cat = strtolower(get_category_by_id($mysql_conn, $id));
+    $id            = filter_input(INPUT_GET, 'post-id', FILTER_SANITIZE_SPECIAL_CHARS);
+    $cat_id        = get_category_by_post_id($mysql_conn, $id);
+    $category_name = get_category_name($mysql_conn, $cat_id);
 ?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>IrishJoy.com - <?php echo "#";
-            echo "$cat" ?> - Inspiration Is Everywhere</title>
+            echo "$category_name" ?> - Inspiration Is Everywhere</title>
     <?php show_meta_tags(); ?>
     <link rel="stylesheet" type="text/css" href="css/public-style.css"/>
     <link rel="icon" href="<?php echo MAIN_URL; ?>images/favicon.png" type="image/x-icon">
@@ -29,7 +30,7 @@
         <div class="after_full_image">
             <div style="margin-top:18px; margin-left:15px;">
                 <!--to be checked later the hashtag links. maybe we remove them -->
-                <?php echo "<span>TAGS:<a href=\"#\">#$cat</a></span>"; ?>
+                <span class="single-image-category">Category: <?php echo $category_name ?></span>
             </div>
         </div>
     </div>
