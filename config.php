@@ -29,7 +29,7 @@
     define('COOKIE_LIFETIME', 60 * 60 * 24);
 
     /**
-     *  Error Reporting ON on Development
+     *  Error Reporting ON on Development. Make sure to turn them OFF on production
      */
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
