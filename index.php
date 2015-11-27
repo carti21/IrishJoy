@@ -13,8 +13,8 @@
 </head>
 <body>
 <div class="head">
-    <div style="margin: 0 auto; position: relative; width:40%; padding-top: 30px;">
-        <a href="<?php echo MAIN_URL; ?>">
+    <div class="head-image">
+        <a class="header-link" href="<?php echo MAIN_URL; ?>">
             <img src="<?php echo MAIN_URL; ?>images/head_logo.jpg">
         </a>
     </div>

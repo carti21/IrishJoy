@@ -76,8 +76,9 @@ body {
     cursor: pointer;
 }
 
-.ad_bottom a {
+.ad_bottom a:hover {
     color: #777777;
+    background: none;
 }
 
 .before_menu {
@@ -126,6 +127,7 @@ body {
 
 .menu_items a:hover {
     color: #777777;
+    background: none;
 }
 
 .footer {
@@ -140,8 +142,6 @@ body {
 }
 
 .footer a {
-
-    background-color: #1A1A1A;
     text-align: center;
     color: #fff;
     text-decoration: none;
@@ -253,4 +253,15 @@ img.img_view_full:hover {
     width: 400px;
     height: 400px;
     margin: 150px auto;
+}
+
+.head-image {
+    margin: 0 auto;
+    position: relative;
+    width: 40%;
+    padding-top: 30px;
+}
+
+a.header-link {
+    background: none;
 }
