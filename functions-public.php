@@ -108,24 +108,55 @@
 	function pagination(){
 
 		echo"<p>";
-		if ( isset($_GET['page']) && $_GET['page'] > 1 ){
-			$prev = $_GET['page'] - 1;
-			$next = $_GET['page'] + 1;
 
-			?>
-			<a href="<?php echo MAIN_URL . "?page=".$prev ?>"> Prev Page </a>
-				&nbsp; &nbsp; &nbsp;
-			<a href="<?php echo MAIN_URL . "?page=".$next ?>"> Next Page </a>
+        if(isset($_GET['category-id'])){
 
-			<?php
-		} else {
-			?>
-			<a> Prev Page </a>
-				&nbsp; &nbsp; &nbsp;
-			<a href="./<?php echo "?page=2"; ?>"> Next Page </a>
-			<?php
-		}
+            if ( isset($_GET['page']) && $_GET['page'] > 1 ){
+                $current_page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS) - 1;
+                $prev = $current_page - 1;
+                $next = $current_page + 1;
+
+                ?>
+                <a href="<?php echo MAIN_URL . "?category-id=".$_GET['category-id']."&page=".$prev ?>"> Prev Page </a>
+                    &nbsp; &nbsp; &nbsp;
+                <a href="<?php echo MAIN_URL . "?category-id=".$_GET['category-id']."&page=".$next ?>"> Next Page </a>
+
+                <?php
+
+            } else {
+                ?>
+                <a> Prev Page </a>
+                    &nbsp; &nbsp; &nbsp;
+                <a href="./<?php echo "?category-id=".$_GET['category-id']."&page=2"; ?>"> Next Page </a>
+                <?php
+            }
 		echo"</p>";
+
+        } else {
+
+            if ( isset($_GET['page']) && $_GET['page'] > 1 ){
+                $current_page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS) - 1;
+                $prev = $current_page - 1;
+                $next = $current_page + 1;
+
+
+                ?>
+                <a href="<?php echo MAIN_URL . "?page=".$prev ?>"> Prev Page </a>
+                    &nbsp; &nbsp; &nbsp;
+                <a href="<?php echo MAIN_URL . "?page=".$next ?>"> Next Page </a>
+
+                <?php
+            } else {
+                ?>
+                <a> Prev Page </a>
+                    &nbsp; &nbsp; &nbsp;
+                <a href="./<?php echo "?page=2"; ?>"> Next Page </a>
+                <?php
+            }
+		echo"</p>";
+
+        }
+
 	}
 	  
 	/**
