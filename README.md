@@ -1,15 +1,22 @@
 # IrishJoy
 
 <blockquote>
-<p>Learn the Basics of PHP in a Real-World Project</p>
+<p>Learn the basics of PHP by building a Photography CMS, as a Real World Application</p>
 </blockquote>
 
 
 ![IrishJoy](https://raw.githubusercontent.com/ArditMustafaraj/IrishJoy/master/images/wiki_irishjoy.png)
 
+What Functionalities does this Small Cms includes:
+* Login, Logout Register Users by admin ( CRUD )
+* Create, update, delete, view Images ( CRUD )
+* Create, update, delete, read Categories ( CRUD )
+* Administrator Section to manage the functionality of the CMS
+* Statistics for Image Views, number of images for each category
+
 Requirements
 
-PHP >= 5.3 , MySql, HTML, CSS ( Javascript, Jquery )
+PHP (5.3 and up), MySql, HTML, CSS ( Javascript, Jquery )
 IrishJoy is a PHP Projects for everyone who wants to put the hands in a real Projects. 
 	- easy to understand ( good documentation )
 	- Procedural Programming ( Not Object Oriented ) - you can understand the interacting way in PHP
@@ -46,19 +53,19 @@ HTML and CSS
 
 Config.php
 ```php
-	define('MAIN_URL', 'http://localhost/pro/');
+	define('MAIN_URL', 'http://localhost/IrishJoy/');
 
 	/*
 	Database Configurations
 	*/
 	define('HOST', 'localhost'); // The host you want to connect to.
 	define('USER', 'root');      // The database username.
-	define('PASSWORD', '112');   // The database password. 
-	define('DATABASE', 'pro');   // The database name.
+	define('DATABASE', 'irishjoy');   // The database name.
+	define('PASSWORD', 'your_db_password');   // The database password. 
 ```
 
 ### Conclusion
 
 
-Happy coding!
+Enjoy coding!
 

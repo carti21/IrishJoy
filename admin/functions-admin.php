@@ -827,7 +827,7 @@
      */
     function latest_posts_right($mysql_conn){
 
-        $query_select_img = "SELECT id, image_name, created_at FROM posts ORDER BY created_at DESC LIMIT 5, 10";
+        $query_select_img = "SELECT id, image_name, created_at FROM posts ORDER BY created_at DESC LIMIT 5, 5";
         $result_img = mysqli_query($mysql_conn, $query_select_img);
         
         while($row_img = mysqli_fetch_array($result_img)){
