@@ -7,12 +7,20 @@
 
 ![IrishJoy](https://raw.githubusercontent.com/ArditMustafaraj/IrishJoy/master/images/wiki_irishjoy.png)
 
-What Functionalities does this Small Cms includes:
+### What will you learn technically:
+
 * Login, Logout Register Users by admin ( CRUD )
 * Create, update, delete, view Images ( CRUD )
 * Create, update, delete, read Categories ( CRUD )
 * Administrator Section to manage the functionality of the CMS
 * Statistics for Image Views, number of images for each category
+
+* PHP and MySql communication
+* Create Insert Update Delete actions with Mysql queries
+* $_GET and $_POST HTTP Requests
+* Basic PHP functions
+* HTML and CSS 
+
 
 Requirements
 
@@ -21,11 +29,6 @@ IrishJoy is a PHP Projects for everyone who wants to put the hands in a real Pro
 	- easy to understand ( good documentation )
 	- Procedural Programming ( Not Object Oriented ) - you can understand the interacting way in PHP
 	
-Entities
-* Images ( referred as post )
-* Users
-* Statistics
-* Categories
 
 All the configurations details are located in <code>/config.php</code>, such as paths, db credentials and cookies lifetime.
 
@@ -39,17 +42,6 @@ All the configurations details are located in <code>/config.php</code>, such as 
 * Explore admin area by logging in at: localhost/irishjoy/login
 		user: admin
 		pass: admin
-
-### What will you learn:
-
-PHP and MySql communication
-Create Insert Update Delete actions with query
-$_GET and $_POST HTTP Requests
-Basic PHP functions
-HTML and CSS 
-
-
-
 
 Config.php
 ```php
