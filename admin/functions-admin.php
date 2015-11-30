@@ -4,7 +4,7 @@
     include ( $root . "/config.php" );
     
     /**
-     * Echos the Header elements and includes
+     * mixed Shows the Header elements and includes
      */
     function header_requires(){
         ?>
@@ -16,7 +16,7 @@
     }
 
     /**
-     * Echos the Footer elements and includes
+     * mixed Shows the Footer elements and includes
      */
     function footer_requires($mysql_conn){
         ?>
@@ -126,7 +126,7 @@
      * @return int user_id
      */
     function get_user_id(){
-        return $_SESSION[ 'user_id' ];
+        return filter_input(INPUT_SESSION, 'user_id', FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
     /**
@@ -144,11 +144,11 @@
     }
 
     /**
-    * Fucntion to Edit a specific Category
+    * Function to Edit a specific Category
     * @param  object $mysql_conn MySql Connection
     * @param  string $new_category_name the new name of the category to be stored
     * @param  [type] $id ID of the current category that is going to change
-    * @return Returns to categories.php
+    * @return mixed redirects to categories.php after editing the category
     */
     function edit_category($mysql_conn, $new_category_name, $id) {
 
@@ -195,7 +195,7 @@
     /**
      * Function to display all categories and their number of posts
      * @param  object $mysql_conn MySql Connection
-     * @return Echos all the Categories table
+     * @return mixed Shows  all the Categories table
      */
     function view_all_categories($mysql_conn) {
         $query = "SELECT id, category_name FROM categories ORDER BY category_name ";
@@ -230,7 +230,7 @@
 
     /**
      * Function to show the Head menu of Categories Page
-     * @return Echos the menu
+     * @return mixed Shows  the menu
      */
     function show_category_menu(){
         ?>
@@ -267,7 +267,7 @@
     /**
      * Function to show the bad login attemts of users
      * @param  object $mysql_conn MySql Connection
-     * @return Echos the table
+     * @return mixed Shows  the table
      */
     function show_login_attempts($mysql_conn) {
 
@@ -299,7 +299,7 @@
 
     /**
      * Function to create a User
-     * @param $mysql_conn  MySql Connection
+     * @param object $mysql_conn MySql Connection
      * @param string $username Username to be stored in the db
      * @param string $password Password of the User
      * @param string $password_repeat Password confirmation
@@ -331,8 +331,10 @@
     }
 
     /**
- *
- */function show_user_menu(){
+    * Function to show the "User Menu"
+    * @return mixed Shows  the details of the User
+    */
+    function show_user_menu(){
         ?>
         <div class="head_menu_content">
             <a  title="See all users list" href="<?php echo ADMIN_URL; ?>users.php">Users</a>
@@ -344,6 +346,10 @@
         <?php
     }
 
+    /**
+    * Function to show the "View User Menu"
+    * @return mixed Shows  the details of the User
+    */
     function view_user_menu(){
         ?>
         <div class="head_menu_content">
@@ -356,9 +362,9 @@
 
     /**
      * Function to show details about a single User
-     * @param  $mysql_conn Connection
+     * @param  object $mysql_conn MySql Connection
      * @param  int $user_id ID of the current User
-     * @return Echos the details of the User
+     * @return mixed Shows  the details of the User
      */
     function view_single_user($mysql_conn, $user_id) {
         $query_select_user = "SELECT id, username, email FROM users WHERE id = $user_id";
@@ -395,7 +401,7 @@
     /**
      * Function to show the table of all Users
      * @param  object $mysql_conn MySql Connection
-     * @return Echos the table of the Users
+     * @return mixed mixed Shows  the table of the Users
      */
     function show_all_users($mysql_conn) {
 
@@ -437,7 +443,7 @@
     /**
      * Function to show statistics of the Posts, Categories, Users
      * @param $mysql_conn MySql Connections
-     * @return Echos the Statistics table
+     * @return mixed Shows  the Statistics table
      */
     function show_statistics($mysql_conn) {
         $query_categories  = "SELECT category_name FROM categories";
@@ -470,7 +476,7 @@
                 <td><?php echo $category_amount;?></td>
             </tr>
             <tr>
-                <td><b> users </b></td>
+                <td><b> Users </b></td>
                 <td><?php echo  $users_amount; ?></td>
             </tr>
             </tbody>
@@ -480,7 +486,7 @@
 
     /**
     * Get the Post's Title by ID
-    * @param  $mysql_conn  MySql Connection
+    * @param  object $mysql_conn MySql Connections
     * @param  $post_id  int
     * @return string  Title of the Post
     */
@@ -494,7 +500,7 @@
 
     /**
     * Get User's username by ID
-    * @param  $mysql_conn  MySql Connection
+    * @param  object $mysql_conn MySql Connections
     * @param  $user_id  int
     * @return string  Name of the User
     */
@@ -508,8 +514,8 @@
 
     /**
      * Gets name of the category by ID
-     * @param  $mysql_conn  MySql Connection parameters
-     * @param  $category_id  Id of the current category
+     * @param  object $mysql_conn MySql Connections parameters
+     * @param  int $category_id Id of the current category
      * @return string  Category name
      */
     function get_category_name($mysql_conn, $category_id) {
@@ -523,8 +529,8 @@
     /**
      * Function to delete a post
      * @param  object $mysql_conn MySql Connections
-     * @param  $post_id ID of the current post
-     * @return redirect to posts-database.php
+     * @param  int $post_id ID of the current post
+     * @return mixed redirects to posts-database.php
      */
     function delete_post($mysql_conn, $post_id) {
         $query_delete_post  = "DELETE FROM posts WHERE id=$post_id";
@@ -567,26 +573,23 @@
      */
     function new_post($mysql_conn, $user, $description, $category_id, $status, $img_name ) {
 
-            $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
+        $img_new_name = rand(00, 9999).strtolower(str_replace(' ', '-', $img_name));
 
-            $query_insert_post = "INSERT INTO posts (user_id, description, status, category_id, image_name)
-                                       VALUES ('$user', '$description' , '$status', '$category_id', '$img_new_name')";
-            $result_add_post   = mysqli_query($mysql_conn, $query_insert_post);
+        $query_insert_post = "INSERT INTO posts (user_id, description, status, category_id, image_name)
+                                   VALUES ('$user', '$description' , '$status', '$category_id', '$img_new_name')";
+        $result_add_post   = mysqli_query($mysql_conn, $query_insert_post);
 
 
-             upload_image($img_new_name);
+         upload_image($img_new_name);
 
-            echo '<p>New post has been added. </p>';
-    }
+        echo '<p>New post has been added. </p>';
+        }
 
     /**
-    * @param $img_name
-    * @param $img_size
-    * @param $tmp
-     * @return string
+    * @param $img_new_name
+    * @return string image new name
     */
     function upload_image($img_new_name) {
-
 
         $uploaded_image = $_FILES['input_image'];
 
@@ -606,12 +609,11 @@
         }
     }
 
-
     /**
      * Shows the Single Post Page Head Menu
      * @param  object $mysql_conn MySql Connection
      * @param  int $post_id  ID of the current post
-     * @return Echos the menu
+     * @return mixed Shows  the menu
      */
     function view_single_post_menu($mysql_conn, $post_id) {
         $query_posts   = "SELECT id, status, created_at, views FROM posts WHERE id = $post_id";
@@ -652,7 +654,7 @@
      * Function to display Single Post's Details
      * @param  object $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
-     * @return Echos divs with the information of the post
+     * @return mixed Shows  divs with the information of the post
      */
     function view_single_post($mysql_conn, $post_id) {
         $query_select_posts = "SELECT id, user_id, description, category_id, views, image_name FROM posts WHERE  id = $post_id";
@@ -716,7 +718,7 @@
      * Function to show the menu on the Single-Post-Image
      * @param  object $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
-     * @return Echos the menu with Delete
+     * @return mixed Shows  the menu with Delete
      */
     function view_single_post_image_menu($mysql_conn, $post_id) {
         $query_select_posts = "SELECT id, description FROM posts WHERE id = $post_id";
@@ -739,7 +741,7 @@
      * Function to show a current image by id
      * @param  object $mysql_conn MySql Connection
      * @param  int $post_id Id of the current post
-     * @return Echos the current image
+     * @return mixed Shows  the current image
      */
     function view_single_post_image($mysql_conn, $post_id) {
         $query_select_posts = "SELECT id, image_name FROM posts WHERE id = $post_id";
@@ -757,7 +759,7 @@
     /**
      * Function to show the Posts Database Table
      * @param  object $mysql_conn MySql Connection
-     * @return Echos the table of all posts
+     * @return mixed Shows the table of all posts
      */
     function show_posts_database($mysql_conn) {
         $query_select_posts = "SELECT id, user_id, created_at, description, status, category_id, image_name, views FROM posts ORDER BY created_at DESC";
@@ -801,7 +803,7 @@
     /**
      * Function to show the left column of images on the admin
      * @param  object $mysql_conn MySql Connection
-     * @return Echos the left column of images ( form 1 to 5 )
+     * @return mixed Shows  the left column of images ( form 1 to 5 )
      */
     function latest_posts_left($mysql_conn){
 
@@ -844,7 +846,7 @@
 
     /**
      * Get all Categories to an array
-     * @param  string $mysql_conn MySql Connection
+     * @param object $mysql_conn MySql Connection
      * @return array $categories_array [id]=>[category_name] array with
      * all teh Categories. Mostly used on dropdown select of categories
      */
@@ -860,7 +862,12 @@
         return $categories_array;
     }
 
-     function get_post_description($mysql_conn, $post_id){
+    /**
+    * @param object $mysql_conn MySql Connection
+    * @param $post_id int Id of the post that we need the description of
+    * @return string description of the post
+    */
+    function get_post_description($mysql_conn, $post_id){
         $query = "SELECT description FROM posts WHERE id = $post_id ";
         $result = mysqli_query($mysql_conn, $query);
         $row = mysqli_fetch_array($result);
@@ -868,6 +875,11 @@
         return $row['description'];
     }
 
+    /**
+    * @param object $mysql_conn MySql Connection
+    * @param $post_id int Id of the post that we need the category of
+    * @return int status of the post ( either 1 or 0 )
+    */
     function get_post_status($mysql_conn, $post_id){
         $query = "SELECT status FROM posts WHERE id = $post_id ";
         $result = mysqli_query($mysql_conn, $query);
@@ -876,6 +888,11 @@
         return $row['status'];
     }
 
+    /**
+    * @param object $mysql_conn MySql Connection
+    * @param $post_id int Id of the post that we need the category of
+    * @return int category id
+    */
     function get_post_category($mysql_conn, $post_id){
         $query = "SELECT category_id FROM posts WHERE id = $post_id ";
         $result = mysqli_query($mysql_conn, $query);
