@@ -10,7 +10,7 @@
      */
     define('HOST', 'localhost');       // The host you want to connect to.
     define('USER', 'root');            // The database username.
-    define('PASSWORD', '');         // The database password.
+    define('PASSWORD', '112');         // The database password.
     define('DATABASE', 'irishjoy');    // The database name.
     $mysql_conn = new mysqli(HOST, USER, PASSWORD, DATABASE);
 

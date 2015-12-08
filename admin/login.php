@@ -26,12 +26,10 @@ if (login_check($mysql_conn) == true) {
     <div id="login_box">
         <div id="login">
             <form action="process-login.php" method="post" name="login_form">
-                <label> Email:
-                    <input type="text" name="email"/><br> <br>
-                </label>
-                <label> Password:
-                    <input type="password" name="password"/>
-                </label>
+                <label class="login-label"> Email:</label>
+                <input type="text" name="email" class="login-input"/>
+                <label class="login-label"> Password:</label>
+                <input type="password" name="password" class="login-input"/>
                 <button class="login" value="Login">Login</button>
             </form>
             <p> Close and go to back to <a href="<?php echo MAIN_URL; ?>">Main Page</a></p>
