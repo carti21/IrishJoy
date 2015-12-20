@@ -21,9 +21,6 @@
     define('ADMIN_URL', MAIN_URL . 'admin/');
     define('SERVER_URL', dirname(__FILE__) . '/');
 
-    define('GOOGLE_ANALYTICS_URL', '/irishjoy/');
-    define('PHPMYADMIN_URL', 'http://localhost/phpmyadmin/');
-
     define('MAX_LOGIN_ATTEMPTS', 5);
     define('BLOCK_USER_DURATION', 2 * 60 * 60);
     define('COOKIE_LIFETIME', 60 * 60 * 24);
