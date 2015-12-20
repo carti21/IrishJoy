@@ -254,7 +254,6 @@
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>users.php"> Users </a> </div>
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>posts-database.php"> Post Database </a> </div>
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>statistics.php"> Statistics </a> </div>
-        <div class="menu_items"> <a href="<?php echo PHPMYADMIN_URL; ?>" target="_blank">'PHP MY Admin' </a> </div>
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>examples.php"> Examples </a> </div>
         <div class="menu_items"> <a href="<?php echo ADMIN_URL; ?>logout.php">Log Out</a> </div>
 

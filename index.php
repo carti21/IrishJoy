@@ -32,7 +32,9 @@
             </div>
         </div>
         <div class="before_menu">
-            <!-- Social Media Buttons goes here -->
+            <a href="https://github.com/ArditMustafaraj/IrishJoy" target="_blank">
+                <img class="github_link" src="images/GitHub_Logo.png" alt="GitHub">
+            </a>
         </div>
         <div class="menu_bar">
             <?php show_main_menu($mysql_conn); ?>
