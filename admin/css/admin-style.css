@@ -18,10 +18,6 @@ body {
     float: left;
 }
 
-/*------------------------------------------------------------------
-------------------------------------------------------------------*/
-
-/*Commonly Used button in content*/
 button.content_button {
     background: #e9e3e3;
     border: 1px solid #bbb;
@@ -80,9 +76,6 @@ button.content_button:focus {
 .head_menu_content a:hover {
     color: #68838B;
 }
-
-/*------------------------------------------------------------------
-------------------------------------------------------------------*/
 
 .head {
     width: 100%;
@@ -326,9 +319,6 @@ button.content_button:focus {
     text-decoration: none;
 }
 
-/* Mbaron css e stilit te tabelave te contentit (jo per postet)*/
-
-/* Stili i post view*/
 img.post_view_img {
     float: right;
     width: 200px;
@@ -452,7 +442,8 @@ table.tablesorter tbody tr:hover td {
     width: 15px;
     margin-bottom: -3px;
     height: auto;
-"
+    display: block;
+    margin-top:4px;
 }
 
 .posts_database_head {
@@ -557,9 +548,10 @@ div#login input:focus {
     color: white;
     background: rgba(0, 0, 0, 0.1);
     outline: 0;
+    display:block;
+    margin-top:4px;
 }
 
-/*  Butoni per login */
 button.login {
     background: #e9e3e3;
     border: 1px solid #bbb;
@@ -575,6 +567,7 @@ button.login {
     height: 30px;
     outline: none;
     display: block;
+    margin-top:5px;
 }
 
 button.login:hover {
@@ -596,7 +589,6 @@ button.login:active {
     outline: none;
 }
 
-/* End of Login styles */
 .arrow {
     width: 20px;
     height: auto;
@@ -619,4 +611,67 @@ button.login:active {
     min-height: 600px;
     background-color: #eee;
     margin: auto;
+}
+
+.single-post-date{
+    margin-left:50px;
+    color:#336699;
+    cursor:default;
+}
+
+.single-post-status{
+    float:right;
+    margin-right:10px;
+    cursor:default;
+    font-weight:bold;
+}
+
+.post-published{
+    color:#008000;
+}
+
+.post-not-published{
+    color:#AF0000;
+}
+
+.single-post-image-menu{
+    width:491px;
+}
+
+.single-post-description{
+    color:#336699;
+    padding-left:10px
+}
+
+.single-post-image-left-arrow{
+    float:right;
+    width:15px;
+    margin-top:2px;
+    margin-right:5px;
+    height:auto;
+}
+
+.single-post-image-back{
+    float: right;
+    margin-right: 10px;
+    color: #336699;
+    font-weight: bold;
+}
+
+.image-not-found{
+    width:200px;
+    float:right;
+    color:red;
+    font-weight:bold;
+}
+
+
+.left-arrow-post-database{
+    width:15px;
+    margin-bottom:-3px;
+    height:auto;
+}
+
+.cursor-default{
+    cursor: default;
 }
