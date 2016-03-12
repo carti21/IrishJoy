@@ -14,6 +14,10 @@
     define('DATABASE', 'irishjoy');    // The database name.
     $mysql_conn = new mysqli(HOST, USER, PASSWORD, DATABASE);
 
+if ($mysql_conn->connect_errno) {
+    echo "Database Error " . $mysql_conn->connect_errno;
+    exit();
+}
     /**
      * Paths - Changing not Recommended. Only if changing folder structure directory
      */
